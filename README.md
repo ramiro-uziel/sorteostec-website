@@ -3,7 +3,7 @@
 Creado con SvelteKit y TailwindCSS.
 
 SvelteKit tiene routing para el manejo de las paginas.
-Esto esta dentro de `/src/routes`, donde `+layout` contiene el header y footer y `+page` el contenido principal.
+Esta dentro de `/src/routes`, donde `+layout` contiene el header y footer y `+page` el contenido principal.
 
 Los componentes como el header y footer están en `/src/components`.
 
