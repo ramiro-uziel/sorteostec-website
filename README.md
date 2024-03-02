@@ -3,15 +3,15 @@
 Creado con SvelteKit y TailwindCSS.
 
 SvelteKit tiene routing para el manejo de las paginas.
-Esta dentro de `/src/routes`, donde `+layout` contiene el header y footer y `+page` el contenido principal.
+Esto esta dentro de `/src/routes`, donde `+layout` contiene el header y footer y `+page` el contenido principal.
 
 Los componentes como el header y footer están en `/src/components`.
 
 Los estilos deben ser creados con TailwindCSS. Si necesitan hacer un estilo con CSS normal, va en `/src/app.css`.
 
-Si quieren importar fonts o iconos, van en el `<head>` de `/src/app.html`.
+Si quieren importar fonts o iconos (ej. FontAwesome), es en el `<head>` de `/src/app.html`.
 
-Cualquier asset estático como imagenes o archivos de iconos van en `/static/`.
+Imagenes e iconos (locales) en `/src/assets/`.
 
 [Docs de SvelteKit](https://kit.svelte.dev/docs/project-structure)
 
