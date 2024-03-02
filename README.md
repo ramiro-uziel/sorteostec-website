@@ -11,6 +11,8 @@ Los estilos deben ser creados con TailwindCSS. Si necesitan hacer un estilo con 
 
 Si quieren importar fonts o iconos, van en el `<head>` de `/src/app.html`.
 
+Cualquier asset estático como imagenes o archivos de iconos van en `/static/`.
+
 [Docs de SvelteKit](https://kit.svelte.dev/docs/project-structure)
 
 [Docs de TailwindCSS](https://tailwindcss.com/docs/utility-first)
