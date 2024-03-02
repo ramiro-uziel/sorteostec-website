@@ -1,22 +1,27 @@
-# create-svelte
+## "Website" de SorteosTec
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Creado con SvelteKit y TailwindCSS.
 
-## Creating a project
+SvelteKit tiene routing para el manejo de las paginas.
+Esto esta dentro de `/src/routes`, donde `+layout` contiene el header y footer y `+page` el contenido principal.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Los componentes como el header y footer están en `/src/components`.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+Los estilos deben ser creados con TailwindCSS. Si necesitan hacer un estilo con CSS normal, va en `/src/app.css`.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+Si quieren importar fonts o iconos, van en el `<head>` de `/src/app.html`.
+
+[Docs de SvelteKit](https://kit.svelte.dev/docs/project-structure)
+
+[Docs de TailwindCSS](https://tailwindcss.com/docs/utility-first)
+
+---
+
+_Generado por el install de SvelteKit_
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install dependencies with `npm install`, then start a development server:
 
 ```bash
 npm run dev
