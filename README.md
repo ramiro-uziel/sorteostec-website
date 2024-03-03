@@ -13,6 +13,8 @@ Si quieren importar fonts o iconos (ej. FontAwesome), es en el `<head>` de `/src
 
 Imagenes e iconos (locales) en `/src/assets/`.
 
+El build de Unity esta en `/static/unitybuild/`.
+
 [Docs de SvelteKit](https://kit.svelte.dev/docs/project-structure)
 
 [Docs de TailwindCSS](https://tailwindcss.com/docs/utility-first)
