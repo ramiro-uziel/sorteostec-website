@@ -2,8 +2,8 @@
 
 Creado con SvelteKit y TailwindCSS.
 
-SvelteKit tiene routing para el manejo de las paginas.
-Esto esta dentro de `/src/routes`, donde `+layout` contiene el header y footer y `+page` el contenido principal.
+SvelteKit tiene [routing](https://kit.svelte.dev/docs/routing) para el manejo de las paginas.
+Esto esta dentro de `/src/routes`, donde `+layout.svelte` contiene el header y footer y `+page.svelte` el contenido de la pagina root. Para agregar otra página, haz un folder dentro de routes `/src/routes/[paginanueva]/` y dentro haz un `+page.svelte` con el contenido.
 
 Los componentes como el header y footer están en `/src/components`.
 
