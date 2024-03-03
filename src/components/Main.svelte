@@ -6,7 +6,7 @@
       title="Game"
       mozallowfullscreen="true"
       allow="autoplay; fullscreen"
-      src="http://0.0.0.0:3884/"
+      src="/unitybuild/index.html"
       style="border:0px #000000 none;"
       name="Game"
       scrolling="no"

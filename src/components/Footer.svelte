@@ -43,8 +43,6 @@
         <p class=" text-center pt-5">
           © 2024 Sorteos Tec. Todos los derechos reservados
         </p>
-
-        <!-- social media links, facebook, insta, whatsapp, youtube -->
       </div>
     </div>
   </div>

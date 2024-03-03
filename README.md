@@ -7,7 +7,7 @@ Esto esta dentro de `/src/routes`, donde `+layout` contiene el header y footer y
 
 Los componentes como el header y footer están en `/src/components`.
 
-Los estilos deben ser creados con TailwindCSS. Si necesitan hacer un estilo con CSS normal, va en `/src/app.css`.
+Los estilos deben ser creados con TailwindCSS. Si necesitan hacer un estilo con CSS normal que se aplica globalmente, va en `/src/app.css`. Los componentes pueden tener estilos internos dentro de `<style></style>`.
 
 Si quieren importar fonts o iconos (ej. FontAwesome), es en el `<head>` de `/src/app.html`.
 

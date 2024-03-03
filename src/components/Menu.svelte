@@ -30,7 +30,7 @@
       opacity 0.2s ease,
       transform 0.2s ease;
     overflow: hidden;
-    pointer-events: none; /* Disable pointer events when menu is hidden */
+    pointer-events: none;
   }
 
   div:hover > menu,
@@ -38,6 +38,6 @@
     visibility: visible;
     opacity: 1;
     transform: translateY(0);
-    pointer-events: auto; /* Enable pointer events when menu is visible */
+    pointer-events: auto;
   }
 </style>
