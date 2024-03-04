@@ -17,7 +17,7 @@
   >
     <a
       href="#"
-      class="bg-st-blue-light ml-auto rounded-full aspect-squarerelative flex gap-2 border-4 drop-shadow-2xl border-st-blue overflow-hidden p-2.5 group text-st-blue hover:scale-[102%] hover:bg-st-blue hover:text-white cursor-pointer duration-200"
+      class="bg-st-blue-light ml-auto rounded-full aspect-squarerelative flex gap-2 border-4 border-st-blue overflow-hidden p-2.5 group text-st-blue hover:scale-[102%] hover:bg-st-blue hover:text-white cursor-pointer duration-200"
     >
       <div class="relative w-[48px] h-[48px]">
         <div class=" absolute w-full h-full icon-transition icon-effect">
