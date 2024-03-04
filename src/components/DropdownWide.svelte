@@ -59,17 +59,6 @@
     >
       <div class="py-1" role="none">
         <slot />
-        <!--
-            <form method="POST" action="#" role="none">
-                <button
-                type="submit"
-                class="text-st-blue block w-full px-4 py-2 text-left text-sm hover:bg-gray-200"
-                role="menuitem"
-                tabindex="-1"
-                id="menu-item-3">Sign out</button
-                >
-            </form>
-        -->
       </div>
     </div>
   {/if}

@@ -3,16 +3,16 @@
   import { quintOut } from "svelte/easing";
   import { fly } from "svelte/transition";
   let menuOpen = false;
-  let buttonActive = false; // State to track button's active style
+  let buttonActive = false;
 
   function toggleMenu() {
     menuOpen = !menuOpen;
-    buttonActive = !buttonActive; // Toggle button active state
+    buttonActive = !buttonActive;
   }
 
   function closeMenu() {
     menuOpen = false;
-    buttonActive = false; // Reset button active state on click outside
+    buttonActive = false;
   }
 </script>
 
@@ -64,17 +64,6 @@
     >
       <div class="py-1" role="none">
         <slot />
-        <!--
-            <form method="POST" action="#" role="none">
-                <button
-                type="submit"
-                class="text-st-blue block w-full px-4 py-2 text-left text-sm hover:bg-gray-200"
-                role="menuitem"
-                tabindex="-1"
-                id="menu-item-3">Sign out</button
-                >
-            </form>
-        -->
       </div>
     </div>
   {/if}

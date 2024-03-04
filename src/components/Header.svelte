@@ -5,8 +5,6 @@
   import DropdownWide from "./DropdownWide.svelte";
   import DropdownItem from "./DropdownItem.svelte";
 
-  export let y;
-
   let sidebarVisible = false;
 
   function toggleSidebar() {
@@ -21,6 +19,12 @@
     { name: "Historias", link: "#foo" },
     { name: "Líderes del Mañana", link: "#foo" },
     { name: "Juegos", link: "#foo" },
+  ];
+
+  let userTabs = [
+    { name: "Perfil", icon: "fa-solid fa-user", link: "#foo" },
+    { name: "E-wallet", icon: "fa-solid fa-wallet", link: "#foo" },
+    { name: "Compras", icon: "fa-solid fa-shopping-bag", link: "#foo" },
   ];
 </script>
 
@@ -71,7 +75,7 @@
         </a>
       </div>
       <a
-        href="#"
+        href="#foo"
         class="relative hidden lg:flex gap-2 border-2 overflow-hidden px-5 py-1.5 group rounded-full bg-white text-st-blue hover:scale-[102%] hover:bg-transparent hover:border-white hover:text-white duration-100"
       >
         <div class="relative w-[20px] h-[20px] sm:w-[25px] sm:h-[25px]">
@@ -130,13 +134,13 @@
             </div>
             <div class=" flex flex-row justify-between gap-2 p-2 px-4">
               <a
-                href="#"
+                href="#foo"
                 class="border border-st-blue p-2 rounded flex align-middle justify-center w-full text-st-blue hover:bg-st-blue-light hover:text-st-blue duration-200"
               >
                 <p class="font-semibold px-1">E-wallet</p>
               </a>
               <a
-                href="#"
+                href="#foo"
                 class="border border-st-blue bg-st-blue p-2 rounded flex align-middle justify-center w-full text-white hover:bg-st-blue-light hover:text-st-blue duration-200"
               >
                 <p class="font-semibold px-1">Abonar</p>
@@ -144,24 +148,19 @@
             </div>
           </div>
         </DropdownWide>
-
         <Dropdown>
           <p slot="title" class="text-sm font-semibold">
             <i class="fa-solid fa-user text-st-blue pr-2"></i>
             User
           </p>
-          <DropdownItem>
-            <i class="fa-solid fa-user text-st-blue pr-2"></i>
-            <a href="#?">Perfil</a>
-          </DropdownItem>
-          <DropdownItem>
-            <i class="fa-solid fa-wallet text-st-blue pr-2"></i>
-            <a href="#?">E-wallet</a>
-          </DropdownItem>
-          <DropdownItem>
-            <i class="fa-solid fa-shopping-bag text-st-blue pr-2"></i>
-            <a href="#?">Compras</a>
-          </DropdownItem>
+          {#each userTabs as tab}
+            <a href={tab.link}>
+              <DropdownItem>
+                <i class="{tab.icon} text-st-blue pr-2"></i>
+                {tab.name}
+              </DropdownItem>
+            </a>
+          {/each}
         </Dropdown>
       </div>
     </div>

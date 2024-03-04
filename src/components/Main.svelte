@@ -1,7 +1,5 @@
 <script>
-  // This function now waits for a click event before executing
   function goFullscreen() {
-    // Targeting the iframe specifically
     const elem = document.getElementById("embededGame");
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
@@ -22,12 +20,11 @@
       class="w-full max-w-4xl h-auto border-none"
       style="aspect-ratio: 16 / 9;"
     ></iframe>
-    <!-- Updated button event handler to reference the function without invoking it -->
     <button
       on:click={goFullscreen}
       class="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"
     >
-      Toggle Fullscreen
+      Fullscreen
     </button>
   </div>
 </main>
