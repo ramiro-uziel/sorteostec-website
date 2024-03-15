@@ -9,6 +9,7 @@
 
   let sidebarVisible = false;
   let headerElement;
+  let userLogged = true;
 
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
@@ -112,68 +113,71 @@
     </div>
 
     <div class="flex flex-row items-center xl:flex-1 justify-end">
-      <div class="px-0 mdsm:px-4">
-        <DropdownWide>
-          <div
-            slot="title"
-            class="text-sm font-semibold flex flex-row items-center gap-1"
-          >
-            <i class="fa-solid fa-wallet pr-2"></i>
-            <p class="mdsm:hidden xs-mdsm:flex mdxl:flex">$1000</p>
-          </div>
-          <div class="flex flex-col gap-3 text-sm w-72">
-            <div class="flex flex-row px-4 mt-4 gap-1 justify-between">
-              <p class="text-st-blue font-semibold">Mi saldo actual</p>
-              <p class="text-st-blue font-semibold">$1000</p>
+      {#if userLogged}
+        <div class="px-0 mdsm:px-4">
+          <DropdownWide>
+            <div
+              slot="title"
+              class="text-sm font-semibold flex flex-row items-center gap-1"
+            >
+              <i class="fa-solid fa-wallet pr-2"></i>
+              <p class="mdsm:hidden xs-mdsm:flex mdxl:flex">$1000</p>
             </div>
-            <hr
-              class="h-px mb-1 st-blue border-1 border-dotted border-st-blue"
-            />
-
-            <div class="flex flex-row gap-2 text-xs px-4 justify-between">
-              <p class="text-gray-400">Saldo abonado</p>
-              <p class="text-gray-400">$1000</p>
-            </div>
-            <div class="flex flex-row gap-2 text-xs px-4 justify-between">
-              <p class="text-gray-400">Premios por cobrar</p>
-              <p class="text-gray-400">$1000</p>
-            </div>
-            <DropdownWideItem>
-              <div class=" flex flex-row justify-between gap-2 p-2 px-4">
-                <a
-                  href="/cuenta/ewallet"
-                  class="border border-st-blue p-2 rounded flex align-middle justify-center w-full text-st-blue hover:bg-st-blue-light hover:text-st-blue duration-200"
-                >
-                  <p class="font-semibold px-1">E-wallet</p>
-                </a>
-                <a
-                  href="/cuenta/ewallet"
-                  class="border border-st-blue bg-st-blue p-2 rounded flex align-middle justify-center w-full text-white hover:bg-st-blue-light hover:text-st-blue duration-200"
-                >
-                  <p class="font-semibold px-1">Abonar</p>
-                </a>
+            <div class="flex flex-col gap-3 text-sm w-72">
+              <div class="flex flex-row px-4 mt-4 gap-1 justify-between">
+                <p class="text-st-blue font-semibold">Mi saldo actual</p>
+                <p class="text-st-blue font-semibold">$1000</p>
               </div>
-            </DropdownWideItem>
-          </div>
-        </DropdownWide>
-        <Dropdown>
-          <div
-            slot="title"
-            class="text-sm font-semibold flex flex-row items-center gap-1"
-          >
-            <i class="fa-solid fa-user pr-2"></i>
-            <p class="hidden xs-mdsm:flex mdxl:flex">User</p>
-          </div>
-          {#each userTabs as tab}
-            <a href={tab.link}>
-              <DropdownItem>
-                <i class="{tab.icon} text-st-blue pr-2"></i>
-                {tab.name}
-              </DropdownItem>
-            </a>
-          {/each}
-        </Dropdown>
-      </div>
+              <hr
+                class="h-px mb-1 st-blue border-1 border-dotted border-st-blue"
+              />
+
+              <div class="flex flex-row gap-2 text-xs px-4 justify-between">
+                <p class="text-gray-400">Saldo abonado</p>
+                <p class="text-gray-400">$1000</p>
+              </div>
+              <div class="flex flex-row gap-2 text-xs px-4 justify-between">
+                <p class="text-gray-400">Premios por cobrar</p>
+                <p class="text-gray-400">$1000</p>
+              </div>
+              <DropdownWideItem>
+                <div class=" flex flex-row justify-between gap-2 p-2 px-4">
+                  <a
+                    href="/cuenta/ewallet"
+                    class="border border-st-blue p-2 rounded flex align-middle justify-center w-full text-st-blue hover:bg-st-blue-light hover:text-st-blue duration-200"
+                  >
+                    <p class="font-semibold px-1">E-wallet</p>
+                  </a>
+                  <a
+                    href="/cuenta/ewallet"
+                    class="border border-st-blue bg-st-blue p-2 rounded flex align-middle justify-center w-full text-white hover:bg-st-blue-light hover:text-st-blue duration-200"
+                  >
+                    <p class="font-semibold px-1">Abonar</p>
+                  </a>
+                </div>
+              </DropdownWideItem>
+            </div>
+          </DropdownWide>
+          <Dropdown>
+            <div
+              slot="title"
+              class="text-sm font-semibold flex flex-row items-center gap-1"
+            >
+              <i class="fa-solid fa-user pr-2"></i>
+              <p class="hidden xs-mdsm:flex mdxl:flex">User</p>
+            </div>
+            {#each userTabs as tab}
+              <a href={tab.link}>
+                <DropdownItem>
+                  <i class="{tab.icon} text-st-blue pr-2"></i>
+                  {tab.name}
+                </DropdownItem>
+              </a>
+            {/each}
+          </Dropdown>
+        </div>
+      {/if}
+
       <a
         href="#foo"
         class="relative hidden mdsm:flex gap-2 border-2 overflow-hidden px-5 py-1.5 group rounded-full bg-white text-st-blue hover:scale-[102%] hover:bg-transparent hover:border-white hover:text-white duration-100"
