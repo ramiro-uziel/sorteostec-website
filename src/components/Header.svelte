@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy } from "svelte";
   import Boleto from "../assets/icons/boleto.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
   import Dropdown from "./Dropdown.svelte";
@@ -9,7 +9,7 @@
 
   let sidebarVisible = false;
   let headerElement;
-  
+
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
   }
@@ -35,20 +35,26 @@
 
   function updateHeaderHeight() {
     const height = headerElement.clientHeight;
-    document.documentElement.style.setProperty('--header-height', `${height}px`);
+    document.documentElement.style.setProperty(
+      "--header-height",
+      `${height}px`
+    );
   }
 
   onMount(() => {
     updateHeaderHeight(); // Update on mount
-    window.addEventListener('resize', updateHeaderHeight); // Update on resize
+    window.addEventListener("resize", updateHeaderHeight); // Update on resize
 
     return () => {
-      window.removeEventListener('resize', updateHeaderHeight); // Cleanup
+      window.removeEventListener("resize", updateHeaderHeight); // Cleanup
     };
   });
 </script>
 
-<header bind:this={headerElement} class="sticky top-0 z-10 px-6 flex py-4 bg-st-blue">
+<header
+  bind:this={headerElement}
+  class="sticky top-0 z-10 px-6 flex py-4 bg-st-blue"
+>
   <div
     class="flex flex-row w-full items-center justify-between max-w-[1500px] mx-auto"
   >
