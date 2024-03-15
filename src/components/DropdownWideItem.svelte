@@ -4,6 +4,6 @@
   const closeDropdown = getContext("closeDropdown");
 </script>
 
-<div on:click={closeDropdown}>
+<button on:click={closeDropdown}>
   <slot />
-</div>
+</button>

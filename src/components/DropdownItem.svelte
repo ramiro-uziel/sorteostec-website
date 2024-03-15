@@ -4,12 +4,12 @@
   const closeDropdown = getContext("closeDropdown");
 </script>
 
-<div
-  class="text-st-blue block px-4 py-2 text-sm hover:bg-gray-200"
+<button
+  class="text-st-blue block px-4 py-2 text-sm hover:bg-gray-200 w-full text-left"
   role="menuitem"
-  tabindex="-1"
+  tabindex="0"
   id="menu-item-0"
   on:click={closeDropdown}
 >
   <slot />
-</div>
+</button>
