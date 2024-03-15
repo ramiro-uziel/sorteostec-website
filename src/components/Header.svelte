@@ -1,6 +1,4 @@
 <script>
-  export let y;
-
   import Boleto from "../assets/icons/boleto.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
   import Dropdown from "./Dropdown.svelte";
@@ -30,12 +28,11 @@
   ];
 </script>
 
-<header
-  class={"sticky top-0 z-[10] m-2 duration-100 px-6 flex items-center justify-between py-4 bg-st-blue " +
-    (y > 0 ? "mx-0 rounded-none" : "m-3 mx-3 rounded-xl")}
->
-  <div class="flex flex-row w-full items-center justify-between">
-    <div class="flex flex-row gap-4">
+<header class="sticky top-0 z-10 px-6 flex py-4 bg-st-blue">
+  <div
+    class="flex flex-row w-full items-center justify-between max-w-[1400px] mx-auto"
+  >
+    <div class="flex flex-row gap-4 justify-start">
       <button on:click={toggleSidebar} class="relative mdsm:hidden">
         <i class="fa-solid fa-bars text-white text-2xl"></i>
       </button>
@@ -69,8 +66,12 @@
         />
       </a>
     </div>
-    <div class="flex flex-column gap-2 xl:gap-42 justify-center items-center">
-      <div class="hidden gap-0 justify-center items-center mx-auto mdsm:flex">
+    <div
+      class="flex flex-column gap-2 xl:gap-42 justify-center items-center mx-auto"
+    >
+      <div
+        class="hidden gap-0 pl-5 justify-center items-center mx-auto mdsm:flex"
+      >
         {#each tabs as tab}
           <a
             href={tab.link}
@@ -84,7 +85,7 @@
       </div>
     </div>
 
-    <div class="flex flex-row items-center">
+    <div class="flex flex-row items-center xl:flex-1 justify-end">
       <div class="px-4">
         <DropdownWide>
           <div

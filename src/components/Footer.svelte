@@ -31,7 +31,7 @@
         >
       </div>
       <div class="flex flex-row max-w-60">
-        <img src="src/assets/icons/18.svg" alt="boleto" class="w-[30px]" />
+        <img src="/src/assets/icons/18.svg" alt="boleto" class="w-[30px]" />
 
         <p class=" text-center">
           Para participar en Sorteos Tec deberás ser <b class="pr-1"
