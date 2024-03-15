@@ -1,17 +1,9 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  import { onMount, onDestroy } from "svelte";
-  import Boleto from "../assets/icons/boleto.svelte";
-  import BoletoHover from "../assets/icons/boleto-hover.svelte";
-  import Dropdown from "./Dropdown.svelte";
-  import DropdownWide from "./DropdownWide.svelte";
-  import DropdownItem from "./DropdownItem.svelte";
-  import DropdownWideItem from "./DropdownWideItem.svelte";
-
   let sidebarVisible = false;
-  let headerElement;
 
   function toggleSidebar() {
+    console.log("si");
     sidebarVisible = !sidebarVisible;
   }
 </script>
@@ -63,12 +55,12 @@
             >
               Mis premios
             </a>
-            <a
-              href="#"
+            <button
+              on:click={toggleSidebar}
               class="rounded-lg p-3 px-6 border text-sm text-zinc-800 font-normal border-zinc-800 hover:bg-zinc-800 hover:text-white duration-100"
             >
               Abonar saldo
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -106,21 +98,54 @@
       </div>
     </div>
   </div>
-  {#if sidebarVisible}
-    <div class="flex flex-row gap-4 p-4">
-      <button on:click={toggleSidebar}>
-        <i class="fa-solid fa-bars text-white text-2xl"></i>
-      </button>
-    </div>
-    <div class="py-4 text-sm flex flex-col gap-2">
-      {#each tabs as tab}
-        <a
-          href={tab.link}
-          class="bg-st-blue rounded-xl p-4 hover:bg-st-blue-light hover:text-st-blue duration-100"
+  <div
+    class={`fixed px-4 inset-y-0 right-0 transform ${!sidebarVisible ? "translate-x-full" : "-translate-x-100"} w-72 bg-white  z-10 transition-transform border-l border-gainsboro  duration-200 ease-in-out`}
+  >
+    <!-- {#if sidebarVisible} -->
+    <div class="flex flex-col justify-between h-full">
+      <div>
+        <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
+          <button on:click={toggleSidebar}>
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+          </button>
+          <!-- <p class="text-sm font-normal pt-1">Volver</p> -->
+        </div>
+        <h2 class="text-xl md:text-2xl font-semibold text-st-blue mb-2 pt-2">
+          Abonar a E-wallet
+        </h2>
+        <div
+          class="flex flex-row justify-between text-st-blue p-1 border-b border-st-blue"
         >
-          <p class="text-sm font-bold">{tab.name}</p>
-        </a>
-      {/each}
+          <div class="flex">
+            <i class="fa fa-wallet pt-1 mr-2" aria-hidden="true"></i>
+            <p>Mi saldo actual</p>
+          </div>
+          <p>$0.00</p>
+        </div>
+        <p class="text-sm font-normal pb-1 pt-4">Ingresa el monto por abonar</p>
+        <input class="p-2 w-full border border-gainsboro rounded-lg" />
+        <p class="text-sm font-normal pb-1 pt-2">Codigo de promocion</p>
+        <input class="p-2 w-full border border-gainsboro rounded-lg" />
+        <p class="mt-2">Selecciona tu método de abono</p>
+        <div
+          class="p-2 w-full border border-gainsboro rounded-md text-st-blue mb-2"
+        >
+          <i class="fa fa-credit-card mr-1" aria-hidden="true"></i> Tarjeta crédito
+          o débito
+        </div>
+        <div class="p-2 w-full border border-gainsboro rounded-md text-st-blue">
+          <i class="fa fa-gift mr-1" aria-hidden="true"></i> Tarjetas de regalo
+        </div>
+      </div>
+      <div class="py-4 text-sm flex flex-col gap-2">
+        <button
+          on:click={toggleSidebar}
+          class="bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
+        >
+          <p class="text-sm font-bold">Abonar</p>
+        </button>
+      </div>
     </div>
-  {/if}
+    <!-- {/if} -->
+  </div>
 </div>
