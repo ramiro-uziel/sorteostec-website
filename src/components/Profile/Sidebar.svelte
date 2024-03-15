@@ -16,7 +16,7 @@
   {#each tabs as tab}
     <a
       href={tab.link}
-      class="flex flex-row items-center rounded gap-4 border border-transparent text-st-blue p-4 hover:shadow-md hover:border-st-blue duration-200 hover-indicator {$page
+      class="flex flex-row items-center gap-4 rounded-tl-md rounded-bl-md border border-transparent text-st-blue p-4 hover:shadow-md hover:border-st-blue duration-200 hover-indicator {$page
         .url.pathname === tab.link
         ? 'active border-r-st-blue'
         : ''}"

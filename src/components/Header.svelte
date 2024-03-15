@@ -61,7 +61,7 @@
       <a href="/">
         <img
           alt="logotipo"
-          src="../src/assets/images/Principal-Blanco.png"
+          src="/src/assets/images/Principal-Blanco.png"
           class="w-[150px]"
         />
       </a>
@@ -86,7 +86,7 @@
     </div>
 
     <div class="flex flex-row items-center xl:flex-1 justify-end">
-      <div class="px-4">
+      <div class="px-0 mdsm:px-4">
         <DropdownWide>
           <div
             slot="title"
