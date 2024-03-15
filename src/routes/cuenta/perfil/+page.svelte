@@ -1,5 +1,5 @@
 <script>
-  import Sidebar from "/src/components/profile/Sidebar.svelte";
+  import Sidebar from "/src/components/Sidebar.svelte";
 </script>
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
