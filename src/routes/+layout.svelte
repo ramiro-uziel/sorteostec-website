@@ -1,17 +1,29 @@
 <script>
+  import { onMount } from 'svelte';
   import "../app.css";
   import Header from "../components/Header.svelte";
   import Footer from "../components/Footer.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
 
-  let y;
-  let innerHeight = 0;
-  let innerWidth = 0;
+  let headerHeight = 0;
+  let y = 0;
+  let headerElement;
+
+  function updateHeaderHeight() {
+    headerHeight = headerElement.clientHeight;
+  }
+
+  onMount(() => {
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateHeaderHeight);
+    };
+  });
 </script>
 
-<div
-  class="relative flex flex-col mx-auto w-full text-sm sm:text-base min-h-screen"
->
+<div class="relative flex flex-col mx-auto w-full text-sm sm:text-base">
   <div
     class="mdsm:hidden flex fixed bottom-0 right-0 duration-200 p-6 py-10 z-[10] opacity-100 pointer-events-auto"
   >
@@ -31,9 +43,19 @@
       </div>
     </a>
   </div>
-  <Header {y} />
-  <slot />
+  <div bind:this={headerElement}>
+    <Header {y} />
+  </div>
+  <div class="content" style="--headerHeight: {headerHeight}px;">
+    <slot />
+  </div>
   <Footer />
 </div>
 
-<svelte:window bind:scrollY={y} bind:innerHeight bind:innerWidth />
+<svelte:window bind:scrollY={y} />
+
+<style>
+  .content {
+    min-height: calc(100vh - var(--headerHeight));
+  }
+</style>

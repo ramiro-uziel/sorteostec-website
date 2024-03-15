@@ -4,13 +4,13 @@
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
   <div class="flex lg:flex-row items-start">
-    <div class="mt-6">
+    <div class="mt-10">
       <Sidebar />
     </div>
     <div class="w-px bg-gray-300 h-full"></div>
   </div>
-  <div class="mb-96 w-full">
-    <div class="p-6">
+  <div class="w-full">
+    <div class="p-6 mt-3">
       <h1 class="p-3 text-3xl md:text-4xl font-semibold text-st-blue">
         Mi perfil
       </h1>

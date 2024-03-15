@@ -1,6 +1,6 @@
 <footer>
   <div
-    class="w-full bottom-0 mt py-10 md:py-20 text-xs pointer-events-auto bg-st-blue text-white flex flex-col gap-4 md:gap-8 justify-center items-center"
+    class="w-full bottom-0 py-10 md:py-20 text-xs pointer-events-auto bg-st-blue text-white flex flex-col gap-4 md:gap-8 justify-center items-center"
   >
     <img
       src="/src/assets/images/Principal-Blanco.png"

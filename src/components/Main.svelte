@@ -9,16 +9,13 @@
   }
 </script>
 
-<main>
-  <div
-    class="w-full text-xs p-10 pointer-events-auto text-white flex flex-col gap-4 justify-center items-center"
-  >
+<main class="flex justify-center items-center" style="min-height: calc(100vh - var(--header-height)); ">
+  <div class="w-full text-xs text-white flex flex-col gap-4 items-center" style="max-width: 1200px; min-width: 550px; aspect-ratio: 16 / 9;">
     <iframe
       title="Fields of Fortune"
       id="embededGame"
       src="/build/index.html"
-      class="w-full max-w-4xl h-auto border-none"
-      style="aspect-ratio: 16 / 9;"
+      class="w-full border-none" style="aspect-ratio: 16 / 9;"
     ></iframe>
     <button
       on:click={goFullscreen}
