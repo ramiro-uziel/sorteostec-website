@@ -22,7 +22,7 @@
   ];
 
   let userTabs = [
-    { name: "Perfil", icon: "fa-solid fa-user", link: "#foo" },
+    { name: "Perfil", icon: "fa-solid fa-user", link: "cuenta/perfil" },
     { name: "E-wallet", icon: "fa-solid fa-wallet", link: "#foo" },
     { name: "Compras", icon: "fa-solid fa-shopping-bag", link: "#foo" },
   ];
@@ -30,7 +30,7 @@
 
 <header class="sticky top-0 z-10 px-6 flex py-4 bg-st-blue">
   <div
-    class="flex flex-row w-full items-center justify-between max-w-[1400px] mx-auto"
+    class="flex flex-row w-full items-center justify-between max-w-[1500px] mx-auto"
   >
     <div class="flex flex-row gap-4 justify-start">
       <button on:click={toggleSidebar} class="relative mdsm:hidden">
@@ -134,7 +134,7 @@
             class="text-sm font-semibold flex flex-row items-center gap-1"
           >
             <i class="fa-solid fa-user pr-2"></i>
-            <p class="mdsm:hidden xs-mdsm:flex mdxl:flex">User</p>
+            <p class="hidden xs-mdsm:flex mdxl:flex">User</p>
           </div>
           {#each userTabs as tab}
             <a href={tab.link}>
