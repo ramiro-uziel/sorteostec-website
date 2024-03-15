@@ -11,13 +11,6 @@ html {
   font-weight: 500;
 }
 
-h1,
-h2,
-h3,
-.roboto {
-  font-family: "Roboto", sans-serif;
-}
-
 .icon-effect {
   transition: transform 0.3s ease;
 }

@@ -22,86 +22,60 @@
   ];
 
   let userTabs = [
-    { name: "Perfil", icon: "fa-solid fa-user", link: "#foo" },
+    { name: "Perfil", icon: "fa-solid fa-user", link: "cuenta/perfil" },
     { name: "E-wallet", icon: "fa-solid fa-wallet", link: "#foo" },
     { name: "Compras", icon: "fa-solid fa-shopping-bag", link: "#foo" },
   ];
 </script>
 
-<header class="sticky z-10 top-0 flex flex-col items-center">
-  <nav
-    class="duration-200 w-full px-8 flex justify-center border border-solid py-4 bg-st-blue border-transparent"
+<header class="sticky top-0 z-10 px-6 flex py-4 bg-st-blue">
+  <div
+    class="flex flex-row w-full items-center justify-between max-w-[1500px] mx-auto"
   >
-    <div class="flex flex-row w-full max-w-6xl items-center justify-between">
-      <div class="flex flex-row gap-4">
-        <button on:click={toggleSidebar} class="relative lg:hidden">
-          <i class="fa-solid fa-bars text-white text-2xl"></i>
-        </button>
-        <div
-          class={`fixed px-4 inset-y-0 left-0 transform ${sidebarVisible ? "translate-x-0" : "-translate-x-full"} w-72 bg-st-blue    text-white z-10 transition-transform  duration-200 ease-in-out`}
-        >
-          {#if sidebarVisible}
-            <div class="flex flex-row gap-4 p-4">
-              <button on:click={toggleSidebar}>
-                <i class="fa-solid fa-bars text-white text-2xl"></i>
-              </button>
-              <a href="/">
-                <img
-                  alt="logotipo"
-                  src="../src/assets/images/Principal-Blanco.png"
-                  class="w-[150px]"
-                />
-              </a>
-            </div>
-            <div class="py-4 text-sm flex flex-col gap-2">
-              {#each tabs as tab}
-                <a
-                  href={tab.link}
-                  class="bg-st-blue rounded-xl p-4 hover:bg-st-blue-light hover:text-st-blue duration-100"
-                >
-                  <p class="text-sm font-bold">{tab.name}</p>
-                </a>
-              {/each}
-            </div>
-          {/if}
-        </div>
-
-        <a href="/">
-          <img
-            alt="logotipo"
-            src="../src/assets/images/Principal-Blanco.png"
-            class="w-[150px]"
-          />
-        </a>
-      </div>
-      <a
-        href="#foo"
-        class="relative hidden lg:flex gap-2 border-2 overflow-hidden px-5 py-1.5 group rounded-full bg-white text-st-blue hover:scale-[102%] hover:bg-transparent hover:border-white hover:text-white duration-100"
+    <div class="flex flex-row gap-4 justify-start">
+      <button on:click={toggleSidebar} class="relative mdsm:hidden">
+        <i class="fa-solid fa-bars text-white text-2xl"></i>
+      </button>
+      <div
+        class={`fixed px-4 inset-y-0 left-0 transform ${sidebarVisible ? "translate-x-0" : "-translate-x-full"} w-72 bg-st-blue    text-white z-10 transition-transform  duration-200 ease-in-out`}
       >
-        <div class="relative w-[20px] h-[20px] sm:w-[25px] sm:h-[25px]">
-          <div class=" absolute w-full h-full icon-transition icon-effect">
-            <Boleto />
+        {#if sidebarVisible}
+          <div class="flex flex-row gap-4 p-4">
+            <button on:click={toggleSidebar}>
+              <i class="fa-solid fa-bars text-white text-2xl"></i>
+            </button>
           </div>
-          <div
-            class="text-white absolute w-full h-full icon-transition icon-effect-hover"
-          >
-            <BoletoHover />
+          <div class="py-4 text-sm flex flex-col gap-2">
+            {#each tabs as tab}
+              <a
+                href={tab.link}
+                class="bg-st-blue rounded-xl p-4 hover:bg-st-blue-light hover:text-st-blue duration-100"
+              >
+                <p class="text-sm font-bold">{tab.name}</p>
+              </a>
+            {/each}
           </div>
-        </div>
+        {/if}
+      </div>
 
-        <h4 class="font-semibold relative z-9">Comprar boletos</h4>
+      <a href="/">
+        <img
+          alt="logotipo"
+          src="../src/assets/images/Principal-Blanco.png"
+          class="w-[150px]"
+        />
       </a>
     </div>
-  </nav>
-  <nav
-    class="bg-st-blue-light text-slate-950 w-full flex justify-end lg:justify-center"
-  >
-    <div class="flex flex-column gap-2 xl:gap-40 justify-center items-center">
-      <div class="hidden gap-0 justify-center items-center mx-auto lg:flex">
+    <div
+      class="flex flex-column gap-2 xl:gap-42 justify-center items-center mx-auto"
+    >
+      <div
+        class="hidden gap-0 pl-5 justify-center items-center mx-auto mdsm:flex"
+      >
         {#each tabs as tab}
           <a
             href={tab.link}
-            class="z-9 text-st-blue py-2 rounded-md border-x-slate-50 md:px-3 lg:px-4 duration-200 text-sm hover:text-slate-950 hover:bg-white hover:shadow-md hover:scale-[105%]"
+            class="z-9 text-white py-2 rounded-md border-x-slate-50 md:px-3 lg:px-4 duration-200 text-sm hover:text-slate-950 hover:bg-white hover:shadow-md hover:scale-[105%]"
           >
             <p class="text-sm font-semibold">{tab.name}</p>
           </a>
@@ -109,12 +83,18 @@
 
         <div />
       </div>
+    </div>
+
+    <div class="flex flex-row items-center xl:flex-1 justify-end">
       <div class="px-4">
         <DropdownWide>
-          <p slot="title" class="text-sm font-semibold">
-            <i class="fa-solid fa-wallet text-st-blue pr-2"></i>
-            $1000
-          </p>
+          <div
+            slot="title"
+            class="text-sm font-semibold flex flex-row items-center gap-1"
+          >
+            <i class="fa-solid fa-wallet pr-2"></i>
+            <p class="mdsm:hidden xs-mdsm:flex mdxl:flex">$1000</p>
+          </div>
           <div class="flex flex-col gap-3 text-sm w-72">
             <div class="flex flex-row px-4 mt-4 gap-1 justify-between">
               <p class="text-st-blue font-semibold">Mi saldo actual</p>
@@ -149,10 +129,13 @@
           </div>
         </DropdownWide>
         <Dropdown>
-          <p slot="title" class="text-sm font-semibold">
-            <i class="fa-solid fa-user text-st-blue pr-2"></i>
-            User
-          </p>
+          <div
+            slot="title"
+            class="text-sm font-semibold flex flex-row items-center gap-1"
+          >
+            <i class="fa-solid fa-user pr-2"></i>
+            <p class="hidden xs-mdsm:flex mdxl:flex">User</p>
+          </div>
           {#each userTabs as tab}
             <a href={tab.link}>
               <DropdownItem>
@@ -163,6 +146,23 @@
           {/each}
         </Dropdown>
       </div>
+      <a
+        href="#foo"
+        class="relative hidden mdsm:flex gap-2 border-2 overflow-hidden px-5 py-1.5 group rounded-full bg-white text-st-blue hover:scale-[102%] hover:bg-transparent hover:border-white hover:text-white duration-100"
+      >
+        <div class="relative w-[20px] h-[20px] sm:w-[25px] sm:h-[25px]">
+          <div class=" absolute w-full h-full icon-transition icon-effect">
+            <Boleto />
+          </div>
+          <div
+            class="text-white absolute w-full h-full icon-transition icon-effect-hover"
+          >
+            <BoletoHover />
+          </div>
+        </div>
+
+        <h4 class="font-semibold relative z-9">Comprar boletos</h4>
+      </a>
     </div>
-  </nav>
+  </div>
 </header>

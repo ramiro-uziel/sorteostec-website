@@ -25,7 +25,7 @@
     <button
       on:click={toggleMenu}
       type="button"
-      class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm duration-200 {buttonActive
+      class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-50 hover:text-st-blue duration-200 {buttonActive
         ? 'bg-gray-50'
         : 'hover:bg-gray-50'}"
       id="menu-button"
@@ -56,7 +56,7 @@
         opacity: 0,
         easing: quintOut,
       }}
-      class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+      class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-20 focus:outline-none"
       role="menu"
       aria-orientation="vertical"
       aria-labelledby="menu-button"

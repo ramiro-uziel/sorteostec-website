@@ -13,7 +13,7 @@
   class="relative flex flex-col mx-auto w-full text-sm sm:text-base min-h-screen"
 >
   <div
-    class="lg:hidden flex fixed bottom-0 right-0 duration-200 p-6 py-10 z-[10] opacity-100 pointer-events-auto"
+    class="mdsm:hidden flex fixed bottom-0 right-0 duration-200 p-6 py-10 z-[10] opacity-100 pointer-events-auto"
   >
     <a
       href="#"
