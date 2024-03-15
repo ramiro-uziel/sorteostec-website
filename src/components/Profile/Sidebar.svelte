@@ -12,7 +12,7 @@
   ];
 </script>
 
-<div class="text-sm flex flex-col gap-2 w-16 xl:w-48">
+<div class="text-sm flex flex-col gap-2 w-auto xl:w-48">
   {#each tabs as tab}
     <a
       href={tab.link}
@@ -22,7 +22,7 @@
         : ''}"
     >
       <i class={tab.icon}></i>
-      <p class="hidden lg:hidden xl:block text-sm">{tab.name}</p>
+      <p class="hidden xl:block text-sm">{tab.name}</p>
     </a>
   {/each}
 </div>

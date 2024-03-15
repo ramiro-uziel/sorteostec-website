@@ -2,15 +2,21 @@
   import { clickoutside } from "@svelte-put/clickoutside";
   import { quintOut } from "svelte/easing";
   import { fly } from "svelte/transition";
+  import { setContext } from "svelte";
   let menuOpen = false;
+  let buttonActive = false;
 
-  function toggleMenu() {
+  function toggleMenu(event) {
     menuOpen = !menuOpen;
+    buttonActive = !buttonActive;
   }
 
   function closeMenu() {
     menuOpen = false;
+    buttonActive = false;
   }
+
+  setContext("closeDropdown", closeMenu);
 </script>
 
 <div

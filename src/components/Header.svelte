@@ -4,6 +4,7 @@
   import Dropdown from "./Dropdown.svelte";
   import DropdownWide from "./DropdownWide.svelte";
   import DropdownItem from "./DropdownItem.svelte";
+  import DropdownWideItem from "./DropdownWideItem.svelte";
 
   let sidebarVisible = false;
 
@@ -22,9 +23,13 @@
   ];
 
   let userTabs = [
-    { name: "Perfil", icon: "fa-solid fa-user", link: "cuenta/perfil" },
-    { name: "E-wallet", icon: "fa-solid fa-wallet", link: "#foo" },
-    { name: "Compras", icon: "fa-solid fa-shopping-bag", link: "#foo" },
+    { name: "Perfil", icon: "fa-solid fa-user", link: "/cuenta/perfil" },
+    { name: "E-wallet", icon: "fa-solid fa-wallet", link: "/cuenta/ewallet" },
+    {
+      name: "Compras",
+      icon: "fa-solid fa-shopping-bag",
+      link: "cuenta/compras",
+    },
   ];
 </script>
 
@@ -112,20 +117,22 @@
               <p class="text-gray-400">Premios por cobrar</p>
               <p class="text-gray-400">$1000</p>
             </div>
-            <div class=" flex flex-row justify-between gap-2 p-2 px-4">
-              <a
-                href="#foo"
-                class="border border-st-blue p-2 rounded flex align-middle justify-center w-full text-st-blue hover:bg-st-blue-light hover:text-st-blue duration-200"
-              >
-                <p class="font-semibold px-1">E-wallet</p>
-              </a>
-              <a
-                href="#foo"
-                class="border border-st-blue bg-st-blue p-2 rounded flex align-middle justify-center w-full text-white hover:bg-st-blue-light hover:text-st-blue duration-200"
-              >
-                <p class="font-semibold px-1">Abonar</p>
-              </a>
-            </div>
+            <DropdownWideItem>
+              <div class=" flex flex-row justify-between gap-2 p-2 px-4">
+                <a
+                  href="/cuenta/ewallet"
+                  class="border border-st-blue p-2 rounded flex align-middle justify-center w-full text-st-blue hover:bg-st-blue-light hover:text-st-blue duration-200"
+                >
+                  <p class="font-semibold px-1">E-wallet</p>
+                </a>
+                <a
+                  href="/cuenta/ewallet"
+                  class="border border-st-blue bg-st-blue p-2 rounded flex align-middle justify-center w-full text-white hover:bg-st-blue-light hover:text-st-blue duration-200"
+                >
+                  <p class="font-semibold px-1">Abonar</p>
+                </a>
+              </div>
+            </DropdownWideItem>
           </div>
         </DropdownWide>
         <Dropdown>
