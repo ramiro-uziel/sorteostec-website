@@ -1,5 +1,6 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount } from "svelte";
+  import { page } from "$app/stores";
   import "../app.css";
   import Header from "../components/Header.svelte";
   import Footer from "../components/Footer.svelte";
@@ -15,10 +16,10 @@
 
   onMount(() => {
     updateHeaderHeight();
-    window.addEventListener('resize', updateHeaderHeight);
+    window.addEventListener("resize", updateHeaderHeight);
 
     return () => {
-      window.removeEventListener('resize', updateHeaderHeight);
+      window.removeEventListener("resize", updateHeaderHeight);
     };
   });
 </script>
@@ -29,7 +30,10 @@
   >
     <a
       href="#"
-      class="bg-st-blue-light ml-auto rounded-full aspect-squarerelative flex gap-2 border-4 border-st-blue overflow-hidden p-2.5 group text-st-blue hover:scale-[102%] hover:bg-st-blue hover:text-white cursor-pointer duration-200"
+      class="bg-st-blue-light ml-auto rounded-full aspect-squarerelative flex gap-2 border-4 border-st-blue overflow-hidden p-2.5 group text-st-blue hover:scale-[102%] hover:bg-st-blue hover:text-white cursor-pointer duration-200 {$page
+        .url.pathname === '/'
+        ? ''
+        : 'hidden'}"
     >
       <div class="relative w-[48px] h-[48px]">
         <div class=" absolute w-full h-full icon-transition icon-effect">

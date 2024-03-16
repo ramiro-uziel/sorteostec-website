@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from "svelte";
+  import { onMount } from "svelte";
   import Boleto from "../assets/icons/boleto.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
   import Dropdown from "./Dropdown.svelte";
@@ -9,7 +9,7 @@
 
   let sidebarVisible = false;
   let headerElement;
-  let userLogged = false;
+  let userLogged = true;
 
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
@@ -117,13 +117,13 @@
         <div class="flex flex-row pr-6">
           <a
             href="/cuenta/login"
-            class="z-9 text-white py-2 rounded-md border-x-slate-50 md:px-3 lg:px-4 duration-200 text-sm hover:text-slate-950 hover:bg-white hover:shadow-md hover:scale-[105%]"
+            class="z-9 text-white py-2 rounded-md border-x-slate-50 px-2 lg:px-4 duration-200 text-sm hover:text-slate-950 hover:bg-white hover:shadow-md hover:scale-[105%]"
           >
             <p class="text-sm font-semibold">Iniciar sesion</p>
           </a>
           <a
             href="/cuenta/registro"
-            class="z-9 text-white py-2 rounded-md border-x-slate-50 md:px-3 lg:px-4 duration-200 text-sm hover:text-slate-950 hover:bg-white hover:shadow-md hover:scale-[105%]"
+            class="z-9 text-white py-2 rounded-md border-x-slate-50 px-2 lg:px-4 duration-200 text-sm hover:text-slate-950 hover:bg-white hover:shadow-md hover:scale-[105%]"
           >
             <p class="text-sm font-semibold">Registro</p>
           </a>

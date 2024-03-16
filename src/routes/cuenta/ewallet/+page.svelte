@@ -1,7 +1,6 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
   let sidebarVisible = false;
-
   function toggleSidebar() {
     console.log("si");
     sidebarVisible = !sidebarVisible;
@@ -72,22 +71,12 @@
           Estado de Cuenta
         </h2>
         <div class=" border border-gainsboro rounded-lg">
-          <div class="flex flex-row p-2">
-            <div class="flex-col w-full">
-              <p class="text-sm font-normal">Movimiento</p>
-            </div>
-            <div class="flex-col w-full">
-              <p class="text-sm font-normal">Fecha</p>
-            </div>
-            <div class="flex-col w-full">
-              <p class="text-sm font-normal">Monto</p>
-            </div>
-            <div class="flex-col w-full">
-              <p class="text-sm font-normal">Metodo</p>
-            </div>
-            <div class="flex-col w-full">
-              <p class="text-sm font-normal">Factura</p>
-            </div>
+          <div class="flex flex-row p-2 justify-between px-5">
+            <p class="text-sm font-normal">Movimiento</p>
+            <p class="text-sm font-normal">Fecha</p>
+            <p class="text-sm font-normal">Monto</p>
+            <p class="text-sm font-normal">Metodo</p>
+            <p class="text-sm font-normal">Factura</p>
           </div>
           <div
             class="flex flex-row border-t border-gainsboro p-2 justify-center"
