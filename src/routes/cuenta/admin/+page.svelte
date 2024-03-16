@@ -65,7 +65,7 @@
           <h2 class="text-xl md:text-2xl font-semibold text-st-blue">
             Descarga reporte
           </h2>
-          <p>En formato PDF.</p>
+          <p>En formato PDF</p>
         </div>
         <div
           class="bg-transparent border border-gray-300 text-st-blue p-5 rounded-lg flex flex-col md:flex-row gap-4 md:gap-40 items-start w-full md:w-[520px]"
