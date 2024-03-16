@@ -1,7 +1,7 @@
 <script>
   import { page } from "$app/stores";
 
-  let isAdmin = false; 
+  let isAdmin = true;
 
   let tabs = [
     { name: "Mi Perfil", icon: "fa-solid fa-user", link: "/cuenta/perfil" },
@@ -10,7 +10,7 @@
       name: "Compras",
       icon: "fa-solid fa-shopping-bag",
       link: "/cuenta/compras",
-    }
+    },
   ];
 
   if (isAdmin) {
@@ -21,7 +21,6 @@
     });
   }
 </script>
-
 
 <div class="text-sm flex flex-col gap-2 w-auto xl:w-48">
   {#each tabs as tab}
