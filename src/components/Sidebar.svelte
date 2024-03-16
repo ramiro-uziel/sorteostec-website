@@ -9,6 +9,11 @@
       icon: "fa-solid fa-shopping-bag",
       link: "/cuenta/compras",
     },
+    {
+      name: "Admin",
+      icon: "fa-solid fa-lock",
+      link: "/cuenta/admin",
+    },
   ];
 </script>
 
