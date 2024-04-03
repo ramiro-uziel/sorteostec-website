@@ -9,13 +9,20 @@
   }
 </script>
 
-<main class="flex justify-center items-center" style="min-height: calc(100vh - var(--header-height)); ">
-  <div class="w-full text-xs text-white flex flex-col gap-4 items-center" style="max-width: 1200px; min-width: 550px; aspect-ratio: 16 / 9;">
+<main
+  class="flex justify-center items-center"
+  style="min-height: calc(100vh - var(--header-height)); "
+>
+  <div
+    class="w-full text-xs text-white flex flex-col gap-4 items-center"
+    style="max-width: 1200px; min-width: 550px; aspect-ratio: 16 / 9;"
+  >
     <iframe
       title="Fields of Fortune"
       id="embededGame"
-      src="/build/index.html"
-      class="w-full border-none" style="aspect-ratio: 16 / 9;"
+      src="/unity/index.html"
+      class="w-full border-none"
+      style="aspect-ratio: 16 / 9;"
     ></iframe>
     <button
       on:click={goFullscreen}

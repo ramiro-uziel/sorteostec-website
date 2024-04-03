@@ -16,12 +16,12 @@
   }
 
   let tabs = [
-    { name: "Sorteos", link: "#foo" },
-    { name: "Consulta de ganadores", link: "#foo" },
-    { name: "Membresias", link: "#foo" },
-    { name: "Historias", link: "#foo" },
-    { name: "Líderes del Mañana", link: "#foo" },
-    { name: "Juegos", link: "#foo" },
+    { name: "Sorteos", link: "#" },
+    { name: "Consulta de ganadores", link: "#" },
+    { name: "Membresias", link: "#" },
+    { name: "Historias", link: "#" },
+    { name: "Líderes del Mañana", link: "#" },
+    { name: "Juegos", link: "#" },
   ];
 
   let userTabs = [
@@ -30,7 +30,7 @@
     {
       name: "Compras",
       icon: "fa-solid fa-shopping-bag",
-      link: "cuenta/compras",
+      link: "/cuenta/compras",
     },
   ];
 
@@ -88,7 +88,7 @@
       <a href="/">
         <img
           alt="logotipo"
-          src="/src/assets/images/Principal-Blanco.png"
+          src="/images/Principal-Blanco.png"
           class="w-[150px]"
         />
       </a>
@@ -195,7 +195,7 @@
       {/if}
 
       <a
-        href="#foo"
+        href="#"
         class="relative hidden mdsm:flex gap-2 border-2 overflow-hidden px-5 py-1.5 group rounded-full bg-white text-st-blue hover:scale-[102%] hover:bg-transparent hover:border-white hover:text-white duration-100"
       >
         <div class="relative w-[20px] h-[20px] sm:w-[25px] sm:h-[25px]">

@@ -2,13 +2,12 @@
   import { scaleLinear } from "d3-scale";
   import points from "./placeholderData.js";
 
-  const yTicks = [0, 2, 4, 6, 8]; 
-  const xTicks = [1, 10, 20, 30]; 
+  const yTicks = [0, 2, 4, 6, 8];
+  const xTicks = [1, 10, 20, 30];
   const padding = { top: 20, right: 15, bottom: 20, left: 25 };
 
   let width = 500;
   let height = 200;
-
 
   $: xScale = scaleLinear()
     .domain([minX, maxX])
@@ -68,14 +67,6 @@
 
 <style>
   .chart,
-  h2,
-  p {
-    width: 100%;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   h2 {
     padding-bottom: 20px;
   }

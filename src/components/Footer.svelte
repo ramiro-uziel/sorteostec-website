@@ -2,11 +2,7 @@
   <div
     class="w-full bottom-0 py-10 md:py-20 text-xs pointer-events-auto bg-st-blue text-white flex flex-col gap-4 md:gap-8 justify-center items-center"
   >
-    <img
-      src="/src/assets/images/Principal-Blanco.png"
-      alt="logotipo"
-      class="w-[200px]"
-    />
+    <img src="/images/Principal-Blanco.png" alt="logotipo" class="w-[200px]" />
     <div class="flex flex-col gap-4 pl-1 items-center justify-center">
       <div class="flex flex-row gap-2 text-xl text-st-blue">
         <a
@@ -31,7 +27,7 @@
         >
       </div>
       <div class="flex flex-row max-w-60">
-        <img src="/src/assets/icons/18.svg" alt="boleto" class="w-[30px]" />
+        <img src="/icons/18.svg" alt="boleto" class="w-[30px]" />
 
         <p class=" text-center">
           Para participar en Sorteos Tec deberás ser <b class="pr-1"
