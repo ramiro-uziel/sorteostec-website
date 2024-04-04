@@ -1,63 +1,15 @@
 <script>
-  import { onMount } from "svelte";
-
-  // form stuff
-  let formData = {
-    email: "",
-    password: "",
-  };
-  let formErrors = {};
-  let loading = false;
-
-  // password stuff
   let passwordVisibility;
+
   function togglePasswordVisibility() {
     passwordVisibility.type =
       passwordVisibility.type === "password" ? "text" : "password";
-  }
-  onMount(() => {
-    passwordVisibility.type = "password";
-  });
-
-  // form submition stuff
-  async function handleSubmit() {
-    formErrors = {};
-    if (formData.email.trim() === "") {
-      formErrors.email = "Correo electrónico es requerido";
-    }
-    if (formData.password.trim() === "") {
-      formErrors.password = "Contraseña es requerida";
-    }
-
-    if (Object.keys(formErrors).length === 0) {
-      try {
-        loading = true;
-        const response = await fetch("/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
-
-        if (!response.ok) {
-          throw new Error("Error submitting form data");
-        }
-
-        const data = await response.json();
-        console.log("Form submitted successfully:", data);
-      } catch (error) {
-        console.error("Error submitting form:", error);
-      } finally {
-        loading = false;
-      }
-    }
   }
 </script>
 
 <div
   class="flex justify-center items-center"
-  style="min-height: calc(90vh - var(--header-height)); "
+  style="min-height: calc(90vh - var(--header-height));"
 >
   <div class="p-10 w-[600px]">
     <div class="p-10 mt-3 border border-zinc-300 bg-white shadow-xl rounded-lg">
@@ -65,39 +17,37 @@
         Iniciar sesión
       </h1>
       <div class="p-3">
-        <form on:submit|preventDefault={handleSubmit}>
+        <form name="login" action="/api/login" method="POST">
           <div class="relative flex flex-row mb-2">
             <input
-              bind:value={formData.email}
-              class="p-3 w-full border border-gainsboro rounded-lg {formErrors.email
-                ? 'input-error'
-                : ''}"
+              type="email"
+              name="email"
+              class="p-3 w-full border border-gainsboro rounded-lg"
               placeholder="Correo electrónico"
-              data-error={formErrors.email}
-              id="email"
             />
           </div>
-
           <div class="relative flex flex-row mb-2">
             <input
-              bind:value={formData.password}
               bind:this={passwordVisibility}
-              class="p-3 w-full border border-gainsboro rounded-lg {formErrors.password
-                ? 'input-error'
-                : ''}"
+              type="password"
+              name="password"
+              class="p-3 w-full border border-gainsboro rounded-lg"
               placeholder="Contraseña"
-              data-error={formErrors.password}
             />
           </div>
           <div class="relative flex flex-row py-2 mb-5">
-            <p class="text-sm pl-2 text-gray-400">Mostrar contraseña</p>
-            <div class="px-2 inset-y-0 right-0 flex items-center pr-3">
+            <label
+              for="toggle-password"
+              class="text-sm pl-2 text-gray-400 cursor-pointer"
+            >
+              Mostrar contraseña
               <input
                 type="checkbox"
+                id="toggle-password"
+                class="ml-2 form-checkbox size-4 text-st-blue"
                 on:change={togglePasswordVisibility}
-                class="form-checkbox size-4 text-st-blue"
               />
-            </div>
+            </label>
           </div>
 
           <button
@@ -110,9 +60,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  .input-error {
-    border-color: red;
-  }
-</style>
