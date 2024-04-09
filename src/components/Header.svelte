@@ -22,10 +22,8 @@
 
   let tabs = [
     { name: "Sorteos", link: "#" },
-    { name: "Consulta de ganadores", link: "#" },
-    { name: "Membresias", link: "#" },
+    { name: "Nuestra Causa", link: "#" },
     { name: "Historias", link: "#" },
-    { name: "Líderes del Mañana", link: "#" },
     { name: "Juegos", link: "#" },
   ];
 

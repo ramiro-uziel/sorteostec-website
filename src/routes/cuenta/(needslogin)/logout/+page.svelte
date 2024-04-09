@@ -22,7 +22,7 @@
       <div class="px-3">
         <div class="relative flex flex-row mb-2">
           <div
-            class="p-3 w-full border border-gray-400 rounded-lg border-dashed"
+            class="p-3 w-full border border-gray-400 rounded-lg border-dashed text-gray-500"
           >
             {email}
           </div>

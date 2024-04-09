@@ -12,7 +12,10 @@
       if (logout) {
         // Cleanup cookies
         goto("/login.html");
-      } else goto(redirect);
+      } else {
+        console.log("[!!] Redirected");
+        goto(redirect);
+      }
     }
   });
 </script>
