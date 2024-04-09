@@ -8,7 +8,7 @@
   import DropdownWide from "./DropdownWide.svelte";
   import DropdownItem from "./DropdownItem.svelte";
   import DropdownWideItem from "./DropdownWideItem.svelte";
-  import { userLogged } from "../lib/stores";
+  import { userLogged, userWallet } from "../lib/stores";
 
   let sidebarVisible = false;
   let headerElement;
@@ -18,7 +18,17 @@
   }
 
   let username = "";
+  let saldo = 0;
   const isUserLogged = get(userLogged);
+
+  if (isUserLogged) {
+    const user = get(userProfile);
+    const wallet = get(userWallet);
+    if (user && wallet) {
+      username = user.name;
+      saldo = wallet.saldo;
+    }
+  }
 
   let tabs = [
     { name: "Sorteos", link: "#" },
@@ -145,12 +155,12 @@
               class="text-sm font-semibold flex flex-row items-center gap-1"
             >
               <i class="fa-solid fa-wallet pr-2"></i>
-              <p class="mdsm:hidden xs-mdsm:flex mdxl:flex">$1000</p>
+              <p class="mdsm:hidden xs-mdsm:flex mdxl:flex">${saldo}</p>
             </div>
             <div class="flex flex-col gap-3 text-sm w-72">
               <div class="flex flex-row px-4 mt-4 gap-1 justify-between">
                 <p class="text-st-blue font-semibold">Mi saldo actual</p>
-                <p class="text-st-blue font-semibold">$1000</p>
+                <p class="text-st-blue font-semibold">${saldo}</p>
               </div>
               <hr
                 class="h-px mb-1 st-blue border-1 border-dotted border-st-blue"
@@ -158,11 +168,11 @@
 
               <div class="flex flex-row gap-2 text-xs px-4 justify-between">
                 <p class="text-gray-400">Saldo abonado</p>
-                <p class="text-gray-400">$1000</p>
+                <p class="text-gray-400">TODO</p>
               </div>
               <div class="flex flex-row gap-2 text-xs px-4 justify-between">
                 <p class="text-gray-400">Premios por cobrar</p>
-                <p class="text-gray-400">$1000</p>
+                <p class="text-gray-400">TODO</p>
               </div>
               <DropdownWideItem>
                 <div class=" flex flex-row justify-between gap-2 p-2 px-4">
@@ -188,7 +198,9 @@
               class="text-sm font-semibold flex flex-row items-center gap-1"
             >
               <i class="fa-solid fa-user pr-2"></i>
-              <p class="hidden xs-mdsm:flex mdxl:flex">User</p>
+              <p class="hidden xs-mdsm:flex mdxl:flex">
+                {username}
+              </p>
             </div>
             {#each userTabs as tab}
               <a href={tab.link}>

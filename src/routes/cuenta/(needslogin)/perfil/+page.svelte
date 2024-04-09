@@ -1,5 +1,26 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
+  import { get } from "svelte/store";
+  import { userProfile } from "../../../../lib/stores";
+  import { userWallet } from "../../../../lib/stores";
+  import { userLogged } from "../../../../lib/stores";
+
+  let username = "";
+  let email = "";
+  let phone = "";
+  let city = "";
+
+  const isUserLogged = get(userLogged);
+
+  if (isUserLogged) {
+    const user = get(userProfile);
+    if (user) {
+      username = user.name;
+      email = user.email;
+      phone = user.phone;
+      city = user.city;
+    }
+  }
 </script>
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
@@ -24,17 +45,17 @@
           </p>
         </div>
         <div
-          class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col md:flex-row gap-4 md:gap-40 items-start w-full md:w-[520px]"
+          class="bg-st-blue-light text-st-blue p-5 rounded-lg flex md:flex-row justify-between items-start w-full md:w-[520px]"
         >
-          <div class="flex flex-col">
-            <h2 class="text-xl md:text-2xl font-semibold">Hola, Juan Juárez</h2>
-            <p class="text-sm font-normal">juan@yahoo.com</p>
-            <p class="text-sm font-normal">811234567</p>
-            <p class="text-sm font-normal">Mérida</p>
+          <div class="flex flex-col gap-1 pl-2">
+            <h2 class="text-xl md:text-2xl font-semibold">Hola, {username}</h2>
+            <p class="text-sm font-normal">{email}</p>
+            <p class="text-sm font-mono">{phone}</p>
+            <p class="text-sm font-normal">{city}</p>
           </div>
           <a
             href="#"
-            class="rounded-lg p-3 px-6 border text-sm text-zinc-800 font-normal border-zinc-800 hover:bg-zinc-800 hover:text-white duration-100"
+            class="rounded-lg p-3 px-6 border text-sm text-zinc-800 font-normal border-zinc-800 hover:bg-zinc-800 hover:text-white duration-100 self-start"
           >
             Editar
           </a>
