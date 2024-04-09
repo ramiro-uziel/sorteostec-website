@@ -37,6 +37,11 @@
       icon: "fa-solid fa-shopping-bag",
       link: "/cuenta/compras",
     },
+    {
+      name: "Log out",
+      icon: "fa-solid fa-right-from-bracket",
+      link: "/cuenta/logout",
+    },
   ];
 
   function updateHeaderHeight() {

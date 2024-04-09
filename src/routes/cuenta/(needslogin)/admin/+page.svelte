@@ -19,9 +19,9 @@
             Reportes
           </h2>
         </div>
-        <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex flex-col md:flex-row gap-4 p-3">
           <div
-            class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4 max-w-80"
+            class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4"
           >
             <h2 class="text-xl font-semibold items-center gap-2">
               Vistas <p class="text-sm">mes</p>
@@ -29,7 +29,7 @@
             <h2 class="text-4xl md:text-6xl font-semibold text-st-blue">240</h2>
           </div>
           <div
-            class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4 max-w-80"
+            class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4"
           >
             <h2 class="text-xl font-semibold items-center gap-2">
               Compras <p class="text-sm">mes</p>
@@ -37,7 +37,7 @@
             <h2 class="text-4xl font-semibold text-st-blue">$30,512</h2>
           </div>
           <div
-            class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4 max-w-80"
+            class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4"
           >
             <h2 class="text-xl font-semibold items-center gap-2">
               Usuarios <p class="text-sm">nuevos en el mes</p>
@@ -45,7 +45,7 @@
             <h2 class="text-4xl font-semibold text-st-blue">204</h2>
           </div>
           <div
-            class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4 max-w-80"
+            class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4"
           >
             <h2 class="text-xl font-semibold items-center gap-2">
               Registros <p class="text-sm">mes</p>

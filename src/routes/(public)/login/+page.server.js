@@ -1,33 +1,31 @@
 export const actions = {
-    default: async ({ request }) => {
-        const formData = await request.formData();
-        const email = formData.get('email');
-        const password = formData.get('password');
+  default: async ({ request }) => {
+    const formData = await request.formData();
+    const email = formData.get("email");
+    const password = formData.get("password");
 
-        console.log({ email, password });
+    console.log({ email, password });
 
-        try {
-            const response = await fetch("http://20.57.127.87/login", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password })
-            });
+    try {
+      const response = await fetch("http://20.57.127.87/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-            const responseData = await response.json();
-            console.log('Response from API:', responseData);
-
-        } catch (error) {
-            console.error('Error sending data to API:', error);
-        }
+      const responseData = await response.json();
+      console.log("Response from API:", responseData);
+    } catch (error) {
+      console.error("Error sending data to API:", error);
     }
+  },
 };
-
 
 /*
 async function handleLogin(event) {

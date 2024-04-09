@@ -1,11 +1,11 @@
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
 
 // Initial user profile object
 const initialProfile = {
-    name: '',
-    email: '',
-    phone: '',
-    city: ''
+  name: "",
+  email: "",
+  phone: "",
+  city: "",
 };
 
 // Create a writable store
