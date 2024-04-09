@@ -1,12 +1,12 @@
 // src/lib/auth.js
 
 // Access the environment variable for the API URL
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.API_URL;
 
 // Function to check if the user is logged in
 async function checkLoggedIn(fetch) {
     try {
-        const response = await fetch(`${API_URL}/logged`, {
+        const response = await fetch('http://20.57.127.87/api/login', {
             credentials: 'include'
         });
 

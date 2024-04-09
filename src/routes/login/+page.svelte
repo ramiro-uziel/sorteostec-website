@@ -1,43 +1,7 @@
 <script>
-  import { writable } from "svelte/store";
-  import { browser } from "$app/environment";
-  import { goto } from "$app/navigation";
-  const API_URL = import.meta.env.VITE_API_URL;
-
   let email;
   let password;
   let passwordVisibility;
-
-  const userProfile = writable(null);
-  const userLogged = writable(false);
-
-  async function handleLogin(event) {
-    event.preventDefault(); // Prevent form from submitting normally
-
-    const loginResponse = await fetch(`${API_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (loginResponse.ok) {
-      const profileResponse = await fetch(`${API_URL}/perfil`, {
-        credentials: "include", // To send cookies with the request
-      });
-
-      if (profileResponse.ok) {
-        const profileData = await profileResponse.json();
-        userProfile.set(profileData);
-        userLogged.set(true);
-
-        if (browser) {
-          goto("/cuenta/perfil"); // Navigate to profile page
-        }
-      }
-    }
-  }
 
   function togglePasswordVisibility() {
     passwordVisibility.type =
@@ -55,9 +19,10 @@
         Iniciar sesión
       </h1>
       <div class="p-3">
-        <form on:submit={handleLogin}>
+        <form method="POST">
           <div class="relative flex flex-row mb-2">
             <input
+              name="email"
               type="email"
               bind:value={email}
               class="p-3 w-full border border-gainsboro rounded-lg"
@@ -66,6 +31,7 @@
           </div>
           <div class="relative flex flex-row mb-2">
             <input
+              name="password"
               bind:this={passwordVisibility}
               type="password"
               bind:value={password}
