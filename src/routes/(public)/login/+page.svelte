@@ -19,7 +19,11 @@
         Iniciar sesión
       </h1>
       <div class="p-3">
-        <form method="POST">
+        <form
+          name="registro"
+          action="http://20.57.127.87/api/login"
+          method="POST"
+        >
           <div class="relative flex flex-row mb-2">
             <input
               name="email"

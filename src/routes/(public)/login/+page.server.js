@@ -1,18 +1,21 @@
+/*
 export const actions = {
   default: async ({ request }) => {
-    const formData = await request.formData();
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const formData = new FormData();
 
-    console.log({ email, password });
+    const clientForm = await request.formData();
+    const email = clientForm.get("email");
+    const password = clientForm.get("password");
+
+    formData.append("email", email);
+    formData.append("password", password);
+
+    console.log(formData);
 
     try {
       const response = await fetch("http://20.57.127.87/api/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -26,6 +29,7 @@ export const actions = {
     }
   },
 };
+*/
 
 /*
 async function handleLogin(event) {
