@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { readable, writable } from "svelte/store";
 
 const initialProfile = {
   name: "",
@@ -16,7 +16,11 @@ const initialWallet = {
   },
 };
 
-// Create a writable store
+const info = {
+  version: "API 0.1"
+}
+
 export const userProfile = writable(initialProfile);
 export const userWallet = writable(initialWallet);
-export const userLogged = writable(false);
+export const userLogged = writable(true);
+export const buildInfo = readable(info)

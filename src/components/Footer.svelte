@@ -1,5 +1,11 @@
 <script>
-  // Define the tabs array without the bgClass property
+  import { get } from "svelte/store";
+  import { buildInfo } from "$lib/stores";
+
+  let version = "";
+  const build = get(buildInfo);
+  version = build.version;
+
   const tabs = [
     {
       href: "https://www.facebook.com/SorteosTec/",
@@ -49,6 +55,7 @@
       <div class="flex flex-col pt-5">
         <p class="text-center">© 2024 Sorteos Tec.</p>
         <p class="text-center">Todos los derechos reservados</p>
+        <p class="text-center">Version {version}</p>
       </div>
     </div>
   </div>
