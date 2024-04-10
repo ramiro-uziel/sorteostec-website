@@ -22,5 +22,5 @@ const info = {
 
 export const userProfile = writable(initialProfile);
 export const userWallet = writable(initialWallet);
-export const userLogged = writable(true);
+export const userLogged = writable(false);
 export const buildInfo = readable(info)

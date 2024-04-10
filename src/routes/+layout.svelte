@@ -5,6 +5,9 @@
   import Header from "../components/Header.svelte";
   import Footer from "../components/Footer.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
+  import { userLogged } from "../lib/stores";
+  import { userProfile } from "../lib/stores";
+  import { userWallet } from "../lib/stores";
 
   let headerHeight = 0;
   let y = 0;
@@ -14,18 +17,28 @@
     headerHeight = headerElement.clientHeight;
   }
 
-  const test = async function () {
+  async function fetchData() {
     try {
-      const response = await fetch("/api/logged");
-      const data = await response.text();
-      console.log("[!] Layout onMount. User logged:", data);
+      const loggedResponse = await fetch("/api/logged");
+      const loggedData = await loggedResponse.json();
+      userLogged.set(loggedData.logged);
+
+      if (loggedData.logged) {
+        const profileResponse = await fetch("/api/perfil");
+        const profileData = await profileResponse.json();
+        userProfile.set(profileData);
+
+        const walletResponse = await fetch("/api/ewallet");
+        const walletData = await walletResponse.json();
+        userWallet.set(walletData);
+      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching data", error);
     }
-  };
+  }
 
   onMount(() => {
-    test();
+    fetchData();
     updateHeaderHeight();
     window.addEventListener("resize", updateHeaderHeight);
 
