@@ -18,22 +18,33 @@
   }
 
   async function fetchData() {
+    console.log("[ ! ] Starting data fetch...");
+
     try {
       const loggedResponse = await fetch("/api/logged");
       const loggedData = await loggedResponse.json();
-      userLogged.set(loggedData.logged);
+      console.log("[ ! ] Logged data:", loggedData);
 
-      if (loggedData.logged) {
+      const isLoggedIn = loggedData.logged === "true";
+      userLogged.set(isLoggedIn);
+
+      if (isLoggedIn) {
+        console.log("[ ! ] User is logged in");
+
         const profileResponse = await fetch("/api/perfil");
         const profileData = await profileResponse.json();
+        console.log("[ ! ] Profile data:", profileData);
         userProfile.set(profileData);
 
         const walletResponse = await fetch("/api/ewallet");
         const walletData = await walletResponse.json();
+        console.log("[ ! ] Wallet data:", walletData);
         userWallet.set(walletData);
+      } else {
+        console.log("[ ! ] User is not logged in");
       }
     } catch (error) {
-      console.error("Error fetching data", error);
+      console.error("[ ! ] Error fetching data", error);
     }
   }
 
