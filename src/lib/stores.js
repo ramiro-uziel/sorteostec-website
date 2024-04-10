@@ -1,10 +1,10 @@
 import { writable } from "svelte/store";
 
 const initialProfile = {
-  name: "Foonando Barza",
-  email: "Foonando@yahoo.net",
-  phone: "811111111",
-  city: "Foodalajara",
+  name: "",
+  email: "",
+  phone: "",
+  city: "",
 };
 
 const initialWallet = {

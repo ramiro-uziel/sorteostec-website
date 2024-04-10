@@ -13,7 +13,7 @@
         // Cleanup cookies
         goto("/login.html");
       } else {
-        console.log("[!!] Redirected");
+        console.log("[!] Redirect component triggered");
         goto(redirect);
       }
     }

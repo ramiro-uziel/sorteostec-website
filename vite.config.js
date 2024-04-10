@@ -9,6 +9,7 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
+    /*
     proxy: {
       "/api": {
         target: `${API_BASE_URL}/api`,
@@ -16,5 +17,6 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
+    */
   },
 });
