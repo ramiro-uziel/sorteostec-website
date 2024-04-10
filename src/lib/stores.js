@@ -17,7 +17,7 @@ const initialWallet = {
 };
 
 const info = {
-  version: "API 0.1"
+  version: "API 0.1.1"
 }
 
 export const userProfile = writable(initialProfile);
