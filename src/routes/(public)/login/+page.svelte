@@ -1,4 +1,6 @@
 <script>
+  let email;
+  let password;
   let passwordVisibility;
 
   function togglePasswordVisibility() {
@@ -17,33 +19,35 @@
         Iniciar sesión
       </h1>
       <div class="p-3">
-        <form name="login" action="/api/login" method="POST">
+        <form
+          name="registro"
+          action="http://20.57.127.87/api/login"
+          method="POST"
+        >
           <div class="relative flex flex-row mb-2">
             <input
-              type="email"
               name="email"
+              type="email"
+              bind:value={email}
               class="p-3 w-full border border-gainsboro rounded-lg"
               placeholder="Correo electrónico"
             />
           </div>
           <div class="relative flex flex-row mb-2">
             <input
+              name="password"
               bind:this={passwordVisibility}
               type="password"
-              name="password"
+              bind:value={password}
               class="p-3 w-full border border-gainsboro rounded-lg"
               placeholder="Contraseña"
             />
           </div>
           <div class="relative flex flex-row py-2 mb-5">
-            <label
-              for="toggle-password"
-              class="text-sm pl-2 text-gray-400 cursor-pointer"
-            >
+            <label class="text-sm pl-2 text-gray-400 cursor-pointer">
               Mostrar contraseña
               <input
                 type="checkbox"
-                id="toggle-password"
                 class="ml-2 form-checkbox size-4 text-st-blue"
                 on:change={togglePasswordVisibility}
               />
@@ -53,8 +57,9 @@
           <button
             type="submit"
             class="w-full bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
-            >Confirmar</button
           >
+            Confirmar
+          </button>
         </form>
       </div>
     </div>
