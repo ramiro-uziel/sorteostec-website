@@ -1,9 +1,9 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
   import { get } from "svelte/store";
-  import { userProfile } from "../../../../lib/stores";
-  import { userWallet } from "../../../../lib/stores";
-  import { userLogged } from "../../../../lib/stores";
+  import { userProfile } from "$lib/stores";
+  import { userWallet } from "$lib/stores";
+  import { userLogged } from "$lib/stores";
 
   let username = "";
   let email = "";

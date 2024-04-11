@@ -1,6 +1,6 @@
 <script>
   import { get } from "svelte/store";
-  import { userProfile } from "../../../../lib/stores";
+  import { userProfile } from "$lib/stores";
 
   let email;
   const user = get(userProfile);
