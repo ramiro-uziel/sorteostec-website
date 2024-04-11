@@ -59,8 +59,8 @@
     } catch (error) {
       console.error("[ ! ] Error fetching data", error);
     }
-    logUserProfile();
-    logUserLogged();
+    // logUserProfile();
+    // logUserLogged();
   }
 
   onMount(() => {
