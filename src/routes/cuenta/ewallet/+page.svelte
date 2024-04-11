@@ -133,6 +133,11 @@
     <div class="fixed inset-0 bg-black opacity-50"></div>
     <div class="relative bg-white rounded-lg p-8 sm:w-[500px] xs:w-[250px]">
       <div class="flex flex-col justify-between h-full">
+        <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
+          <button on:click={toggleSidebar}>
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+          </button>
+        </div>
         <form
           name="registro"
           on:submit={handleSubmit}
@@ -140,11 +145,6 @@
           method="POST"
         >
           <div>
-            <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
-              <button on:click={toggleSidebar}>
-                <i class="fa fa-angle-left" aria-hidden="true"></i>
-              </button>
-            </div>
             <h2
               class="text-xl md:text-2xl font-semibold text-st-blue mb-2 pt-2"
             >
