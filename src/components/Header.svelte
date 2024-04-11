@@ -1,14 +1,12 @@
 <script>
   import { onMount } from "svelte";
-  import { userProfile } from "$lib/stores";
-  import { get } from "svelte/store";
+  import { userProfile, userLogged, userWallet } from "$lib/stores";
   import Boleto from "../assets/icons/boleto.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
   import Dropdown from "./Dropdown.svelte";
   import DropdownWide from "./DropdownWide.svelte";
   import DropdownItem from "./DropdownItem.svelte";
   import DropdownWideItem from "./DropdownWideItem.svelte";
-  import { userLogged, userWallet } from "../lib/stores";
 
   let sidebarVisible = false;
   let headerElement;
@@ -19,15 +17,13 @@
 
   let username = "";
   let saldo = 0;
-  const isUserLogged = get(userLogged);
 
-  if (isUserLogged) {
-    const user = get(userProfile);
-    const wallet = get(userWallet);
-    if (user && wallet) {
-      username = user.name;
-      saldo = wallet.saldo;
-    }
+  $: if ($userLogged) {
+    username = $userProfile?.name || "";
+    saldo = $userWallet?.saldo || 0;
+  } else {
+    username = "";
+    saldo = 0;
   }
 
   let tabs = [
@@ -63,7 +59,6 @@
   onMount(() => {
     updateHeaderHeight();
     window.addEventListener("resize", updateHeaderHeight);
-
     return () => {
       window.removeEventListener("resize", updateHeaderHeight);
     };
