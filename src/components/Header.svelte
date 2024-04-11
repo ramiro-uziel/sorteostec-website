@@ -132,7 +132,7 @@
           </a>
         </div>
       {/if}
-      {#if $userLogged && $dataLoaded}
+      {#if $userLogged}
         <div class="px-0 mdsm:px-4">
           <DropdownWide>
             <div
