@@ -21,9 +21,7 @@
   }
 
   function handleCancel() {
-    goto("/").then(() => {
-      location.reload();
-    });
+    goto("/");
   }
 </script>
 
