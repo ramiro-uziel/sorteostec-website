@@ -44,6 +44,7 @@
     } catch (error) {
       console.error("[ ! ] Error fetching data", error);
     }
+    logUserProfile();
   }
 
   async function logUserProfile() {
@@ -55,7 +56,6 @@
 
   onMount(() => {
     fetchData();
-    logUserProfile();
     updateHeaderHeight();
     window.addEventListener("resize", updateHeaderHeight);
 
