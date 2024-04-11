@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "node -e \"fs.writeFileSync('./static/build-id.json', JSON.stringify({ buildId: new Date().toISOString() }))\" && vite build",
+		"build": "npm install && node -e \"fs.writeFileSync('./static/build-id.json', JSON.stringify({ buildId: new Date().toISOString() }))\" && vite build",
 		"preview": "vite preview"
 	},
 	"devDependencies": {
