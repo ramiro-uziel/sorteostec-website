@@ -46,7 +46,7 @@
     }
   }
 
-  function logUserProfile() {
+  async function logUserProfile() {
     const unsubscribe = userProfile.subscribe((items) => {
       console.log("[ ! ] Store items:", items);
       unsubscribe();
