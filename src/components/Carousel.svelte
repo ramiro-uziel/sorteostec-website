@@ -48,7 +48,10 @@
   >
     <div class="embla__container">
       {#each slides as { img, logo, title, description }, index}
-        <div class="embla__slide">
+        <div class="embla__slide relative">
+          <div
+            class="embla__slide__overlay absolute inset-0 bg-black bg-opacity-30 mb-4"
+          ></div>
           <div
             class="embla__slide__content absolute flex-col w-full h-full flex justify-center items-center text-white"
           >
@@ -60,7 +63,7 @@
               {description}
             </p>
           </div>
-          <img src={img} alt="Logo" class="mx-auto mb-4" />
+          <img src={img} alt="Background" class="mx-auto mb-4" />
         </div>
       {/each}
     </div>
