@@ -2,6 +2,7 @@
   import Sidebar from "/src/components/Sidebar.svelte";
   let sidebarVisible = false;
   let viewFormTarjeta = false;
+  let disableAbonar = true;
   let listaTarjetas = [
     { tarjeta: "1234 5678 8765", cv: "123", fechaVencimiento: "01/02" },
     { tarjeta: "8765 4321 1234", cv: "123", fechaVencimiento: "01/02" },
@@ -10,14 +11,20 @@
   let formData = {
     monto: "",
     metodo: "",
-    nroTarjeta: "",
+    numero: "",
+    tipo: "debito",
     cvv: "",
     fechaVencimiento: "",
   };
   function showFormTarjeta() {
+    disableAbonar = true;
     viewFormTarjeta = !viewFormTarjeta;
+    formData.numero = "";
   }
   function formatCreditCardNumber(value) {
+    if (value != "") {
+      disableAbonar = false;
+    }
     value = value.replace(/\s/g, "");
     return value.replace(/(.{4})/g, "$1 ").trim();
   }
@@ -30,12 +37,21 @@
     }
   }
   function handleSubmit(event) {
-    formData.nroTarjeta = Number(formData.nroTarjeta.replace(/\s/g, ""));
+    formData.numero = Number(formData.numero.replace(/\s/g, ""));
     formData.cvv = Number(formData.cvv);
     formData.monto = Number(formData.monto);
     event.preventDefault();
     console.log(formData);
     toggleSidebar();
+  }
+  async function storeTarjeta(event) {
+    formData.numero = Number(formData.numero.replace(/\s/g, ""));
+    viewFormTarjeta = false;
+    event.preventDefault();
+    console.log(formData);
+    const cardsResponse = await fetch("/api/tarjetas");
+    const cardlist = await cardsResponse.json();
+    console.log(cardlist);
   }
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
@@ -165,15 +181,20 @@
               <button type="button" on:click={showFormTarjeta}>+ Nueva</button>
             </div>
             {#if listaTarjetas.length < 1 || viewFormTarjeta}
-              <div>
+              <form
+                name="formularioTarjeta"
+                on:submit={storeTarjeta}
+                action="/api/tarjeta"
+                method="POST"
+              >
                 <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
 
                 <input
                   type="text"
-                  name="nroTarjeta"
-                  bind:value={formData.nroTarjeta}
+                  name="numero"
+                  bind:value={formData.numero}
                   on:input={(event) =>
-                    (formData.nroTarjeta = formatCreditCardNumber(
+                    (formData.numero = formatCreditCardNumber(
                       event.target.value
                     ))}
                   class="p-2 w-full border border-gainsboro rounded-lg"
@@ -190,6 +211,7 @@
                       class="p-2 w-full border border-gainsboro rounded-lg"
                     />
                   </div>
+
                   <div class="w-full">
                     <p class="text-sm font-normal pb-1 pt-2">CVV</p>
                     <input
@@ -201,13 +223,20 @@
                     />
                   </div>
                 </div>
-              </div>
+                <div class="flex flex-row justify-end mt-1 w-full">
+                  <button
+                    type="submit"
+                    class="border border-st-blue rounded p-1 text-st-blue hover:bg-st-blue-light hover:text-st-blue duration-100"
+                  >
+                    Guardar Tarjeta
+                  </button>
+                </div>
+              </form>
             {:else}
               <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
-
               <select
-                name="nroTarjeta"
-                bind:value={formData.nroTarjeta}
+                name="numero"
+                bind:value={formData.numero}
                 on:change={(event) => {
                   formatCreditCardNumber(event.target.value);
                 }}
@@ -222,6 +251,7 @@
           </div>
           <div class="py-4 text-sm flex flex-col gap-2">
             <button
+              disabled={disableAbonar}
               type="submit"
               class="w-full bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
             >
