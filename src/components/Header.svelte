@@ -116,7 +116,7 @@
     </div>
 
     <div class="flex flex-row items-center xl:flex-1 justify-end">
-      {#if !$userLogged && $dataLoaded}
+      {#if !$userLogged}
         <div class="flex flex-row pr-6">
           <a
             href="/login"

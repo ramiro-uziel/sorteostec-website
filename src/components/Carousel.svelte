@@ -50,20 +50,20 @@
       {#each slides as { img, logo, title, description }, index}
         <div class="embla__slide relative">
           <div
-            class="embla__slide__overlay absolute inset-0 bg-black bg-opacity-30 mb-4"
+            class="embla__slide__overlay absolute inset-0 bg-black bg-opacity-30"
           ></div>
           <div
             class="embla__slide__content absolute flex-col w-full h-full flex justify-center items-center text-white"
           >
             <img class="mx-auto mb-4 w-40" src={logo} alt="Logo" />
-            <h1 class="text-4xl font-extrabold">
+            <h1 class="text-2xl sm:text-4xl font-extrabold">
               {title}
             </h1>
-            <p class="text-2xl">
+            <p class="sm:text-2xl">
               {description}
             </p>
           </div>
-          <img src={img} alt="Background" class="mx-auto mb-4" />
+          <img src={img} alt="Background" class="mx-auto" />
         </div>
       {/each}
     </div>
@@ -71,11 +71,11 @@
 
   <div class="absolute inset-0 flex justify-between items-center px-5">
     <button
-      class="embla__prev w-12 h-12 text-white bg-st-blue rounded-full flex justify-center items-center p-5 shadow-xl"
+      class="embla__prev w-6 h-6 sm:w-12 sm:h-12 text-white bg-st-blue rounded-full flex justify-center items-center p-5 shadow-xl"
       on:click={prev}><i class="fa-solid fa-arrow-left"></i></button
     >
     <button
-      class="embla__next w-12 h-12 text-white bg-st-blue rounded-full flex justify-center items-center p-5 shadow-xl"
+      class="embla__next w-6 h-6 sm:w-12 sm:h-12 text-white bg-st-blue rounded-full flex justify-center items-center p-5 shadow-xl"
       on:click={next}><i class="fa-solid fa-arrow-right"></i></button
     >
   </div>
