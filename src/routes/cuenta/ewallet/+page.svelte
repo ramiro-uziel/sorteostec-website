@@ -1,6 +1,42 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
   let sidebarVisible = false;
+  let viewFormTarjeta = false;
+  let listaTarjetas = [
+    { tarjeta: "1234 5678 8765", cv: "123", fechaVencimiento: "01/02" },
+    { tarjeta: "8765 4321 1234", cv: "123", fechaVencimiento: "01/02" },
+  ];
+
+  let formData = {
+    monto: "",
+    metodo: "",
+    nroTarjeta: "",
+    cvv: "",
+    fechaVencimiento: "",
+  };
+  function showFormTarjeta() {
+    viewFormTarjeta = !viewFormTarjeta;
+  }
+  function formatCreditCardNumber(value) {
+    value = value.replace(/\s/g, "");
+    return value.replace(/(.{4})/g, "$1 ").trim();
+  }
+  function validateInput(event) {
+    const value = event.target.value;
+    const regex = /^\d*\.?\d{0,2}$/;
+    if (!regex.test(value)) {
+      event.preventDefault();
+      formData.monto = formData.monto;
+    }
+  }
+  function handleSubmit(event) {
+    formData.nroTarjeta = Number(formData.nroTarjeta.replace(/\s/g, ""));
+    formData.cvv = Number(formData.cvv);
+    formData.monto = Number(formData.monto);
+    event.preventDefault();
+    console.log(formData);
+    toggleSidebar();
+  }
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
   }
@@ -76,53 +112,124 @@
     </div>
   </div>
   <div
-    class={`fixed px-4 inset-y-0 right-0 transform ${!sidebarVisible ? "translate-x-full" : "-translate-x-100"} w-72 bg-white  z-10 transition-transform border-l border-gainsboro  duration-200 ease-in-out`}
+    class={`fixed inset-0 flex items-center justify-center z-50 ${!sidebarVisible ? "hidden" : ""}`}
   >
-    <!-- {#if sidebarVisible} -->
-    <div class="flex flex-col justify-between h-full">
-      <div>
-        <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
-          <button on:click={toggleSidebar}>
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-          </button>
-          <!-- <p class="text-sm font-normal pt-1">Volver</p> -->
-        </div>
-        <h2 class="text-xl md:text-2xl font-semibold text-st-blue mb-2 pt-2">
-          Abonar a E-wallet
-        </h2>
-        <div
-          class="flex flex-row justify-between text-st-blue p-1 border-b border-st-blue"
+    <div class="fixed inset-0 bg-black opacity-50"></div>
+    <div class="relative bg-white rounded-lg p-8 sm:w-[500px] xs:w-[250px]">
+      <div class="flex flex-col justify-between h-full">
+        <form
+          name="registro"
+          on:submit={handleSubmit}
+          action="/api/compra"
+          method="POST"
         >
-          <div class="flex">
-            <i class="fa fa-wallet pt-1 mr-2" aria-hidden="true"></i>
-            <p>Mi saldo actual</p>
+          <div>
+            <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
+              <button on:click={toggleSidebar}>
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+              </button>
+            </div>
+            <h2
+              class="text-xl md:text-2xl font-semibold text-st-blue mb-2 pt-2"
+            >
+              Abonar a E-wallet
+            </h2>
+
+            <div
+              class="flex flex-row justify-between text-st-blue p-1 border-b border-st-blue"
+            >
+              <div class="flex">
+                <i class="fa fa-wallet pt-1 mr-2" aria-hidden="true"></i>
+                <p>Mi saldo actual</p>
+              </div>
+              <p>$0.00</p>
+            </div>
+            <p class="text-sm font-normal pb-1 pt-4">
+              Ingresa el monto por abonar
+            </p>
+            <input
+              type="text"
+              name="monto"
+              on:input={validateInput}
+              bind:value={formData.monto}
+              class="p-2 w-full border border-gainsboro rounded-lg"
+              placeholder="0.00"
+            />
+            <div
+              class="flex flex-row justify-between text-st-blue p-1 mt-2 mb-1 border-b border-st-blue"
+            >
+              <div class="flex">
+                <i class="fa fa-credit-card pt-1 mr-2" aria-hidden="true"></i>
+                <p>Tarjeta de débito</p>
+              </div>
+              <button type="button" on:click={showFormTarjeta}>+ Nueva</button>
+            </div>
+            {#if listaTarjetas.length < 1 || viewFormTarjeta}
+              <div>
+                <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
+
+                <input
+                  type="text"
+                  name="nroTarjeta"
+                  bind:value={formData.nroTarjeta}
+                  on:input={(event) =>
+                    (formData.nroTarjeta = formatCreditCardNumber(
+                      event.target.value
+                    ))}
+                  class="p-2 w-full border border-gainsboro rounded-lg"
+                  maxlength="19"
+                />
+                <div class="flex gap-1">
+                  <div class="w-full">
+                    <p class="text-sm font-normal pb-1 pt-2">
+                      Fecha de Vencimiento
+                    </p>
+                    <input
+                      name="fechaVencimiento"
+                      bind:value={formData.fechaVencimiento}
+                      class="p-2 w-full border border-gainsboro rounded-lg"
+                    />
+                  </div>
+                  <div class="w-full">
+                    <p class="text-sm font-normal pb-1 pt-2">CVV</p>
+                    <input
+                      type="number"
+                      name="cvv"
+                      bind:value={formData.cvv}
+                      class="p-2 w-full border border-gainsboro rounded-lg"
+                      maxlength="3"
+                    />
+                  </div>
+                </div>
+              </div>
+            {:else}
+              <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
+
+              <select
+                name="nroTarjeta"
+                bind:value={formData.nroTarjeta}
+                on:change={(event) => {
+                  formatCreditCardNumber(event.target.value);
+                }}
+                class="p-2 w-full border border-gainsboro rounded-lg"
+              >
+                <option value="">Selecciona un número de tarjeta</option>
+                {#each listaTarjetas as tarjeta}
+                  <option value={tarjeta.tarjeta}>{tarjeta.tarjeta}</option>
+                {/each}
+              </select>
+            {/if}
           </div>
-          <p>$0.00</p>
-        </div>
-        <p class="text-sm font-normal pb-1 pt-4">Ingresa el monto por abonar</p>
-        <input class="p-2 w-full border border-gainsboro rounded-lg" />
-        <p class="text-sm font-normal pb-1 pt-2">Codigo de promocion</p>
-        <input class="p-2 w-full border border-gainsboro rounded-lg" />
-        <p class="mt-2">Selecciona tu método de abono</p>
-        <div
-          class="p-2 w-full border border-gainsboro rounded-md text-st-blue mb-2"
-        >
-          <i class="fa fa-credit-card mr-1" aria-hidden="true"></i> Tarjeta crédito
-          o débito
-        </div>
-        <div class="p-2 w-full border border-gainsboro rounded-md text-st-blue">
-          <i class="fa fa-gift mr-1" aria-hidden="true"></i> Tarjetas de regalo
-        </div>
-      </div>
-      <div class="py-4 text-sm flex flex-col gap-2">
-        <button
-          on:click={toggleSidebar}
-          class="bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
-        >
-          <p class="text-sm font-bold">Abonar</p>
-        </button>
+          <div class="py-4 text-sm flex flex-col gap-2">
+            <button
+              type="submit"
+              class="w-full bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
+            >
+              Abonar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-    <!-- {/if} -->
   </div>
 </div>

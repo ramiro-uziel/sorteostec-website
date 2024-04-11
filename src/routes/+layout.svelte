@@ -75,6 +75,12 @@
         const walletData = await walletResponse.json();
         console.log("[ ! ] Wallet data:", walletData);
         userWallet.set(walletData);
+
+        const cardsResponse = await fetch("/api/tarjetas");
+        const cardlist = await cardsResponse.json();
+        console.log("[ ! ] Wallet data:", cardlist);
+        // userWallet.set(walletData);
+
         dataLoaded.set(true);
       } else {
         console.log("[ ! ] User is not logged in");
