@@ -17,6 +17,20 @@
     headerHeight = headerElement.clientHeight;
   }
 
+  async function logUserProfile() {
+    const unsubscribe = userProfile.subscribe((items) => {
+      console.log("[ ! ] Store items:", items);
+      unsubscribe();
+    });
+  }
+
+  async function logUserLogged() {
+    const unsubscribe = userLogged.subscribe((items) => {
+      console.log("[ ! ] Store items:", items);
+      unsubscribe();
+    });
+  }
+
   async function fetchData() {
     console.log("[ ! ] Starting data fetch...");
 
@@ -47,20 +61,6 @@
     }
     logUserProfile();
     logUserLogged();
-  }
-
-  async function logUserProfile() {
-    const unsubscribe = userProfile.subscribe((items) => {
-      console.log("[ ! ] Store items:", items);
-      unsubscribe();
-    });
-  }
-
-  async function logUserLogged() {
-    const unsubscribe = userLogged.subscribe((items) => {
-      console.log("[ ! ] Store items:", items);
-      unsubscribe();
-    });
   }
 
   onMount(() => {
