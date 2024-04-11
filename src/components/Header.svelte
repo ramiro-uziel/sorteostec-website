@@ -10,6 +10,7 @@
 
   let sidebarVisible = false;
   let headerElement;
+  let userVisible = false;
 
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
@@ -21,9 +22,11 @@
   $: if ($userLogged) {
     username = $userProfile?.name || "";
     saldo = $userWallet?.saldo || 0;
+    userVisible = true;
   } else {
     username = "";
     saldo = 0;
+    userVisible = false;
   }
 
   let tabs = [
@@ -126,7 +129,7 @@
     </div>
 
     <div class="flex flex-row items-center xl:flex-1 justify-end">
-      {#if !$userLogged}
+      {#if !userVisible}
         <div class="flex flex-row pr-6">
           <a
             href="/login"
@@ -142,7 +145,7 @@
           </a>
         </div>
       {/if}
-      {#if $userLogged}
+      {#if userVisible}
         <div class="px-0 mdsm:px-4">
           <DropdownWide>
             <div
