@@ -10,7 +10,7 @@
 
   let sidebarVisible = false;
   let headerElement;
-  const userVisible = $userLogged;
+  let userVisible = $userLogged;
 
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
