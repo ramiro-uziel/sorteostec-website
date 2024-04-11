@@ -26,7 +26,7 @@
       console.log("[ ! ] Logged data:", loggedData);
       userLogged.set(loggedData);
 
-      if (isLoggedIn) {
+      if (loggedData) {
         console.log("[ ! ] User is logged in");
 
         const profileResponse = await fetch("/api/perfil");
