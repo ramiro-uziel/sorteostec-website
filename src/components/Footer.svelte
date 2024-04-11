@@ -53,9 +53,9 @@
         </p>
       </div>
       <div class="flex flex-col pt-5">
-        <p class="text-center">© 2024 Sorteos Tec.</p>
-        <p class="text-center">Todos los derechos reservados</p>
-        <p class="text-center">Version {version}</p>
+        <p class="text-center">2024</p>
+        <p class="text-center">Version desarrollo</p>
+        <p class="text-center">{version}</p>
       </div>
     </div>
   </div>

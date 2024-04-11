@@ -8,6 +8,7 @@
   import { dataLoaded, userLogged } from "../lib/stores";
   import { userProfile } from "../lib/stores";
   import { userWallet } from "../lib/stores";
+  import { info } from "../lib/stores";
 
   let headerHeight = 0;
   let y = 0;
@@ -33,6 +34,7 @@
 
   async function fetchData() {
     console.log("[ ! ] Starting data fetch...");
+    info.set(new Date().toISOString());
 
     try {
       const loggedResponse = await fetch("/api/logged");
