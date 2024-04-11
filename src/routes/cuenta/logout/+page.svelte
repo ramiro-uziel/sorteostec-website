@@ -15,7 +15,9 @@
         .replace(/^ +/, "")
         .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
-    goto("/");
+    goto("/").then(() => {
+      location.reload();
+    });
   }
 
   function handleCancel() {
