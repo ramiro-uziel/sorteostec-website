@@ -5,7 +5,7 @@
   import Header from "../components/Header.svelte";
   import Footer from "../components/Footer.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
-  import { userLogged } from "../lib/stores";
+  import { dataLoaded, userLogged } from "../lib/stores";
   import { userProfile } from "../lib/stores";
   import { userWallet } from "../lib/stores";
 
@@ -53,6 +53,7 @@
         const walletData = await walletResponse.json();
         console.log("[ ! ] Wallet data:", walletData);
         userWallet.set(walletData);
+        dataLoaded.set(true);
       } else {
         console.log("[ ! ] User is not logged in");
       }

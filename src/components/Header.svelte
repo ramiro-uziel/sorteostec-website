@@ -7,6 +7,7 @@
   import DropdownWide from "./DropdownWide.svelte";
   import DropdownItem from "./DropdownItem.svelte";
   import DropdownWideItem from "./DropdownWideItem.svelte";
+  import { dataLoaded } from "../lib/stores";
 
   let sidebarVisible = false;
   let headerElement;
@@ -131,7 +132,7 @@
           </a>
         </div>
       {/if}
-      {#if $userLogged}
+      {#if $userLogged && $dataLoaded}
         <div class="px-0 mdsm:px-4">
           <DropdownWide>
             <div
