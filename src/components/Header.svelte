@@ -10,7 +10,6 @@
 
   let sidebarVisible = false;
   let headerElement;
-  let userVisible = $userLogged;
 
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
@@ -116,7 +115,7 @@
     </div>
 
     <div class="flex flex-row items-center xl:flex-1 justify-end">
-      {#if !userVisible}
+      {#if !$userLogged}
         <div class="flex flex-row pr-6">
           <a
             href="/login"
@@ -132,7 +131,7 @@
           </a>
         </div>
       {/if}
-      {#if userVisible}
+      {#if $userLogged}
         <div class="px-0 mdsm:px-4">
           <DropdownWide>
             <div
