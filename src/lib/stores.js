@@ -24,4 +24,4 @@ export const userProfile = writable(initialProfile);
 export const userWallet = writable(initialWallet);
 export const userLogged = writable(false);
 export const dataLoaded = writable(false);
-export const buildInfo = readable(info)
+export const buildInfo = writable(info)

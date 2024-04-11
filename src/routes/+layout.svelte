@@ -8,7 +8,7 @@
   import { dataLoaded, userLogged } from "../lib/stores";
   import { userProfile } from "../lib/stores";
   import { userWallet } from "../lib/stores";
-  import { info } from "../lib/stores";
+  import { buildInfo } from "../lib/stores";
 
   let headerHeight = 0;
   let y = 0;
@@ -16,6 +16,11 @@
 
   function updateHeaderHeight() {
     headerHeight = headerElement.clientHeight;
+  }
+
+  function updateFooter() {
+    let date = new Date().toISOString();
+    buildInfo.set(date);
   }
 
   async function logUserProfile() {
@@ -34,7 +39,6 @@
 
   async function fetchData() {
     console.log("[ ! ] Starting data fetch...");
-    info.set(new Date().toISOString());
 
     try {
       const loggedResponse = await fetch("/api/logged");
@@ -68,6 +72,7 @@
 
   onMount(() => {
     fetchData();
+    updateFooter();
     updateHeaderHeight();
     window.addEventListener("resize", updateHeaderHeight);
 
