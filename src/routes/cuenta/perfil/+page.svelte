@@ -1,26 +1,6 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  import { get } from "svelte/store";
   import { userProfile } from "$lib/stores";
-  import { userWallet } from "$lib/stores";
-  import { userLogged } from "$lib/stores";
-
-  let username = "";
-  let email = "";
-  let phone = "";
-  let city = "";
-
-  const isUserLogged = get(userLogged);
-
-  if (isUserLogged) {
-    const user = get(userProfile);
-    if (user) {
-      username = user.name;
-      email = user.email;
-      phone = user.phone;
-      city = user.city;
-    }
-  }
 </script>
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
@@ -48,10 +28,12 @@
           class="bg-st-blue-light text-st-blue p-5 rounded-lg flex md:flex-row justify-between items-start w-full md:w-[520px]"
         >
           <div class="flex flex-col gap-1 pl-2">
-            <h2 class="text-xl md:text-2xl font-semibold">Hola, {username}</h2>
-            <p class="text-sm font-normal">{email}</p>
-            <p class="text-sm font-mono">{phone}</p>
-            <p class="text-sm font-normal">{city}</p>
+            <h2 class="text-xl md:text-2xl font-semibold">
+              Hola, {$userProfile.name}
+            </h2>
+            <p class="text-sm font-normal">{$userProfile.email}</p>
+            <p class="text-sm font-mono">{$userProfile.phone}</p>
+            <p class="text-sm font-normal">{$userProfile.city}</p>
           </div>
           <a
             href="#"
