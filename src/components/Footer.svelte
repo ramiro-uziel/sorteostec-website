@@ -2,9 +2,10 @@
   import { get } from "svelte/store";
   import { buildInfo } from "$lib/stores";
 
-  let version = "";
-  const build = get(buildInfo);
-  version = build.version;
+  let build;
+  buildInfo.subscribe((data) => {
+    build = data;
+  });
 
   const tabs = [
     {
@@ -54,8 +55,8 @@
       </div>
       <div class="flex flex-col pt-5">
         <p class="text-center">2024</p>
-        <p class="text-center">Version desarrollo</p>
-        <p class="text-center">{version}</p>
+        <p class="text-center">Version de desarrollo</p>
+        <p class="text-center">{build.buildID}</p>
       </div>
     </div>
   </div>

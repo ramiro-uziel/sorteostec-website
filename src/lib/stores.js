@@ -1,4 +1,4 @@
-import { readable, writable } from "svelte/store";
+import { writable } from "svelte/store";
 
 const initialProfile = {
   name: "",
@@ -16,12 +16,12 @@ const initialWallet = {
   },
 };
 
-const info = {
-  version: ""
+const build = {
+  buildID: ""
 }
 
 export const userProfile = writable(initialProfile);
 export const userWallet = writable(initialWallet);
 export const userLogged = writable(false);
 export const dataLoaded = writable(false);
-export const buildInfo = writable(info)
+export const buildInfo = writable(build)

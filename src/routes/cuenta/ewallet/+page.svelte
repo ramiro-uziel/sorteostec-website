@@ -2,7 +2,6 @@
   import Sidebar from "/src/components/Sidebar.svelte";
   let sidebarVisible = false;
   function toggleSidebar() {
-    console.log("si");
     sidebarVisible = !sidebarVisible;
   }
 </script>

@@ -18,11 +18,6 @@
     headerHeight = headerElement.clientHeight;
   }
 
-  function updateFooter() {
-    let date = new Date().toISOString();
-    buildInfo.set(date);
-  }
-
   async function logUserProfile() {
     const unsubscribe = userProfile.subscribe((items) => {
       console.log("[ ! ] Store items:", items);
@@ -35,6 +30,27 @@
       console.log("[ ! ] Store items:", items);
       unsubscribe();
     });
+  }
+
+  async function updateBuildInfo() {
+    try {
+      const response = await fetch("/build-id.json");
+      const data = await response.json();
+      const date = new Date(data.buildId);
+      const formattedDate = date.toLocaleString("es-MX", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+
+      buildInfo.set({ buildID: formattedDate });
+    } catch (error) {
+      console.error("[ ! ] Error fetching build info:", error);
+    }
   }
 
   async function fetchData() {
@@ -72,7 +88,7 @@
 
   onMount(() => {
     fetchData();
-    updateFooter();
+    updateBuildInfo();
     updateHeaderHeight();
     window.addEventListener("resize", updateHeaderHeight);
 
