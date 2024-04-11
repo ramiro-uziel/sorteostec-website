@@ -22,7 +22,8 @@
 
     try {
       const loggedResponse = await fetch("/api/logged");
-      const loggedData = await loggedResponse.json();
+      const loggedText = await loggedResponse.text();
+      const loggedData = loggedText.toLowerCase() === "true";
       console.log("[ ! ] Logged data:", loggedData);
       userLogged.set(loggedData);
 
