@@ -19,7 +19,9 @@
   }
 
   function handleCancel() {
-    goto("/");
+    goto("/").then(() => {
+      location.reload();
+    });
   }
 </script>
 
