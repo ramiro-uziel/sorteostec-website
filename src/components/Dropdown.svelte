@@ -59,7 +59,7 @@
         opacity: 0,
         easing: quintOut,
       }}
-      class="absolute right-0 z-10 mt-2 w-56 origin-top-right md:translate-x-[15px] rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-20 focus:outline-none"
+      class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-20 focus:outline-none"
       role="menu"
       aria-orientation="vertical"
       aria-labelledby="menu-button"
