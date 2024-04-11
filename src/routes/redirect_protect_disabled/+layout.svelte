@@ -1,5 +1,5 @@
 <script>
-  import Redirect from "../../../components/Redirect.svelte";
+  import Redirect from "../../components/Redirect.svelte";
   import { userLogged } from "$lib/stores";
 </script>
 
