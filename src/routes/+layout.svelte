@@ -24,9 +24,7 @@
       const loggedResponse = await fetch("/api/logged");
       const loggedData = await loggedResponse.json();
       console.log("[ ! ] Logged data:", loggedData);
-
-      const isLoggedIn = loggedData.logged === "true";
-      userLogged.set(isLoggedIn);
+      userLogged.set(loggedData);
 
       if (isLoggedIn) {
         console.log("[ ! ] User is logged in");
@@ -48,8 +46,16 @@
     }
   }
 
+  function logUserProfile() {
+    const unsubscribe = userProfile.subscribe((items) => {
+      console.log("[ ! ] Store items:", items);
+      unsubscribe();
+    });
+  }
+
   onMount(() => {
     fetchData();
+    logUserProfile();
     updateHeaderHeight();
     window.addEventListener("resize", updateHeaderHeight);
 
