@@ -9,16 +9,16 @@
 
   const tabs = [
     {
-      href: "https://www.facebook.com/SorteosTec/",
+      href: "/",
       icon: "fa-brands fa-facebook",
     },
     {
-      href: "https://www.instagram.com/sorteostec/",
+      href: "/",
       icon: "fa-brands fa-instagram",
     },
-    { href: "https://twitter.com/SorteosTec", icon: "fa-brands fa-twitter" },
+    { href: "/", icon: "fa-brands fa-twitter" },
     {
-      href: "https://www.youtube.com/@SorteosTecOficial",
+      href: "/",
       icon: "fa-brands fa-youtube",
     },
   ];
@@ -37,7 +37,6 @@
       <div class="flex flex-row gap-2 text-xl text-st-blue">
         {#each tabs as { href, icon }}
           <a
-            target="_blank"
             {href}
             class="bg-st-blue-light border-2 border-transparent hover:bg-st-blue hover:text-st-blue-light hover:border-st-blue-light rounded-full duration-100"
           >
