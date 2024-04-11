@@ -197,7 +197,7 @@
             >
               <i class="fa-solid fa-user pr-2"></i>
               <p class="hidden xs-mdsm:flex mdxl:flex">
-                {username}
+                {$userProfile.name}
               </p>
             </div>
             {#each userTabs as tab}
