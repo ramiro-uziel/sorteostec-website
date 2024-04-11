@@ -10,23 +10,10 @@
 
   let sidebarVisible = false;
   let headerElement;
-  let userVisible = false;
+  userVisible = $userLogged;
 
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
-  }
-
-  let username = "";
-  let saldo = 0;
-
-  $: if ($userLogged) {
-    username = $userProfile?.name || "";
-    saldo = $userWallet?.saldo || 0;
-    userVisible = true;
-  } else {
-    username = "";
-    saldo = 0;
-    userVisible = false;
   }
 
   let tabs = [
@@ -153,12 +140,14 @@
               class="text-sm font-semibold flex flex-row items-center gap-1"
             >
               <i class="fa-solid fa-wallet pr-2"></i>
-              <p class="mdsm:hidden xs-mdsm:flex mdxl:flex">${saldo}</p>
+              <p class="mdsm:hidden xs-mdsm:flex mdxl:flex">
+                ${$userWallet.saldo}
+              </p>
             </div>
             <div class="flex flex-col gap-3 text-sm w-72">
               <div class="flex flex-row px-4 mt-4 gap-1 justify-between">
                 <p class="text-st-blue font-semibold">Mi saldo actual</p>
-                <p class="text-st-blue font-semibold">${saldo}</p>
+                <p class="text-st-blue font-semibold">${$userWallet.saldo}</p>
               </div>
               <hr
                 class="h-px mb-1 st-blue border-1 border-dotted border-st-blue"
