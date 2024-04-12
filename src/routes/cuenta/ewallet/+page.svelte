@@ -1,13 +1,18 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  import { abonarSaldoBoxVisible, cardList } from "../../../lib/stores.js";
+  import {
+    abonarSaldoBoxVisible,
+    cardList,
+    userWallet,
+  } from "../../../lib/stores.js";
   // import { useState } from "react";
   let viewFormTarjeta = false;
   let disableAbonar = true;
   // const [tarjetas, setTarjetas] = useState([]);
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
-  console.log(cardList.tarjetas);
   console.log(cardList);
+  console.log(userWallet);
+  // console.log(cardList);
   let formData = {
     monto: "",
     metodo: "",
@@ -302,9 +307,9 @@
               class="p-2 w-full border border-gainsboro rounded-lg"
             >
               <option value="">Selecciona un número de tarjeta</option>
-              {#each cardList.tarjetas as tarjeta}
+              <!-- {#each cardList.tarjetas as tarjeta}
                 <option value={tarjeta.numero}>{tarjeta.numero}</option>
-              {/each}
+              {/each} -->
             </select>
           {/if}
         </div>
