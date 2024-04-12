@@ -232,7 +232,7 @@
               >{viewFormTarjeta ? "< Volver" : "+ Nueva"}</button
             >
           </div>
-          {#if cardList.tarjetas.length < 1 || viewFormTarjeta}
+          {#if viewFormTarjeta}
             <div>
               <p class="text-sm font-normal pb-1 pt-2">Tipo de Tarjeta</p>
 
