@@ -164,7 +164,7 @@
               <div
                 class="flex flex-row border-t border-gainsboro p-2 justify-between px-5"
               >
-                <p class="text-sm font-normal">{{ index }}</p>
+                <p class="text-sm font-normal">{index}</p>
                 <p class="text-sm font-normal">{recarga.fecha}</p>
                 <p class="text-sm font-normal">{recarga.monto}</p>
                 <p class="text-sm font-normal">{recarga.movimiento}</p>
