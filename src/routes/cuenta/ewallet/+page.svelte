@@ -64,16 +64,15 @@
 
     // Realizar la solicitud POST
     try {
-      const respuesta = await fetch("/api/tarjeta", opciones);
-      console.log(respuesta);
-      // if (respuesta.ok) {
-      //   // La solicitud fue exitosa
-      //   const datosRespuesta = await respuesta.json(); // Convertir la respuesta a JSON
-      //   // Aquí puedes manejar los datos de respuesta si es necesario
-      // } else {
-      //   // La solicitud no fue exitosa
-      //   console.error("Error al realizar la solicitud:", respuesta.status);
-      // }
+      const respuesta = await fetch("/api/tarjetas", opciones);
+      if (respuesta.ok) {
+        // La solicitud fue exitosa
+        const datosRespuesta = await respuesta.json(); // Convertir la respuesta a JSON
+        // Aquí puedes manejar los datos de respuesta si es necesario
+      } else {
+        // La solicitud no fue exitosa
+        console.error("Error al realizar la solicitud:", respuesta.status);
+      }
     } catch (error) {
       // Error en la solicitud
       console.error("Error en la solicitud:", error);
