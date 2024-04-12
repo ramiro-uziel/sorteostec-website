@@ -23,7 +23,7 @@
       img: "/images/slider-aventurat.webp",
       logo: "/images/logo-aventurat.png",
       title: "¡Un boleto para conocer el mundo!",
-      description: "El primer premio tiene un valor total de: $1,200,000",
+      description: "El primer premio tiene un valor total de $1,200,000",
     },
     {
       img: "/images/slider-dinerodeporvida.webp",
