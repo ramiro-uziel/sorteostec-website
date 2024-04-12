@@ -80,7 +80,7 @@
         const cardsData = await cardsResponse.json();
         console.log("actualiza");
         console.log("[ ! ] Cards data:", cardsData.tarjetas);
-        cardList.set(cardsData.tarjetas);
+        cardList.set(cardsData);
         // userWallet.set(walletData);
 
         dataLoaded.set(true);

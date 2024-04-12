@@ -19,7 +19,7 @@ const initialWallet = {
 const build = {
   buildID: "",
 };
-const personalCards = [];
+const personalCards = { tarjetas: [] };
 export const userProfile = writable(initialProfile);
 export const userWallet = writable(initialWallet);
 export const userLogged = writable(false);
