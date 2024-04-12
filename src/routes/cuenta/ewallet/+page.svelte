@@ -1,13 +1,17 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  import { abonarSaldoBoxVisible, cardList } from "../../../lib/stores.js";
+  import {
+    abonarSaldoBoxVisible,
+    personalCards,
+    cardList,
+  } from "../../../lib/stores.js";
   // import { useState } from "react";
   let viewFormTarjeta = false;
   let disableAbonar = true;
   // const [tarjetas, setTarjetas] = useState([]);
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
-  console.log(cardList[0]);
-  console.log(cardList);
+  console.log(personalCards[0]);
+  console.log(personalCards);
   let formData = {
     monto: "",
     metodo: "",
@@ -103,8 +107,9 @@
     event.preventDefault();
     console.log(formData);
     const cardsResponse = await fetch("/api/tarjetas");
-    const cardlist = await cardsResponse.json();
-    console.log(cardlist);
+    const cardlistCopy = await cardsResponse.json();
+    cardlist.set(cardlistCopy);
+    console.log(personalCards);
   }
 
   // ANTES ERA toggleSidebar()
@@ -231,7 +236,7 @@
               >{viewFormTarjeta ? "< Volver" : "+ Nueva"}</button
             >
           </div>
-          {#if cardList.length < 1 || viewFormTarjeta}
+          {#if personalCards.length < 1 || viewFormTarjeta}
             <div>
               <p class="text-sm font-normal pb-1 pt-2">Tipo de Tarjeta</p>
 
@@ -301,7 +306,7 @@
               class="p-2 w-full border border-gainsboro rounded-lg"
             >
               <option value="">Selecciona un número de tarjeta</option>
-              {#each cardList as tarjeta}
+              {#each personalCards as tarjeta}
                 <option value={tarjeta.numero}>{tarjeta.numero}</option>
               {/each}
             </select>
