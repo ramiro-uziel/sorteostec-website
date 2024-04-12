@@ -78,7 +78,7 @@
 
         const cardsResponse = await fetch("/api/tarjetas");
         const cardsData = await cardsResponse.json();
-        console.log("[ ! ] Wallet data:", cardsData);
+        console.log("[ ! ] Wallet data:", cardsData.tarjetas);
         cardList.set(cardsData.tarjetas);
         // userWallet.set(walletData);
 

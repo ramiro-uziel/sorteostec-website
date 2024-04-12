@@ -5,9 +5,8 @@
   let viewFormTarjeta = false;
   let disableAbonar = true;
   // const [tarjetas, setTarjetas] = useState([]);
-  let listaTarjetas = cardList;
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
-
+  console.log(cardList[0]);
   let formData = {
     monto: "",
     metodo: "",
@@ -301,7 +300,7 @@
               class="p-2 w-full border border-gainsboro rounded-lg"
             >
               <option value="">Selecciona un número de tarjeta</option>
-              {#each listaTarjetas as tarjeta}
+              {#each cardList as tarjeta}
                 <option value={tarjeta.numero}>{tarjeta.numero}</option>
               {/each}
             </select>
