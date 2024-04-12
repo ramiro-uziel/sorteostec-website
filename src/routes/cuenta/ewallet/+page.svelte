@@ -5,9 +5,10 @@
   let viewFormTarjeta = false;
   let disableAbonar = true;
   let listaTarjetas = [
-    { numero: "1234 5678 8765", cv: "123", fechaVencimiento: "01/02" },
-    { numero: "8765 4321 1234", cv: "123", fechaVencimiento: "01/02" },
+    { numero: "1234 5678 8765" },
+    { numero: "8765 4321 1234" },
   ];
+  getTarjetas();
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
 
   let formData = {
@@ -68,6 +69,7 @@
     const cardlist = await cardsResponse.json();
     console.log(cardlist);
     console.log(cardlist.tarjetas);
+    listaTarjetas = cardlist.tarjetas;
   }
   async function handleRecarga() {
     const datos = {
