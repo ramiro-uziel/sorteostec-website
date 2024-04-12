@@ -4,7 +4,7 @@
 
   let emblaApi;
   let options = { loop: true };
-  let plugins = [Autoplay()];
+  let plugins = [Autoplay({ delay: 10000 })];
 
   function onInit(event) {
     emblaApi = event.detail;
