@@ -28,9 +28,9 @@
     if (value != "" && !viewFormTarjeta) {
       disableAbonar = false;
     }
-    console.log(value);
-    value = value.replace(/\s/g, "");
-    return value.replace(/(.{4})/g, "$1 ").trim();
+    console.log(formData.numero);
+    formData.numero = formData.numero.replace(/\s/g, "");
+    return formData.numero.replace(/(.{4})/g, "$1 ").trim();
   }
   function validateInput(event) {
     const value = event.target.value;
@@ -66,17 +66,16 @@
       const respuesta = await fetch("/api/tarjeta", opciones);
       console.log(respuesta);
       getTarjetas();
-      // listaTarjetas = tarjetas.tarjetas;
       showFormTarjeta(false);
     } catch (error) {
       console.error("Error en la solicitud:", error);
     }
   }
   async function getTarjetas() {
-    const tarjetas = await fetch("/api/tarjetas");
-    console.log(tarjetas);
-    console.log(tarjetas.tarjetas);
-    // console.log(JSON.parse(tarjetas).tarjetas);
+    const cardsResponse = await fetch("/api/tarjetas");
+    const cardlist = await cardsResponse.json();
+    console.log(cardlist);
+    console.log(cardlist.tarjetas);
   }
   async function handleRecarga() {
     const datos = {
