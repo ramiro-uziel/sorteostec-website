@@ -48,32 +48,32 @@
     console.log(formData);
     toggleSaldoBox();
   }
-  const datos = {
-    numero: numero,
-    tipo: tipo,
-    // Aquí colocas los datos que deseas enviar
-  };
+
   async function handleTarjeta() {
-    // Configuración de la solicitud
+    const datos = {
+      numero: "1234567887654321",
+      tipo: "credito",
+    };
     const opciones = {
-      method: "POST", // Método de la solicitud
+      method: "POST",
       headers: {
-        "Content-Type": "application/json", // Tipo de contenido del cuerpo de la solicitud
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(datos), // Convertir los datos a formato JSON y enviarlos en el cuerpo de la solicitud
+      body: JSON.stringify(datos),
     };
 
     // Realizar la solicitud POST
     try {
       const respuesta = await fetch("/api/tarjeta", opciones);
-      if (respuesta.ok) {
-        // La solicitud fue exitosa
-        const datosRespuesta = await respuesta.json(); // Convertir la respuesta a JSON
-        // Aquí puedes manejar los datos de respuesta si es necesario
-      } else {
-        // La solicitud no fue exitosa
-        console.error("Error al realizar la solicitud:", respuesta.status);
-      }
+      console.log(respuesta);
+      // if (respuesta.ok) {
+      //   // La solicitud fue exitosa
+      //   const datosRespuesta = await respuesta.json(); // Convertir la respuesta a JSON
+      //   // Aquí puedes manejar los datos de respuesta si es necesario
+      // } else {
+      //   // La solicitud no fue exitosa
+      //   console.error("Error al realizar la solicitud:", respuesta.status);
+      // }
     } catch (error) {
       // Error en la solicitud
       console.error("Error en la solicitud:", error);
@@ -255,7 +255,8 @@
               </div>
               <div class="flex flex-row justify-end mt-1 w-full">
                 <button
-                  type="submit"
+                  type="button"
+                  on:click={handleTarjeta}
                   class="border border-st-blue rounded p-1 text-st-blue hover:bg-st-blue-light hover:text-st-blue duration-100"
                 >
                   Guardar Tarjeta
