@@ -25,7 +25,7 @@
   }
 
   function formatCreditCardNumber(value) {
-    if (value != "") {
+    if (value != "" && !viewFormTarjeta) {
       disableAbonar = false;
     }
     value = value.replace(/\s/g, "");
@@ -307,9 +307,9 @@
           <button
             on:click={handleRecarga}
             disabled={disableAbonar}
-            class="w-full {disableAbonar
-              ? 'bg-st-blue hover:bg-st-blue-light hover:text-st-blue'
-              : 'bg-gainsboro'}rounded p-4 text-white duration-100"
+            class="w-full {!disableAbonar
+              ? ' text-white bg-st-blue hover:bg-st-blue-light hover:text-st-blue '
+              : ' text-gray-400 bg-gray-100 '}rounded p-4 duration-100"
           >
             Abonar
           </button>
