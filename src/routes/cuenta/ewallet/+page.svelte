@@ -5,8 +5,8 @@
   let viewFormTarjeta = false;
   let disableAbonar = true;
   let listaTarjetas = [
-    { tarjeta: "1234 5678 8765", cv: "123", fechaVencimiento: "01/02" },
-    { tarjeta: "8765 4321 1234", cv: "123", fechaVencimiento: "01/02" },
+    { numero: "1234 5678 8765", cv: "123", fechaVencimiento: "01/02" },
+    { numero: "8765 4321 1234", cv: "123", fechaVencimiento: "01/02" },
   ];
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
 
@@ -66,6 +66,31 @@
       console.log(respuesta);
       const tarjetas = await fetch("/api/tarjetas");
       console.log(tarjetas);
+      listaTarjetas = tarjetas.tarjetas;
+      showFormTarjeta(false);
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
+  }
+  async function handleRecarga() {
+    const datos = {
+      numero: formData.numero.replace(/\s/g, ""),
+      monto: formData.monto,
+    };
+    const opciones = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(datos),
+    };
+
+    try {
+      const respuesta = await fetch("/api/recarga", opciones);
+      console.log(respuesta);
+      // const tarjetas = await fetch("/api/tarjetas");
+      // console.log(tarjetas);
+      // listaTarjetas = tarjetas.tarjetas;
     } catch (error) {
       console.error("Error en la solicitud:", error);
     }
@@ -212,7 +237,6 @@
               <select
                 name="tipo"
                 bind:value={formData.tipo}
-                on:input={formatCreditCardNumber}
                 class="p-2 w-full border border-gainsboro rounded-lg"
               >
                 <option value="">Selecciona un tipo</option>
@@ -225,6 +249,7 @@
               <input
                 type="text"
                 name="numero"
+                on:input={formatCreditCardNumber}
                 bind:value={formData.numero}
                 class="p-2 w-full border border-gainsboro rounded-lg"
               />
@@ -273,16 +298,18 @@
             >
               <option value="">Selecciona un número de tarjeta</option>
               {#each listaTarjetas as tarjeta}
-                <option value={tarjeta.tarjeta}>{tarjeta.tarjeta}</option>
+                <option value={tarjeta.numero}>{tarjeta.numero}</option>
               {/each}
             </select>
           {/if}
         </div>
         <div class="py-4 text-sm flex flex-col gap-2">
           <button
+            on:click={handleRecarga}
             disabled={disableAbonar}
-            type="submit"
-            class="w-full bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
+            class="w-full {disableAbonar
+              ? 'bg-st-blue hover:bg-st-blue-light hover:text-st-blue'
+              : 'bg-gainsboro'}rounded p-4 text-white duration-100"
           >
             Abonar
           </button>
