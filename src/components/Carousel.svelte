@@ -4,7 +4,7 @@
 
   let emblaApi;
   let options = { loop: true };
-  let plugins = [Autoplay()];
+  let plugins = [Autoplay({ delay: 10000 })];
 
   function onInit(event) {
     emblaApi = event.detail;
@@ -22,20 +22,20 @@
     {
       img: "/images/slider-aventurat.webp",
       logo: "/images/logo-aventurat.png",
-      title: "Slide Title 1",
-      description: "This is a description for slide 1.",
+      title: "¡Un boleto para conocer el mundo!",
+      description: "El primer premio tiene un valor total de: $1,200,000",
     },
     {
       img: "/images/slider-dinerodeporvida.webp",
       logo: "/images/logo-dinerodeporvida.png",
-      title: "Slide Title 2",
-      description: "This is a description for slide 2.",
+      title: "¡Gana toda la vida!",
+      description: "Recibe 1,100 USD todos los meses",
     },
     {
       img: "/images/slider-educativo.webp",
       logo: "/images/logo-educativo.png",
-      title: "Slide Title 3",
-      description: "This is a description for slide 3.",
+      title: "¡Gana dos veces, gana al instante!",
+      description: "El primer premio tiene un valor total de $15,000,000",
     },
   ];
 </script>
@@ -50,20 +50,20 @@
       {#each slides as { img, logo, title, description }, index}
         <div class="embla__slide relative">
           <div
-            class="embla__slide__overlay absolute inset-0 bg-black bg-opacity-30 mb-4"
+            class="embla__slide__overlay absolute inset-0 bg-black bg-opacity-30"
           ></div>
           <div
             class="embla__slide__content absolute flex-col w-full h-full flex justify-center items-center text-white"
           >
             <img class="mx-auto mb-4 w-40" src={logo} alt="Logo" />
-            <h1 class="text-4xl font-extrabold">
+            <h1 class="text-2xl sm:text-4xl font-extrabold">
               {title}
             </h1>
-            <p class="text-2xl">
+            <p class="sm:text-2xl">
               {description}
             </p>
           </div>
-          <img src={img} alt="Background" class="mx-auto mb-4" />
+          <img src={img} alt="Background" class="mx-auto" />
         </div>
       {/each}
     </div>
@@ -71,11 +71,11 @@
 
   <div class="absolute inset-0 flex justify-between items-center px-5">
     <button
-      class="embla__prev w-12 h-12 text-white bg-st-blue rounded-full flex justify-center items-center p-5 shadow-xl"
+      class="embla__prev w-6 h-6 sm:w-12 sm:h-12 text-white bg-st-blue rounded-full flex justify-center items-center p-5 shadow-xl"
       on:click={prev}><i class="fa-solid fa-arrow-left"></i></button
     >
     <button
-      class="embla__next w-12 h-12 text-white bg-st-blue rounded-full flex justify-center items-center p-5 shadow-xl"
+      class="embla__next w-6 h-6 sm:w-12 sm:h-12 text-white bg-st-blue rounded-full flex justify-center items-center p-5 shadow-xl"
       on:click={next}><i class="fa-solid fa-arrow-right"></i></button
     >
   </div>

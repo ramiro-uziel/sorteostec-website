@@ -1,13 +1,19 @@
 <script>
   import { onMount } from "svelte";
-  import { userProfile, userLogged, userWallet } from "$lib/stores";
+  import {
+    userProfile,
+    userLogged,
+    userWallet,
+    dataLoaded,
+    abonarSaldoBoxVisible,
+  } from "$lib/stores";
   import Boleto from "../assets/icons/boleto.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
   import Dropdown from "./Dropdown.svelte";
   import DropdownWide from "./DropdownWide.svelte";
   import DropdownItem from "./DropdownItem.svelte";
   import DropdownWideItem from "./DropdownWideItem.svelte";
-  import { dataLoaded } from "../lib/stores";
+  import { goto } from "$app/navigation";
 
   let sidebarVisible = false;
   let headerElement;
@@ -44,6 +50,12 @@
       "--header-height",
       `${height}px`
     );
+  }
+
+  async function handleAbonarClick(event) {
+    event.preventDefault();
+    await goto("/cuenta/ewallet");
+    abonarSaldoBoxVisible.set(true);
   }
 
   onMount(() => {
@@ -116,7 +128,7 @@
     </div>
 
     <div class="flex flex-row items-center xl:flex-1 justify-end">
-      {#if !$userLogged && $dataLoaded}
+      {#if !$userLogged && dataLoaded}
         <div class="flex flex-row pr-6">
           <a
             href="/login"
@@ -132,7 +144,7 @@
           </a>
         </div>
       {/if}
-      {#if $userLogged && $dataLoaded}
+      {#if $userLogged && dataLoaded}
         <div class="px-0 mdsm:px-4">
           <DropdownWide>
             <div
@@ -169,12 +181,12 @@
                   >
                     <p class="font-semibold px-1">E-wallet</p>
                   </a>
-                  <a
-                    href="/cuenta/ewallet"
+                  <button
+                    on:click={handleAbonarClick}
                     class="border border-st-blue bg-st-blue p-2 rounded flex align-middle justify-center w-full text-white hover:bg-st-blue-light hover:text-st-blue duration-200"
                   >
                     <p class="font-semibold px-1">Abonar</p>
-                  </a>
+                  </button>
                 </div>
               </DropdownWideItem>
             </div>
