@@ -1,11 +1,6 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  import {
-    abonarSaldoBoxVisible,
-    cardList,
-    userProfile,
-    userWallet,
-  } from "../../../lib/stores.js";
+  import { abonarSaldoBoxVisible, cardList, userProfile } from "$lib/stores";
   // import { useState } from "react";
   let viewFormTarjeta = false;
   let disableAbonar = true;
@@ -217,6 +212,8 @@
             </div>
             <p>$0.00</p>
           </div>
+
+          <p>{$userProfile.name}</p>
           <p class="text-sm font-normal pb-1 pt-4">
             Ingresa el monto por abonar
           </p>
