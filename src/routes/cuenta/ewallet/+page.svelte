@@ -28,6 +28,7 @@
     if (value != "" && !viewFormTarjeta) {
       disableAbonar = false;
     }
+    console.log(value);
     value = value.replace(/\s/g, "");
     return value.replace(/(.{4})/g, "$1 ").trim();
   }
@@ -73,7 +74,9 @@
   }
   async function getTarjetas() {
     const tarjetas = await fetch("/api/tarjetas");
-    console.log(JSON.parse(tarjetas).tarjetas);
+    console.log(tarjetas);
+    console.log(tarjetas.tarjetas);
+    // console.log(JSON.parse(tarjetas).tarjetas);
   }
   async function handleRecarga() {
     const datos = {
