@@ -29,7 +29,7 @@
       img: "/images/slider-dinerodeporvida.webp",
       logo: "/images/logo-dinerodeporvida.png",
       title: "¡Gana toda la vida!",
-      description: "Recibe 1,100 USD todos los meses.",
+      description: "Recibe 1,100 USD todos los meses",
     },
     {
       img: "/images/slider-educativo.webp",
