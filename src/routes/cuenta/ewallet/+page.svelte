@@ -114,7 +114,7 @@
             class="bg-st-blue-light text-st-blue p-2 rounded-lg flex flex-row justify-between md:gap-20"
           >
             <p class="font-semibold text-st-blue">Mi saldo actual</p>
-            <p class="text-sm font-normal">$0.00</p>
+            <p class="text-sm font-normal">${$userWallet.saldo / 100}</p>
           </div>
         </div>
         <div
@@ -200,7 +200,7 @@
               <i class="fa fa-wallet pt-1 mr-2" aria-hidden="true"></i>
               <p>Mi saldo actual</p>
             </div>
-            <p>$0.00</p>
+            <p>${$userWallet.saldo / 100}</p>
           </div>
 
           <p class="text-sm font-normal pb-1 pt-4">
