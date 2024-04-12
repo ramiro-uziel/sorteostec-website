@@ -35,7 +35,7 @@
       img: "/images/slider-educativo.webp",
       logo: "/images/logo-educativo.png",
       title: "¡Gana dos veces, gana al instante!",
-      description: "Primer premio tien un valor total de $15,000,000",
+      description: "El primer premio tiene un valor total de $15,000,000",
     },
   ];
 </script>
