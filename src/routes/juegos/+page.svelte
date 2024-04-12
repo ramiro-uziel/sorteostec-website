@@ -1,6 +1,4 @@
 <script>
-  import GameCard from "/src/components/GameCard.svelte";
-
   let juegos = [
     {
       color: "#7c44b7",
@@ -12,13 +10,13 @@
       color: "#7c44b7",
       image: "/images/fof-gallinero.webp",
       title: "Gallinero",
-      link: "#",
+      link: "/juegos/granja",
     },
     {
       color: "#7c44b7",
       image: "/images/fof-repartidor.webp",
       title: "Repartidor",
-      link: "#",
+      link: "/juegos/granja",
     },
   ];
 </script>
