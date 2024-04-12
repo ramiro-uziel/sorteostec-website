@@ -9,13 +9,12 @@
     { tarjeta: "8765 4321 1234", cv: "123", fechaVencimiento: "01/02" },
   ];
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
-  let numero = 0;
-  let tipo = "";
+
   let formData = {
     monto: "",
     metodo: "",
     numero: "",
-    tipo: "debito",
+    tipo: "",
     cvv: "",
     fechaVencimiento: "",
   };
@@ -51,8 +50,8 @@
 
   async function handleTarjeta() {
     const datos = {
-      numero: "1234567887654321",
-      tipo: "credito",
+      numero: formData.numero.replace(/\s/g, ""),
+      tipo: formData.tipo,
     };
     const opciones = {
       method: "POST",
@@ -62,19 +61,12 @@
       body: JSON.stringify(datos),
     };
 
-    // Realizar la solicitud POST
     try {
       const respuesta = await fetch("/api/tarjeta", opciones);
-      if (respuesta.ok) {
-        // La solicitud fue exitosa
-        const datosRespuesta = await respuesta.json(); // Convertir la respuesta a JSON
-        // Aquí puedes manejar los datos de respuesta si es necesario
-      } else {
-        // La solicitud no fue exitosa
-        console.error("Error al realizar la solicitud:", respuesta.status);
-      }
+      console.log(respuesta);
+      const tarjetas = await fetch("/api/tarjetas");
+      console.log(tarjetas);
     } catch (error) {
-      // Error en la solicitud
       console.error("Error en la solicitud:", error);
     }
   }
@@ -194,69 +186,70 @@
           <p class="text-sm font-normal pb-1 pt-4">
             Ingresa el monto por abonar
           </p>
-          <!-- <input
-              type="text"
-              name="monto"
-              on:input={validateInput}
-              bind:value={formData.monto}
-              class="p-2 w-full border border-gainsboro rounded-lg"
-              placeholder="0.00"
-            /> -->
+          <input
+            type="text"
+            name="monto"
+            on:input={validateInput}
+            bind:value={formData.monto}
+            class="p-2 w-full border border-gainsboro rounded-lg"
+            placeholder="0.00"
+          />
           <div
             class="flex flex-row justify-between text-st-blue p-1 mt-2 mb-1 border-b border-st-blue"
           >
             <div class="flex">
               <i class="fa fa-credit-card pt-1 mr-2" aria-hidden="true"></i>
-              <p>Tarjeta de débito</p>
+              <p>Método de Pago</p>
             </div>
-            <button type="button" on:click={showFormTarjeta}>+ Nueva</button>
+            <button type="button" on:click={showFormTarjeta}
+              >{viewFormTarjeta ? "< Volver" : "+ Nueva"}</button
+            >
           </div>
           {#if listaTarjetas.length < 1 || viewFormTarjeta}
-            <form name="formularioTarjeta" action="/api/tarjeta" method="POST">
+            <div>
+              <p class="text-sm font-normal pb-1 pt-2">Tipo de Tarjeta</p>
+
+              <select
+                name="tipo"
+                bind:value={formData.tipo}
+                on:input={formatCreditCardNumber}
+                class="p-2 w-full border border-gainsboro rounded-lg"
+              >
+                <option value="">Selecciona un tipo</option>
+                {#each tipoTarjeta as tipo}
+                  <option value={tipo.tipo}>{tipo.tipo}</option>
+                {/each}
+              </select>
               <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
 
               <input
                 type="text"
                 name="numero"
+                bind:value={formData.numero}
                 class="p-2 w-full border border-gainsboro rounded-lg"
               />
-              <input
-                type="text"
-                name="tipo"
-                class="p-2 w-full border border-gainsboro rounded-lg"
-              />
-              <!-- <select
-                  name="tipo"
-                  bind:value={tipo}
-                  class="p-2 w-full border border-gainsboro rounded-lg"
-                >
-                  <option value="">Selecciona un tipo</option>
-                  {#each tipoTarjeta as tipo}
-                    <option value={tipo.tipo}>{tipo.tipo}</option>
-                  {/each}
-                </select> -->
               <div class="flex gap-1">
-                <!-- <div class="w-full">
-                    <p class="text-sm font-normal pb-1 pt-2">
-                      Fecha de Vencimiento
-                    </p>
-                    <input
-                      name="fechaVencimiento"
-                      bind:value={formData.fechaVencimiento}
-                      class="p-2 w-full border border-gainsboro rounded-lg"
-                    />
-                  </div> -->
+                <div class="w-full">
+                  <p class="text-sm font-normal pb-1 pt-2">
+                    Fecha de Vencimiento
+                  </p>
+                  <input
+                    name="fechaVencimiento"
+                    bind:value={formData.fechaVencimiento}
+                    class="p-2 w-full border border-gainsboro rounded-lg"
+                  />
+                </div>
 
-                <!-- <div class="w-full">
-                    <p class="text-sm font-normal pb-1 pt-2">CVV</p>
-                    <input
-                      type="number"
-                      name="cvv"
-                      bind:value={formData.cvv}
-                      class="p-2 w-full border border-gainsboro rounded-lg"
-                      maxlength="3"
-                    />
-                  </div> -->
+                <div class="w-full">
+                  <p class="text-sm font-normal pb-1 pt-2">CVV</p>
+                  <input
+                    type="number"
+                    name="cvv"
+                    bind:value={formData.cvv}
+                    class="p-2 w-full border border-gainsboro rounded-lg"
+                    maxlength="3"
+                  />
+                </div>
               </div>
               <div class="flex flex-row justify-end mt-1 w-full">
                 <button
@@ -267,7 +260,7 @@
                   Guardar Tarjeta
                 </button>
               </div>
-            </form>
+            </div>
           {:else}
             <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
             <select
