@@ -3,6 +3,7 @@
   import {
     abonarSaldoBoxVisible,
     cardList,
+    userProfile,
     userWallet,
   } from "../../../lib/stores.js";
   // import { useState } from "react";
@@ -11,7 +12,8 @@
   // const [tarjetas, setTarjetas] = useState([]);
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
   console.log(cardList);
-  console.log(userWallet);
+  console.log(userProfile);
+  console.log(userProfile.name);
   // console.log(cardList);
   let formData = {
     monto: "",
