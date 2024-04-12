@@ -1,15 +1,10 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  import { abonarSaldoBoxVisible, cardList, userProfile } from "$lib/stores";
-  // import { useState } from "react";
+  import { abonarSaldoBoxVisible, cardList } from "$lib/stores";
+  import { userWallet } from "../../../lib/stores";
   let viewFormTarjeta = false;
   let disableAbonar = true;
-  // const [tarjetas, setTarjetas] = useState([]);
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
-  console.log($cardList);
-  console.log($userProfile);
-  console.log($userProfile.name);
-  // console.log(cardList);
   let formData = {
     monto: "",
     metodo: "",
@@ -28,7 +23,6 @@
     if (value != "" && !viewFormTarjeta) {
       disableAbonar = false;
     }
-    console.log(value);
     value = value.replace(/\s/g, "");
     return value.replace(/(.{4})/g, "$1 ").trim();
   }
@@ -55,9 +49,9 @@
     };
 
     try {
-      const respuesta = await fetch("/api/tarjeta", opciones);
-      console.log(respuesta);
+      await fetch("/api/tarjeta", opciones);
       getTarjetas();
+      getRecargas();
       showFormTarjeta(false);
     } catch (error) {
       console.error("Error en la solicitud:", error);
@@ -66,13 +60,7 @@
   async function getTarjetas() {
     const cardsResponse = await fetch("/api/tarjetas");
     const cardsData = await cardsResponse.json();
-    console.log("[ ! ] Wallet data:", cardsData);
     cardList.set(cardsData);
-    // const cardsResponse = await fetch("/api/tarjetas");
-    // const cardList = await cardsResponse.json();
-    // console.log(cardList);
-    // console.log(cardList.tarjetas);
-    // listaTarjetas = cardList.tarjetas;
   }
   async function handleRecarga() {
     const datos = {
@@ -88,29 +76,19 @@
     };
 
     try {
-      const respuesta = await fetch("/api/recarga", opciones);
-      console.log(respuesta);
+      await fetch("/api/recarga", opciones);
       toggleSaldoBox();
-      // const tarjetas = await fetch("/api/tarjetas");
-      // console.log(tarjetas);
-      // listaTarjetas = tarjetas.tarjetas;
     } catch (error) {
       console.error("Error en la solicitud:", error);
     }
   }
 
-  async function storeTarjeta(event) {
-    formData.numero = Number(formData.numero.replace(/\s/g, ""));
-    viewFormTarjeta = false;
-    event.preventDefault();
-    console.log(formData);
-    const cardsResponse = await fetch("/api/tarjetas");
-    const cardListCopy = await cardsResponse.json();
-    cardList.set(cardListCopy);
-    console.log($cardList);
+  async function getRecargas() {
+    const walletResponse = await fetch("/api/ewallet");
+    const walletData = await walletResponse.json();
+    userWallet.set(walletData);
   }
 
-  // ANTES ERA toggleSidebar()
   function toggleSaldoBox() {
     abonarSaldoBoxVisible.update((value) => !value);
   }
@@ -170,17 +148,27 @@
         </h2>
         <div class=" border border-gainsboro rounded-lg">
           <div class="flex flex-row p-2 justify-between px-5">
-            <p class="text-sm font-normal">Movimiento</p>
+            <p class="text-sm font-normal">ID</p>
             <p class="text-sm font-normal">Fecha</p>
             <p class="text-sm font-normal">Monto</p>
-            <p class="text-sm font-normal">Metodo</p>
-            <p class="text-sm font-normal">Factura</p>
+            <p class="text-sm font-normal">Tipo</p>
           </div>
-          <div
-            class="flex flex-row border-t border-gainsboro p-2 justify-center"
-          >
-            <p class="text-sm font-normal">No se encontraron registros</p>
-          </div>
+          {#if $userWallet.estado_de_cuenta.length < 1}
+            <div
+              class="flex flex-row border-t border-gainsboro p-2 justify-center"
+            >
+              <p class="text-sm font-normal">No se encontraron registros</p>
+            </div>
+          {:else}
+            {#each $userWallet.estado_de_cuenta as recarga}
+              <div class="flex flex-row p-2 justify-between px-5">
+                <p class="text-sm font-normal">{recarga.index}</p>
+                <p class="text-sm font-normal">{recarga.fecha}</p>
+                <p class="text-sm font-normal">{recarga.monto}</p>
+                <p class="text-sm font-normal">{recarga.movimiento}</p>
+              </div>
+            {/each}
+          {/if}
         </div>
       </div>
     </div>
@@ -229,7 +217,7 @@
           >
             <div class="flex">
               <i class="fa fa-credit-card pt-1 mr-2" aria-hidden="true"></i>
-              <p>Método de Pagos</p>
+              <p>Método de Pago</p>
             </div>
             <button type="button" on:click={showFormTarjeta}
               >{viewFormTarjeta ? "< Volver" : "+ Nueva"}</button
@@ -300,7 +288,7 @@
               name="numero"
               bind:value={formData.numero}
               on:change={(event) => {
-                formatCreditCardNumber(event.target.value);
+                formData.numero = formatCreditCardNumber(event.target.value);
               }}
               class="p-2 w-full border border-gainsboro rounded-lg"
             >
