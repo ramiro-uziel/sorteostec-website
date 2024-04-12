@@ -24,6 +24,7 @@
     viewFormTarjeta = !viewFormTarjeta;
     formData.numero = "";
   }
+
   function formatCreditCardNumber(value) {
     if (value != "") {
       disableAbonar = false;
@@ -47,6 +48,38 @@
     console.log(formData);
     toggleSaldoBox();
   }
+  const datos = {
+    numero: numero,
+    tipo: tipo,
+    // Aquí colocas los datos que deseas enviar
+  };
+  async function handleTarjeta() {
+    // Configuración de la solicitud
+    const opciones = {
+      method: "POST", // Método de la solicitud
+      headers: {
+        "Content-Type": "application/json", // Tipo de contenido del cuerpo de la solicitud
+      },
+      body: JSON.stringify(datos), // Convertir los datos a formato JSON y enviarlos en el cuerpo de la solicitud
+    };
+
+    // Realizar la solicitud POST
+    try {
+      const respuesta = await fetch("/api/tarjetas", opciones);
+      if (respuesta.ok) {
+        // La solicitud fue exitosa
+        const datosRespuesta = await respuesta.json(); // Convertir la respuesta a JSON
+        // Aquí puedes manejar los datos de respuesta si es necesario
+      } else {
+        // La solicitud no fue exitosa
+        console.error("Error al realizar la solicitud:", respuesta.status);
+      }
+    } catch (error) {
+      // Error en la solicitud
+      console.error("Error en la solicitud:", error);
+    }
+  }
+
   async function storeTarjeta(event) {
     formData.numero = Number(formData.numero.replace(/\s/g, ""));
     viewFormTarjeta = false;
@@ -176,11 +209,7 @@
               <button type="button" on:click={showFormTarjeta}>+ Nueva</button>
             </div>
             {#if listaTarjetas.length < 1 || viewFormTarjeta}
-              <form
-                name="formularioTarjeta"
-                action="/api/tarjeta"
-                method="POST"
-              >
+              <form name="formularioTarjeta" on:submit={handleTarjeta}>
                 <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
 
                 <input
