@@ -14,8 +14,8 @@
   style="min-height: calc(100vh - var(--header-height)); "
 >
   <div
-    class="w-full text-xs text-white flex flex-col gap-4 items-center"
-    style="max-width: 1200px; min-width: 550px; aspect-ratio: 16 / 9;"
+    class="w-full text-xs text-white flex flex-col gap-4 items-center py-5"
+    style="max-width: 1200px; min-width: 450px; aspect-ratio: 16 / 9;"
   >
     <iframe
       title="Fields of Fortune"
@@ -24,17 +24,19 @@
       class="w-full border-none"
       style="aspect-ratio: 16 / 9;"
     ></iframe>
-    <div class="flex flex-row gap-5">
+    <div class="flex flex-row gap-5 pb-10">
       <a
         href="/juegos"
         class="mt-4 px-4 py-2 font-bold text-base bg-st-blue hover:bg-st-blue-light text-white hover:text-st-blue rounded duration-200"
       >
+        <i class="fa-solid fa-arrow-left pr-2"></i>
         Ir a Juegos
       </a>
       <button
         on:click={goFullscreen}
         class="mt-4 px-4 py-2 font-bold text-base bg-st-blue hover:bg-st-blue-light text-white hover:text-st-blue rounded duration-200"
       >
+        <i class="fa-solid fa-expand pr-2"></i>
         Maximizar
       </button>
     </div>
