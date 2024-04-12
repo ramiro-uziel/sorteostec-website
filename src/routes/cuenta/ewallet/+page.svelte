@@ -149,9 +149,9 @@
         <div class=" border border-gainsboro rounded-lg">
           <div class="flex flex-row p-2 justify-between px-5">
             <p class="text-sm font-normal">ID</p>
-            <p class="text-sm font-normal">Fecha</p>
-            <p class="text-sm font-normal">Monto</p>
-            <p class="text-sm font-normal">Tipo</p>
+            <p class="text-sm font-normal">FECHA</p>
+            <p class="text-sm font-normal">MONTO</p>
+            <p class="text-sm font-normal">TIPO</p>
           </div>
           {#if $userWallet.estado_de_cuenta.length < 1}
             <div
@@ -160,9 +160,11 @@
               <p class="text-sm font-normal">No se encontraron registros</p>
             </div>
           {:else}
-            {#each $userWallet.estado_de_cuenta as recarga}
-              <div class="flex flex-row p-2 justify-between px-5">
-                <p class="text-sm font-normal">{recarga.index}</p>
+            {#each $userWallet.estado_de_cuenta as recarga, index}
+              <div
+                class="flex flex-row border-t border-gainsboro p-2 justify-between px-5"
+              >
+                <p class="text-sm font-normal">{{ index }}</p>
                 <p class="text-sm font-normal">{recarga.fecha}</p>
                 <p class="text-sm font-normal">{recarga.monto}</p>
                 <p class="text-sm font-normal">{recarga.movimiento}</p>
