@@ -8,7 +8,9 @@
     { tarjeta: "1234 5678 8765", cv: "123", fechaVencimiento: "01/02" },
     { tarjeta: "8765 4321 1234", cv: "123", fechaVencimiento: "01/02" },
   ];
-
+  let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
+  let numero = 0;
+  let tipo = "";
   let formData = {
     monto: "",
     metodo: "",
@@ -184,14 +186,20 @@
                 <input
                   type="text"
                   name="numero"
-                  bind:value={formData.numero}
-                  on:input={(event) =>
-                    (formData.numero = formatCreditCardNumber(
-                      event.target.value
-                    ))}
+                  bind:value={numero}
                   class="p-2 w-full border border-gainsboro rounded-lg"
                   maxlength="19"
                 />
+                <select
+                  name="tipo"
+                  bind:value={tipo}
+                  class="p-2 w-full border border-gainsboro rounded-lg"
+                >
+                  <option value="">Selecciona un tipo</option>
+                  {#each tipoTarjeta as tipo}
+                    <option value={tipo.tipo}>{tipo.tipo}</option>
+                  {/each}
+                </select>
                 <div class="flex gap-1">
                   <div class="w-full">
                     <p class="text-sm font-normal pb-1 pt-2">
