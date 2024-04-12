@@ -287,14 +287,13 @@
             <select
               name="numero"
               bind:value={formData.numero}
-              on:change={(event) => {
-                formData.numero = formatCreditCardNumber(event.target.value);
-              }}
               class="p-2 w-full border border-gainsboro rounded-lg"
             >
               <option value="">Selecciona un número de tarjeta</option>
               {#each $cardList.tarjetas as tarjeta}
-                <option value={tarjeta.numero}>{tarjeta.numero}</option>
+                <option value={tarjeta.numero}
+                  >{formatCreditCardNumber(tarjeta.numero)}</option
+                >
               {/each}
             </select>
           {/if}
