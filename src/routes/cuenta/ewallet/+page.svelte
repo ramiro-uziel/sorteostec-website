@@ -171,55 +171,56 @@
     <div class="fixed inset-0 bg-black opacity-50"></div>
     <div class="relative bg-white rounded-lg p-8 sm:w-[500px] xs:w-[250px]">
       <div class="flex flex-col justify-between h-full">
-        <form name="registro">
-          <div>
-            <h2
-              class="text-xl md:text-2xl font-semibold text-st-blue mb-2 pt-2"
-            >
-              Abonar a E-wallet
-            </h2>
+        <!-- <form name="registro"> -->
+        <div>
+          <h2 class="text-xl md:text-2xl font-semibold text-st-blue mb-2 pt-2">
+            Abonar a E-wallet
+          </h2>
 
-            <div
-              class="flex flex-row justify-between text-st-blue p-1 border-b border-st-blue"
-            >
-              <div class="flex">
-                <i class="fa fa-wallet pt-1 mr-2" aria-hidden="true"></i>
-                <p>Mi saldo actual</p>
-              </div>
-              <p>$0.00</p>
+          <div
+            class="flex flex-row justify-between text-st-blue p-1 border-b border-st-blue"
+          >
+            <div class="flex">
+              <i class="fa fa-wallet pt-1 mr-2" aria-hidden="true"></i>
+              <p>Mi saldo actual</p>
             </div>
-            <p class="text-sm font-normal pb-1 pt-4">
-              Ingresa el monto por abonar
-            </p>
-            <input
+            <p>$0.00</p>
+          </div>
+          <p class="text-sm font-normal pb-1 pt-4">
+            Ingresa el monto por abonar
+          </p>
+          <!-- <input
               type="text"
               name="monto"
               on:input={validateInput}
               bind:value={formData.monto}
               class="p-2 w-full border border-gainsboro rounded-lg"
               placeholder="0.00"
-            />
-            <div
-              class="flex flex-row justify-between text-st-blue p-1 mt-2 mb-1 border-b border-st-blue"
-            >
-              <div class="flex">
-                <i class="fa fa-credit-card pt-1 mr-2" aria-hidden="true"></i>
-                <p>Tarjeta de débito</p>
-              </div>
-              <button type="button" on:click={showFormTarjeta}>+ Nueva</button>
+            /> -->
+          <div
+            class="flex flex-row justify-between text-st-blue p-1 mt-2 mb-1 border-b border-st-blue"
+          >
+            <div class="flex">
+              <i class="fa fa-credit-card pt-1 mr-2" aria-hidden="true"></i>
+              <p>Tarjeta de débito</p>
             </div>
-            {#if listaTarjetas.length < 1 || viewFormTarjeta}
-              <form name="formularioTarjeta" on:submit={handleTarjeta}>
-                <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
+            <button type="button" on:click={showFormTarjeta}>+ Nueva</button>
+          </div>
+          {#if listaTarjetas.length < 1 || viewFormTarjeta}
+            <form name="formularioTarjeta" action="/api/tarjeta" method="POST">
+              <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
 
-                <input
-                  type="text"
-                  name="numero"
-                  bind:value={numero}
-                  class="p-2 w-full border border-gainsboro rounded-lg"
-                  maxlength="19"
-                />
-                <select
+              <input
+                type="text"
+                name="numero"
+                class="p-2 w-full border border-gainsboro rounded-lg"
+              />
+              <input
+                type="text"
+                name="tipo"
+                class="p-2 w-full border border-gainsboro rounded-lg"
+              />
+              <!-- <select
                   name="tipo"
                   bind:value={tipo}
                   class="p-2 w-full border border-gainsboro rounded-lg"
@@ -228,9 +229,9 @@
                   {#each tipoTarjeta as tipo}
                     <option value={tipo.tipo}>{tipo.tipo}</option>
                   {/each}
-                </select>
-                <div class="flex gap-1">
-                  <div class="w-full">
+                </select> -->
+              <div class="flex gap-1">
+                <!-- <div class="w-full">
                     <p class="text-sm font-normal pb-1 pt-2">
                       Fecha de Vencimiento
                     </p>
@@ -239,9 +240,9 @@
                       bind:value={formData.fechaVencimiento}
                       class="p-2 w-full border border-gainsboro rounded-lg"
                     />
-                  </div>
+                  </div> -->
 
-                  <div class="w-full">
+                <!-- <div class="w-full">
                     <p class="text-sm font-normal pb-1 pt-2">CVV</p>
                     <input
                       type="number"
@@ -250,44 +251,44 @@
                       class="p-2 w-full border border-gainsboro rounded-lg"
                       maxlength="3"
                     />
-                  </div>
-                </div>
-                <div class="flex flex-row justify-end mt-1 w-full">
-                  <button
-                    type="submit"
-                    class="border border-st-blue rounded p-1 text-st-blue hover:bg-st-blue-light hover:text-st-blue duration-100"
-                  >
-                    Guardar Tarjeta
-                  </button>
-                </div>
-              </form>
-            {:else}
-              <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
-              <select
-                name="numero"
-                bind:value={formData.numero}
-                on:change={(event) => {
-                  formatCreditCardNumber(event.target.value);
-                }}
-                class="p-2 w-full border border-gainsboro rounded-lg"
-              >
-                <option value="">Selecciona un número de tarjeta</option>
-                {#each listaTarjetas as tarjeta}
-                  <option value={tarjeta.tarjeta}>{tarjeta.tarjeta}</option>
-                {/each}
-              </select>
-            {/if}
-          </div>
-          <div class="py-4 text-sm flex flex-col gap-2">
-            <button
-              disabled={disableAbonar}
-              type="submit"
-              class="w-full bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
+                  </div> -->
+              </div>
+              <div class="flex flex-row justify-end mt-1 w-full">
+                <button
+                  type="submit"
+                  class="border border-st-blue rounded p-1 text-st-blue hover:bg-st-blue-light hover:text-st-blue duration-100"
+                >
+                  Guardar Tarjeta
+                </button>
+              </div>
+            </form>
+          {:else}
+            <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
+            <select
+              name="numero"
+              bind:value={formData.numero}
+              on:change={(event) => {
+                formatCreditCardNumber(event.target.value);
+              }}
+              class="p-2 w-full border border-gainsboro rounded-lg"
             >
-              Abonar
-            </button>
-          </div>
-        </form>
+              <option value="">Selecciona un número de tarjeta</option>
+              {#each listaTarjetas as tarjeta}
+                <option value={tarjeta.tarjeta}>{tarjeta.tarjeta}</option>
+              {/each}
+            </select>
+          {/if}
+        </div>
+        <div class="py-4 text-sm flex flex-col gap-2">
+          <button
+            disabled={disableAbonar}
+            type="submit"
+            class="w-full bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
+          >
+            Abonar
+          </button>
+        </div>
+        <!-- </form> -->
       </div>
     </div>
   </div>
