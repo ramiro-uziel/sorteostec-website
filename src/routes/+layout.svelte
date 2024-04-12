@@ -5,7 +5,7 @@
   import Header from "../components/Header.svelte";
   import Footer from "../components/Footer.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
-  import { dataLoaded, userLogged } from "../lib/stores";
+  import { cardList, dataLoaded, userLogged } from "../lib/stores";
   import { userProfile } from "../lib/stores";
   import { userWallet } from "../lib/stores";
   import { buildInfo } from "../lib/stores";
@@ -77,8 +77,9 @@
         userWallet.set(walletData);
 
         const cardsResponse = await fetch("/api/tarjetas");
-        const cardlist = await cardsResponse.json();
-        console.log("[ ! ] Wallet data:", cardlist);
+        const cardsData = await cardsResponse.json();
+        console.log("[ ! ] Wallet data:", cardsData);
+        cardList.set(cardsData.tarjetas);
         // userWallet.set(walletData);
 
         dataLoaded.set(true);

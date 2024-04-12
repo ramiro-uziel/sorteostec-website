@@ -1,14 +1,11 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  import { abonarSaldoBoxVisible } from "../../../lib/stores.js";
-
+  import { abonarSaldoBoxVisible, cardList } from "../../../lib/stores.js";
+  // import { useState } from "react";
   let viewFormTarjeta = false;
   let disableAbonar = true;
-  let listaTarjetas = [
-    { numero: "1234 5678 8765" },
-    { numero: "8765 4321 1234" },
-  ];
-  getTarjetas();
+  // const [tarjetas, setTarjetas] = useState([]);
+  let listaTarjetas = cardList;
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
 
   let formData = {
@@ -66,10 +63,14 @@
   }
   async function getTarjetas() {
     const cardsResponse = await fetch("/api/tarjetas");
-    const cardlist = await cardsResponse.json();
-    console.log(cardlist);
-    console.log(cardlist.tarjetas);
-    listaTarjetas = cardlist.tarjetas;
+    const cardsData = await cardsResponse.json();
+    console.log("[ ! ] Wallet data:", cardsData);
+    cardList.set(cardsData.tarjetas);
+    // const cardsResponse = await fetch("/api/tarjetas");
+    // const cardlist = await cardsResponse.json();
+    // console.log(cardlist);
+    // console.log(cardlist.tarjetas);
+    // listaTarjetas = cardlist.tarjetas;
   }
   async function handleRecarga() {
     const datos = {

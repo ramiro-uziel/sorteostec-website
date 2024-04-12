@@ -17,12 +17,13 @@ const initialWallet = {
 };
 
 const build = {
-  buildID: ""
-}
-
+  buildID: "",
+};
+const personalCards = [];
 export const userProfile = writable(initialProfile);
 export const userWallet = writable(initialWallet);
 export const userLogged = writable(false);
 export const dataLoaded = writable(false);
 export const buildInfo = writable(build);
+export const cardList = writable(personalCards);
 export const abonarSaldoBoxVisible = writable(false);
