@@ -7,6 +7,7 @@
   // const [tarjetas, setTarjetas] = useState([]);
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
   console.log(cardList[0]);
+  console.log(cardList);
   let formData = {
     monto: "",
     metodo: "",
