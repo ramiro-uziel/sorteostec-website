@@ -28,9 +28,9 @@
     if (value != "" && !viewFormTarjeta) {
       disableAbonar = false;
     }
-    console.log(formData.numero);
-    formData.numero = formData.numero.replace(/\s/g, "");
-    return formData.numero.replace(/(.{4})/g, "$1 ").trim();
+    console.log(value);
+    value = value.replace(/\s/g, "");
+    return value.replace(/(.{4})/g, "$1 ").trim();
   }
   function validateInput(event) {
     const value = event.target.value;
@@ -39,14 +39,6 @@
       event.preventDefault();
       formData.monto = formData.monto;
     }
-  }
-  function handleSubmit(event) {
-    formData.numero = Number(formData.numero.replace(/\s/g, ""));
-    formData.cvv = Number(formData.cvv);
-    formData.monto = Number(formData.monto);
-    event.preventDefault();
-    console.log(formData);
-    toggleSaldoBox();
   }
 
   async function handleTarjeta() {
@@ -93,6 +85,7 @@
     try {
       const respuesta = await fetch("/api/recarga", opciones);
       console.log(respuesta);
+      toggleSaldoBox();
       // const tarjetas = await fetch("/api/tarjetas");
       // console.log(tarjetas);
       // listaTarjetas = tarjetas.tarjetas;
@@ -254,8 +247,11 @@
               <input
                 type="text"
                 name="numero"
-                on:input={formatCreditCardNumber}
                 bind:value={formData.numero}
+                on:input={(event) =>
+                  (formData.numero = formatCreditCardNumber(
+                    event.target.value
+                  ))}
                 class="p-2 w-full border border-gainsboro rounded-lg"
               />
               <div class="flex gap-1">
