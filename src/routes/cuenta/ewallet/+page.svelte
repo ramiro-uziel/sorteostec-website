@@ -1,6 +1,7 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  let sidebarVisible = false;
+  import { abonarSaldoBoxVisible } from "../../../lib/stores.js";
+
   let viewFormTarjeta = false;
   let disableAbonar = true;
   let listaTarjetas = [
@@ -42,7 +43,7 @@
     formData.monto = Number(formData.monto);
     event.preventDefault();
     console.log(formData);
-    toggleSidebar();
+    toggleSaldoBox();
   }
   async function storeTarjeta(event) {
     formData.numero = Number(formData.numero.replace(/\s/g, ""));
@@ -53,8 +54,10 @@
     const cardlist = await cardsResponse.json();
     console.log(cardlist);
   }
-  function toggleSidebar() {
-    sidebarVisible = !sidebarVisible;
+
+  // ANTES ERA toggleSidebar()
+  function toggleSaldoBox() {
+    abonarSaldoBoxVisible.update((value) => !value);
   }
 </script>
 
@@ -95,7 +98,7 @@
               Mis premios
             </a>
             <button
-              on:click={toggleSidebar}
+              on:click={toggleSaldoBox}
               class="rounded-lg p-3 px-6 border text-sm text-zinc-800 font-normal border-zinc-800 hover:bg-zinc-800 hover:text-white duration-100"
             >
               Abonar saldo
@@ -128,13 +131,13 @@
     </div>
   </div>
   <div
-    class={`fixed inset-0 flex items-center justify-center z-50 ${!sidebarVisible ? "hidden" : ""}`}
+    class={`fixed inset-0 flex items-center justify-center z-50 ${!$abonarSaldoBoxVisible ? "hidden" : ""}`}
   >
     <div class="fixed inset-0 bg-black opacity-50"></div>
     <div class="relative bg-white rounded-lg p-8 sm:w-[500px] xs:w-[250px]">
       <div class="flex flex-col justify-between h-full">
         <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
-          <button on:click={toggleSidebar}>
+          <button on:click={toggleSaldoBox}>
             <i class="fa fa-angle-left" aria-hidden="true"></i>
           </button>
         </div>

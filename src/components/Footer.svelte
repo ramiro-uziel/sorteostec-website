@@ -1,5 +1,4 @@
 <script>
-  import { get } from "svelte/store";
   import { buildInfo } from "$lib/stores";
 
   let build;
