@@ -65,7 +65,7 @@
 
     // Realizar la solicitud POST
     try {
-      const respuesta = await fetch("/api/tarjetas", opciones);
+      const respuesta = await fetch("/api/tarjeta", opciones);
       if (respuesta.ok) {
         // La solicitud fue exitosa
         const datosRespuesta = await respuesta.json(); // Convertir la respuesta a JSON
