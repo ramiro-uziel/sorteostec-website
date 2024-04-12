@@ -64,13 +64,16 @@
     try {
       const respuesta = await fetch("/api/tarjeta", opciones);
       console.log(respuesta);
-      const tarjetas = await fetch("/api/tarjetas");
-      console.log(tarjetas);
-      listaTarjetas = tarjetas.tarjetas;
+      getTarjetas();
+      // listaTarjetas = tarjetas.tarjetas;
       showFormTarjeta(false);
     } catch (error) {
       console.error("Error en la solicitud:", error);
     }
+  }
+  async function getTarjetas() {
+    const tarjetas = await fetch("/api/tarjetas");
+    console.log(JSON.parse(tarjetas).tarjetas);
   }
   async function handleRecarga() {
     const datos = {
