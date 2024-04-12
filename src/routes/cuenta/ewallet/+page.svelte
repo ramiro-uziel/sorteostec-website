@@ -1,15 +1,15 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  import { abonarSaldoBoxVisible, cardList, userProfile } from "$lib/stores";
+  import { abonarSaldoBoxVisible, cardListt, userProfile } from "$lib/stores";
   // import { useState } from "react";
   let viewFormTarjeta = false;
   let disableAbonar = true;
   // const [tarjetas, setTarjetas] = useState([]);
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
-  console.log(cardList);
-  console.log(userProfile);
-  console.log(userProfile.name);
-  // console.log(cardList);
+  console.log($cardListt);
+  console.log($userProfile);
+  console.log($userProfile.name);
+  // console.log(cardListt);
   let formData = {
     monto: "",
     metodo: "",
@@ -67,12 +67,12 @@
     const cardsResponse = await fetch("/api/tarjetas");
     const cardsData = await cardsResponse.json();
     console.log("[ ! ] Wallet data:", cardsData);
-    cardList.set(cardsData);
+    cardListt.set(cardsData);
     // const cardsResponse = await fetch("/api/tarjetas");
-    // const cardlist = await cardsResponse.json();
-    // console.log(cardlist);
-    // console.log(cardlist.tarjetas);
-    // listaTarjetas = cardlist.tarjetas;
+    // const cardListt = await cardsResponse.json();
+    // console.log(cardListt);
+    // console.log(cardListt.tarjetas);
+    // listaTarjetas = cardListt.tarjetas;
   }
   async function handleRecarga() {
     const datos = {
@@ -105,9 +105,9 @@
     event.preventDefault();
     console.log(formData);
     const cardsResponse = await fetch("/api/tarjetas");
-    const cardlistCopy = await cardsResponse.json();
-    cardlist.set(cardlistCopy);
-    console.log(cardList);
+    const cardListtCopy = await cardsResponse.json();
+    cardListt.set(cardListtCopy);
+    console.log($cardListtt);
   }
 
   // ANTES ERA toggleSidebar()
@@ -213,7 +213,6 @@
             <p>$0.00</p>
           </div>
 
-          <p>{$userProfile.name}</p>
           <p class="text-sm font-normal pb-1 pt-4">
             Ingresa el monto por abonar
           </p>
@@ -306,9 +305,9 @@
               class="p-2 w-full border border-gainsboro rounded-lg"
             >
               <option value="">Selecciona un número de tarjeta</option>
-              <!-- {#each cardList.tarjetas as tarjeta}
+              {#each $cardListt.tarjetas as tarjeta}
                 <option value={tarjeta.numero}>{tarjeta.numero}</option>
-              {/each} -->
+              {/each}
             </select>
           {/if}
         </div>
