@@ -51,7 +51,6 @@
     try {
       await fetch("/api/tarjeta", opciones);
       getTarjetas();
-      getRecargas();
       showFormTarjeta(false);
     } catch (error) {
       console.error("Error en la solicitud:", error);
@@ -77,6 +76,7 @@
 
     try {
       await fetch("/api/recarga", opciones);
+      getRecargas();
       toggleSaldoBox();
     } catch (error) {
       console.error("Error en la solicitud:", error);
