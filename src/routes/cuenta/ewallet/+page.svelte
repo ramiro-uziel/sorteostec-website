@@ -225,7 +225,7 @@
           >
             <div class="flex">
               <i class="fa fa-credit-card pt-1 mr-2" aria-hidden="true"></i>
-              <p>Método de Pago</p>
+              <p>Método de Pagos</p>
             </div>
             <button type="button" on:click={showFormTarjeta}
               >{viewFormTarjeta ? "< Volver" : "+ Nueva"}</button
