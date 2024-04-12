@@ -22,20 +22,20 @@
     {
       img: "/images/slider-aventurat.webp",
       logo: "/images/logo-aventurat.png",
-      title: "Slide Title 1",
-      description: "This is a description for slide 1.",
+      title: "¡Un boleto para conocer el mundo!",
+      description: "El primer premio tiene un valor total de: $1,200,000",
     },
     {
       img: "/images/slider-dinerodeporvida.webp",
       logo: "/images/logo-dinerodeporvida.png",
-      title: "Slide Title 2",
-      description: "This is a description for slide 2.",
+      title: "¡Gana toda la vida!",
+      description: "Recibe 1,100 USD todos los meses.",
     },
     {
       img: "/images/slider-educativo.webp",
       logo: "/images/logo-educativo.png",
-      title: "Slide Title 3",
-      description: "This is a description for slide 3.",
+      title: "¡Gana dos veces, gana al instante!",
+      description: "Primer premio tien un valor total de $15,000,000",
     },
   ];
 </script>

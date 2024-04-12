@@ -3,7 +3,7 @@
 </script>
 
 <article
-  class="ticket min-w-80 sm: sm:min-w-72 hover:scale-[105%] hover:-translate-y-2 duration-300"
+  class="ticket w-72 hover:scale-[105%] hover:-translate-y-2 duration-300"
 >
   <header class="ticket__wrapper">
     <div class="ticket__header" style="background-color: {bgColor};">
@@ -18,9 +18,8 @@
     ></div>
   </div>
   <div class="ticket__body" style="background-color: {bgColor};">
-    <section class="ticket__section">
-      <slot name="body" />
-    </section>
+    <slot name="body" />
+    <section class="ticket__section"></section>
   </div>
   <footer class="ticket__footer">
     <slot name="footer" />
@@ -44,7 +43,7 @@
   }
   .ticket {
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 68px 16px 210px;
     max-width: 24rem;
   }
   .ticket__header,
