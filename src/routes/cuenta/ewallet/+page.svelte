@@ -1,15 +1,15 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
-  import { abonarSaldoBoxVisible, cardListt, userProfile } from "$lib/stores";
+  import { abonarSaldoBoxVisible, cardList, userProfile } from "$lib/stores";
   // import { useState } from "react";
   let viewFormTarjeta = false;
   let disableAbonar = true;
   // const [tarjetas, setTarjetas] = useState([]);
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
-  console.log($cardListt);
+  console.log($cardList);
   console.log($userProfile);
   console.log($userProfile.name);
-  // console.log(cardListt);
+  // console.log(cardList);
   let formData = {
     monto: "",
     metodo: "",
@@ -67,12 +67,12 @@
     const cardsResponse = await fetch("/api/tarjetas");
     const cardsData = await cardsResponse.json();
     console.log("[ ! ] Wallet data:", cardsData);
-    cardListt.set(cardsData);
+    cardList.set(cardsData);
     // const cardsResponse = await fetch("/api/tarjetas");
-    // const cardListt = await cardsResponse.json();
-    // console.log(cardListt);
-    // console.log(cardListt.tarjetas);
-    // listaTarjetas = cardListt.tarjetas;
+    // const cardList = await cardsResponse.json();
+    // console.log(cardList);
+    // console.log(cardList.tarjetas);
+    // listaTarjetas = cardList.tarjetas;
   }
   async function handleRecarga() {
     const datos = {
@@ -105,9 +105,9 @@
     event.preventDefault();
     console.log(formData);
     const cardsResponse = await fetch("/api/tarjetas");
-    const cardListtCopy = await cardsResponse.json();
-    cardListt.set(cardListtCopy);
-    console.log($cardListtt);
+    const cardListCopy = await cardsResponse.json();
+    cardList.set(cardListCopy);
+    console.log($cardList);
   }
 
   // ANTES ERA toggleSidebar()
@@ -305,7 +305,7 @@
               class="p-2 w-full border border-gainsboro rounded-lg"
             >
               <option value="">Selecciona un número de tarjeta</option>
-              {#each $cardListt.tarjetas as tarjeta}
+              {#each $cardList.tarjetas as tarjeta}
                 <option value={tarjeta.numero}>{tarjeta.numero}</option>
               {/each}
             </select>
