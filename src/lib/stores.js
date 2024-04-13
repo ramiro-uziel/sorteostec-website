@@ -16,6 +16,12 @@ const initialWallet = {
   },
 };
 
+const initialAdminInfo = {
+  ecompras: 0,
+  usuarios: 0,
+  registros: 0,
+};
+
 const build = {
   buildID: "",
 };
@@ -28,3 +34,4 @@ export const buildInfo = writable(build);
 export const cardList = writable(personalCards);
 export const abonarSaldoBoxVisible = writable(false);
 export const isAdmin = writable(false);
+export const adminInfo = writable(initialAdminInfo);

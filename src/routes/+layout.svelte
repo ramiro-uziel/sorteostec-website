@@ -10,6 +10,7 @@
   import { userWallet } from "../lib/stores";
   import { buildInfo } from "../lib/stores";
   import { isAdmin } from "../lib/stores";
+  import { adminInfo } from "../lib/stores";
 
   let headerHeight = 0;
   let y = 0;
@@ -72,6 +73,13 @@
         const isAdminData = isAdminText.toLowerCase() === "true";
         console.log("[ ! ] User admin status:", isAdminData);
         isAdmin.set(isAdminData);
+
+        if (isaAdminData) {
+          const reportesResponse = await fetch("/api/admin/reportes");
+          const reportesData = await reportesResponse.json();
+          console.log("[ ! ] Admin data:", reportesData);
+          adminInfo.set(reportesData);
+        }
 
         const profileResponse = await fetch("/api/perfil");
         const profileData = await profileResponse.json();
