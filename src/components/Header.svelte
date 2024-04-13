@@ -4,7 +4,6 @@
     userProfile,
     userLogged,
     userWallet,
-    dataLoaded,
     abonarSaldoBoxVisible,
   } from "$lib/stores";
   import Boleto from "../assets/icons/boleto.svelte";
@@ -128,7 +127,7 @@
     </div>
 
     <div class="flex flex-row items-center xl:flex-1 justify-end">
-      {#if !$userLogged && dataLoaded}
+      {#if !$userLogged}
         <div class="flex flex-row pr-6">
           <a
             href="/login"
@@ -144,7 +143,7 @@
           </a>
         </div>
       {/if}
-      {#if $userLogged && dataLoaded}
+      {#if $userLogged}
         <div class="px-0 mdsm:px-4">
           <DropdownWide>
             <div
