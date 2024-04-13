@@ -12,12 +12,6 @@
       title: "Gallinero",
       link: "/juegos/granja",
     },
-    {
-      color: "#7c44b7",
-      image: "/images/fof-repartidor.webp",
-      title: "Repartidor",
-      link: "/juegos/granja",
-    },
   ];
 </script>
 
