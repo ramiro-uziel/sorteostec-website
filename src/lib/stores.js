@@ -27,3 +27,4 @@ export const dataLoaded = writable(false);
 export const buildInfo = writable(build);
 export const cardList = writable(personalCards);
 export const abonarSaldoBoxVisible = writable(false);
+export const isAdmin = writable(false);

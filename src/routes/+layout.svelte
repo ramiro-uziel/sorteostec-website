@@ -9,6 +9,7 @@
   import { userProfile } from "../lib/stores";
   import { userWallet } from "../lib/stores";
   import { buildInfo } from "../lib/stores";
+  import { isAdmin } from "../lib/stores";
 
   let headerHeight = 0;
   let y = 0;
@@ -65,6 +66,12 @@
 
       if (loggedData) {
         console.log("[ ! ] User is logged in");
+
+        const isAdminResponse = await fetch("/api/is_admin");
+        const isAdminText = await isAdminResponse.text();
+        const isAdminData = isAdminText.toLowerCase() === "true";
+        console.log("[ ! ] User admin status:", isAdminData);
+        isAdmin.set(isAdminData);
 
         const profileResponse = await fetch("/api/perfil");
         const profileData = await profileResponse.json();

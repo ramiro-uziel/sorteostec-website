@@ -1,7 +1,6 @@
 <script>
   import { page } from "$app/stores";
-
-  let isAdmin = true;
+  import { isAdmin } from "$lib/stores";
 
   let tabs = [
     { name: "Mi Perfil", icon: "fa-solid fa-user", link: "/cuenta/perfil" },
@@ -13,7 +12,7 @@
     },
   ];
 
-  if (isAdmin) {
+  if ($isAdmin) {
     tabs.push({
       name: "Admin",
       icon: "fa-solid fa-lock",
