@@ -1,5 +1,6 @@
 <script>
   import { isAdmin } from "$lib/stores";
+  import { goto } from "$app/navigation";
 
   let email;
   let password;
