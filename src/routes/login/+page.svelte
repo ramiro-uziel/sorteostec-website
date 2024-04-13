@@ -7,6 +7,32 @@
     passwordVisibility.type =
       passwordVisibility.type === "password" ? "text" : "password";
   }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new URLSearchParams();
+    formData.append("email", email);
+    formData.append("password", password);
+
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        console.error("Failed to submit the form:", response.status);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  }
 </script>
 
 <div
@@ -19,7 +45,7 @@
         Iniciar sesión
       </h1>
       <div class="p-3">
-        <form name="registro" action="/api/login" method="POST">
+        <form on:submit|preventDefault={handleSubmit}>
           <div class="relative flex flex-row mb-2">
             <input
               name="email"
