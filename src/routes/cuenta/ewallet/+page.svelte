@@ -157,9 +157,9 @@
             class="grid grid-cols-4 p-2 justify-between px-5 bg-gray-200 rounded-t"
           >
             <p class="text-sm font-normal">ID</p>
-            <p class="text-sm font-normal">FECHA</p>
-            <p class="text-sm font-normal">MONTO</p>
-            <p class="text-sm font-normal">TIPO</p>
+            <p class="text-sm font-normal">Fecha</p>
+            <p class="text-sm font-normal">Monto</p>
+            <p class="text-sm font-normal">Tipo</p>
           </div>
           {#if $userWallet.estado_de_cuenta.length < 1}
             <div
