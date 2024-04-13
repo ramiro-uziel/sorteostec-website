@@ -1,7 +1,7 @@
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
-const API_BASE_URL = "http://20.57.127.87"; // Your external API URL
+// const API_BASE_URL = "http://20.57.127.87";
 
 export default defineConfig({
   plugins: [sveltekit()],

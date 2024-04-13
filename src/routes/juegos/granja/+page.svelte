@@ -47,8 +47,8 @@
   .gameBackground {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url("/images/fof-background.png");
-    background-size: cover; /* Ensures the image covers the entire element */
-    background-repeat: no-repeat; /* Prevents image from repeating */
-    background-position: center; /* Centers the background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 </style>

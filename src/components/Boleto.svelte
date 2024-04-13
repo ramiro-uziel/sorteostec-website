@@ -101,7 +101,7 @@
     height: 2rem;
     right: 100%;
     top: -50%;
-    border: 0.5rem solid var(--bgColor); /* Set border color to transparent */
+    border: 0.5rem solid var(--bgColor);
     border-radius: 50%;
     box-shadow: inset 0 2px 4px rgba(41, 54, 61, 0.25);
   }

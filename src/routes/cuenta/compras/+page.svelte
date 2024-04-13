@@ -2,7 +2,6 @@
   import Sidebar from "/src/components/Sidebar.svelte";
   let sidebarVisible = false;
   function toggleSidebar() {
-    console.log("si");
     sidebarVisible = !sidebarVisible;
   }
 </script>
@@ -67,14 +66,12 @@
   <div
     class={`fixed px-4 inset-y-0 right-0 transform ${!sidebarVisible ? "translate-x-full" : "-translate-x-100"} w-72 bg-white  z-10 transition-transform border-l border-gainsboro  duration-200 ease-in-out`}
   >
-    <!-- {#if sidebarVisible} -->
     <div class="flex flex-col justify-between h-full">
       <div>
         <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
           <button on:click={toggleSidebar}>
             <i class="fa fa-angle-left" aria-hidden="true"></i>
           </button>
-          <!-- <p class="text-sm font-normal pt-1">Volver</p> -->
         </div>
         <h2 class="text-xl md:text-2xl font-semibold text-st-blue mb-2 pt-2">
           Abonar a E-wallet
@@ -112,6 +109,5 @@
         </button>
       </div>
     </div>
-    <!-- {/if} -->
   </div>
 </div>

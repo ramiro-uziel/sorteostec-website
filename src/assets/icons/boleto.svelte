@@ -1,4 +1,3 @@
-<!-- Generator: Adobe Illustrator 27.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg
   version="1.1"
   id="Layer_1"

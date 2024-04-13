@@ -195,7 +195,6 @@
       </div>
 
       <div class="flex flex-col justify-between h-full">
-        <!-- <form name="registro"> -->
         <div>
           <h2 class="text-xl md:text-2xl font-semibold text-st-blue mb-2 pt-2">
             Abonar a E-wallet
@@ -319,7 +318,6 @@
             Abonar
           </button>
         </div>
-        <!-- </form> -->
       </div>
     </div>
   </div>
