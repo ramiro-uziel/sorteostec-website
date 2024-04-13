@@ -1,4 +1,6 @@
 <script>
+  import { isAdmin } from "$lib/stores";
+
   let email;
   let password;
   let passwordVisibility;
@@ -25,9 +27,11 @@
       });
 
       if (response.ok) {
-        goto("/").then(() => {
-          location.reload();
-        });
+        const isAdminResponse = await fetch("/api/is_admin");
+        const isAdminText = await isAdminResponse.text();
+        const isAdminData = isAdminText.toLowerCase() === "true";
+        console.log("[ ! ] User admin status:", isAdminData);
+        isAdmin.set(isAdminData);
       } else {
         console.error("Failed to submit the form:", response.status);
       }
