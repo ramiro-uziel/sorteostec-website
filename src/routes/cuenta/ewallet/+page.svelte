@@ -1,7 +1,7 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
   import { abonarSaldoBoxVisible, cardList } from "$lib/stores";
-  import { userWallet } from "../../../lib/stores";
+  import { userWallet } from "$lib/stores";
   let viewFormTarjeta = false;
   let disableAbonar = true;
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
@@ -13,6 +13,7 @@
     cvv: "",
     fechaVencimiento: "",
   };
+
   function showFormTarjeta() {
     disableAbonar = true;
     viewFormTarjeta = !viewFormTarjeta;
@@ -111,18 +112,23 @@
       >
         <div class="p-2 flex-col md:w-full">
           <div
-            class="bg-st-blue-light text-st-blue p-2 rounded-lg flex flex-row justify-between md:gap-20"
+            class="bg-st-blue-light text-st-blue px-5 py-2 rounded-lg flex flex-col justify-center h-full"
           >
             <p class="font-semibold text-st-blue">Mi saldo actual</p>
-            <p class="text-sm font-normal">${$userWallet.saldo / 100}</p>
+            <p class="text-2xl font-normal">${$userWallet.saldo / 100}</p>
           </div>
         </div>
         <div
           class="p-3 flex-col border-t border-gainsboro md:border-none w-full"
         >
-          <p class="text-sm font-normal mb-3">
-            Agiliza tus compras abonando anticipadamente saldo a tu e-wallet
+          <p class="text-sm mb-3 flex flex-col">
+            <i class="font-normal not-italic">Agiliza tus compras abonando</i><i
+              class="font-normal not-italic"
+              >anticipadamente saldo a tu e-wallet</i
+            >
           </p>
+          <p class="text-sm font-normal mb-3"></p>
+
           <div class="flex flex-row gap-3">
             <a
               href="#"
@@ -147,7 +153,9 @@
           Estado de Cuenta
         </h2>
         <div class=" border border-gainsboro rounded-lg">
-          <div class="flex flex-row p-2 justify-between px-5">
+          <div
+            class="grid grid-cols-4 p-2 justify-between px-5 bg-gray-200 rounded-t"
+          >
             <p class="text-sm font-normal">ID</p>
             <p class="text-sm font-normal">FECHA</p>
             <p class="text-sm font-normal">MONTO</p>
@@ -162,7 +170,7 @@
           {:else}
             {#each $userWallet.estado_de_cuenta as recarga, index}
               <div
-                class="flex flex-row border-t border-gainsboro p-2 justify-between px-5"
+                class="grid grid-cols-4 border-t border-gainsboro p-2 justify-between px-5"
               >
                 <p class="text-sm font-normal">{index + 1}</p>
                 <p class="text-sm font-normal">{recarga.fecha}</p>
