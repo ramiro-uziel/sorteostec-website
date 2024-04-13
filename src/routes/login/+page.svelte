@@ -32,6 +32,9 @@
         const isAdminData = isAdminText.toLowerCase() === "true";
         console.log("[ ! ] User admin status:", isAdminData);
         isAdmin.set(isAdminData);
+        goto("/cuenta/perfil").then(() => {
+          location.reload();
+        });
       } else {
         console.error("Failed to submit the form:", response.status);
       }
