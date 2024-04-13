@@ -74,7 +74,7 @@
         console.log("[ ! ] User admin status:", isAdminData);
         isAdmin.set(isAdminData);
 
-        if (isaAdminData) {
+        if (isAdminData) {
           const reportesResponse = await fetch("/api/admin/reportes");
           const reportesData = await reportesResponse.json();
           console.log("[ ! ] Admin data:", reportesData);
