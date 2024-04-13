@@ -33,7 +33,7 @@
         const isAdminData = isAdminText.toLowerCase() === "true";
         console.log("[ ! ] User admin status:", isAdminData);
         isAdmin.set(isAdminData);
-        goto("/cuenta/perfil").then(() => {
+        goto("/").then(() => {
           location.reload();
         });
       } else {
