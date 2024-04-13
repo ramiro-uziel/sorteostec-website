@@ -25,7 +25,9 @@
       });
 
       if (response.ok) {
-        window.location.reload();
+        goto("/").then(() => {
+          location.reload();
+        });
       } else {
         console.error("Failed to submit the form:", response.status);
       }
