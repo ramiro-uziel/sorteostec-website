@@ -1,13 +1,13 @@
 <script>
   let juegos = [
     {
-      color: "#7c44b7",
+      color: "#a4da51",
       image: "/images/fof-granja.webp",
       title: "Granja",
       link: "/juegos/granja",
     },
     {
-      color: "#7c44b7",
+      color: "#feb208",
       image: "/images/fof-gallinero.webp",
       title: "Gallinero",
       link: "/juegos/granja",
@@ -32,11 +32,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
               {#each juegos as { color, image, title, link }}
                 <div
-                  class="flex flex-col bg-white rounded-2xl p-5 hover:scale-[105%] duration-200 max-w-[320px]"
+                  class="flex flex-col rounded-xl p-3 hover:scale-[102%] duration-200 max-w-[320px] bg-white hover:bg-st-blue-light"
                 >
                   <a
                     href={link}
-                    class="bg-green-600 flex items-center justify-center mb-4 pt-3 pb-3 pl-5 pr-5 rounded-lg cursor-pointer text-white"
+                    class="bg-green-600 flex items-center justify-center mb-2 pt-3 pb-3 pl-5 pr-5 rounded-xl cursor-pointer text-white"
                     style="height: 100%;"
                   >
                     <i class="fa-solid fa-play text-xl px-1"></i>
@@ -45,7 +45,7 @@
                   <img
                     src={image}
                     alt={title}
-                    class="rounded-2xl duration-200"
+                    class="rounded-xl duration-200"
                   />
                 </div>
               {/each}
