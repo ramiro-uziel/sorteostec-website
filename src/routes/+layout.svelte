@@ -5,7 +5,12 @@
   import Header from "../components/Header.svelte";
   import Footer from "../components/Footer.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
-  import { cardList, dataLoaded, userLogged } from "../lib/stores";
+  import {
+    cardList,
+    purchaseList,
+    dataLoaded,
+    userLogged,
+  } from "../lib/stores";
   import { userProfile } from "../lib/stores";
   import { userWallet } from "../lib/stores";
   import { buildInfo } from "../lib/stores";
@@ -96,6 +101,12 @@
         console.log("actualiza");
         console.log("[ ! ] Cards data:", cardsData.tarjetas);
         cardList.set(cardsData);
+
+        const purchaseResponse = await fetch("/api/compras");
+        const purchaseData = await purchaseResponse.json();
+        console.log("actualiza");
+        console.log("[ ! ] Compras data:", purchaseData.compras);
+        purchaseList.set(purchaseData);
         // userWallet.set(walletData);
 
         dataLoaded.set(true);
