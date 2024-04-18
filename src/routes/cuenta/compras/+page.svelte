@@ -1,4 +1,5 @@
 <script>
+  import { purchaseList } from "$lib/stores";
   import Sidebar from "/src/components/Sidebar.svelte";
   let sidebarVisible = false;
   function toggleSidebar() {
@@ -25,6 +26,34 @@
           Compras en proceso
         </h2>
         <div class=" border border-gainsboro rounded-lg">
+          <div
+            class="grid grid-cols-4 p-2 justify-between px-5 bg-gray-200 rounded-t"
+          >
+            <p class="text-sm font-normal">ID</p>
+            <p class="text-sm font-normal">Fecha</p>
+            <p class="text-sm font-normal">Monto</p>
+            <p class="text-sm font-normal">Movimiento</p>
+          </div>
+          {#if $purchaseList.compras.length < 1}
+            <div
+              class="flex flex-row border-t border-gainsboro p-2 justify-center"
+            >
+              <p class="text-sm font-normal">No se encontraron registros</p>
+            </div>
+          {:else}
+            {#each $purchaseList.compras as compra, index}
+              <div
+                class="grid grid-cols-4 border-t border-gainsboro p-2 justify-between px-5"
+              >
+                <p class="text-sm font-normal">{index + 1}</p>
+                <p class="text-sm font-normal">{compra.fecha}</p>
+                <p class="text-sm font-normal">{compra.monto}</p>
+                <p class="text-sm font-normal">{compra.movimiento}</p>
+              </div>
+            {/each}
+          {/if}
+        </div>
+        <!-- <div class=" border border-gainsboro rounded-lg">
           <div class="flex flex-row p-2 justify-between px-5">
             <p class="text-sm font-normal">Fecha</p>
             <p class="text-sm font-normal">Boletos</p>
@@ -38,7 +67,7 @@
           >
             <p class="text-sm font-normal">No se encontraron registros</p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="border-t-2 border-gray-300 w-full my-4"></div>
