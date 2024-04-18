@@ -20,7 +20,7 @@
     <iframe
       title="Fields of Fortune"
       id="embededGame"
-      src="/unity/index.html/"
+      src="/unity/index.html"
       class="w-full border-none"
       style="aspect-ratio: 16 / 9;"
     ></iframe>
@@ -45,8 +45,8 @@
 
 <style>
   .gameBackground {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url("/images/fof-background.png");
+    background-image: linear-gradient(rgb(5, 41, 117), rgba(3, 2, 22, 0.692)),
+      url("/images/fof-background-transparent.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
