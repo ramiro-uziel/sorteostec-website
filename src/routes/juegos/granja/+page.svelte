@@ -20,7 +20,7 @@
     <iframe
       title="Fields of Fortune"
       id="embededGame"
-      src="/unity/index.html"
+      src="/unity/index.html/"
       class="w-full border-none"
       style="aspect-ratio: 16 / 9;"
     ></iframe>

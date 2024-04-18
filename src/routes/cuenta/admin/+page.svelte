@@ -65,7 +65,7 @@
           <div class="flex flex-col gap-3 w-full">
             <a
               href="#"
-              class="rounded-lg p-3 px-3 border text-sm text-st-blue font-normal border-zinc-400 flex flex-row justify-between"
+              class="rounded-lg p-3 px-3 border text-sm text-st-blue font-normal border-zinc-400 flex flex-row justify-between hover:bg-st-blue hover:text-white duration-100"
             >
               Descarga <i class="fa-solid fa-download"></i>
             </a>

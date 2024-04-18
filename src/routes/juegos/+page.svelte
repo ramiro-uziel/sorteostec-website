@@ -32,11 +32,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
               {#each juegos as { color, image, title, link }}
                 <div
-                  class="flex flex-col rounded-xl border-white border-8 duration-200 max-w-[320px] bg-white overflow-hidden hover:scale-[101%]"
+                  class="flex flex-col rounded-xl border-white border-8 duration-200 max-w-[320px] bg-white overflow-hidden hover:scale-[101%] drop-shadow-2xl"
                 >
                   <a
                     href={link}
-                    class="bg-green-600 hover:bg-green-300 hover:text-black flex items-center justify-center mb-2 pt-3 pb-3 pl-5 pr-5 rounded-xl cursor-pointer text-white duration-200"
+                    class="bg-[#6ac620] hover:bg-[#b6eb8b] hover:text-black flex items-center justify-center mb-2 pt-3 pb-3 pl-5 pr-5 rounded-xl cursor-pointer text-white duration-200"
                   >
                     <i class="fa-solid fa-play text-xl px-1"></i>
                     <p class="text-xl font-bold px-1">{title}</p>
@@ -63,6 +63,8 @@
 <style>
   .gameBackground {
     background-image: url("/images/fof-background.png");
+    background-image: url("/images/fof-background-transparent.png"),
+      linear-gradient(#5aaaff 30%, #ffffff 60%);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
