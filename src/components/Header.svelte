@@ -24,7 +24,6 @@
   let tabs = [
     { name: "Sorteos", link: "#" },
     { name: "Nuestra Causa", link: "#" },
-    { name: "Historias", link: "#" },
     { name: "Juegos", link: "/juegos" },
   ];
 

@@ -246,7 +246,7 @@
                   <option value={tipo.tipo}>{tipo.tipo}</option>
                 {/each}
               </select>
-              <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
+              <p class="text-sm font-normal pb-1 pt-2">Numero de Tarjeta</p>
 
               <input
                 type="text"
@@ -264,6 +264,7 @@
                     Fecha de Vencimiento
                   </p>
                   <input
+                    placeholder="MM/YY"
                     name="fechaVencimiento"
                     bind:value={formData.fechaVencimiento}
                     class="p-2 w-full border border-gainsboro rounded-lg"
@@ -292,7 +293,7 @@
               </div>
             </div>
           {:else}
-            <p class="text-sm font-normal pb-1 pt-2">Nro de Tarjeta</p>
+            <p class="text-sm font-normal pb-1 pt-2">Numero de Tarjeta</p>
             <select
               name="numero"
               bind:value={formData.numero}
