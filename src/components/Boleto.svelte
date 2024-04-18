@@ -43,7 +43,7 @@
   }
   .ticket {
     display: grid;
-    grid-template-rows: 68px 16px 210px;
+    grid-template-rows: 65px 16px 210px;
     max-width: 24rem;
   }
   .ticket__header,
