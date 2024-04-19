@@ -13,9 +13,15 @@
   import DropdownItem from "./DropdownItem.svelte";
   import DropdownWideItem from "./DropdownWideItem.svelte";
   import { goto } from "$app/navigation";
+  import { isAdmin } from "$lib/stores";
 
   let sidebarVisible = false;
   let headerElement;
+
+  let isUserAdmin;
+  isAdmin.subscribe((data) => {
+    isUserAdmin = data;
+  });
 
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
@@ -41,6 +47,14 @@
       link: "/cuenta/logout",
     },
   ];
+
+  if (isUserAdmin) {
+    userTabs.push({
+      name: "Admin",
+      icon: "fa-solid fa-lock",
+      link: "/cuenta/admin",
+    });
+  }
 
   function updateHeaderHeight() {
     const height = headerElement.clientHeight;
@@ -77,7 +91,7 @@
         <i class="fa-solid fa-bars text-white text-2xl"></i>
       </button>
       <div
-        class={`fixed px-4 inset-y-0 left-0 transform ${sidebarVisible ? "translate-x-0" : "-translate-x-full"} w-72 bg-st-blue    text-white z-10 transition-transform  duration-200 ease-in-out`}
+        class={`fixed px-4 inset-y-0 left-0 transform ${sidebarVisible ? "translate-x-0" : "-translate-x-full"} w-72 bg-st-blue    text-white z-10 transition-transform  duration-200 ease-in-out mdsm:hidden`}
       >
         {#if sidebarVisible}
           <div class="flex flex-row gap-4 p-4">
@@ -89,6 +103,7 @@
             {#each tabs as tab}
               <a
                 href={tab.link}
+                on:click={toggleSidebar}
                 class="bg-st-blue rounded-xl p-4 hover:bg-st-blue-light hover:text-st-blue duration-100"
               >
                 <p class="text-sm font-bold">{tab.name}</p>
