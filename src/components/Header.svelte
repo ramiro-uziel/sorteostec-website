@@ -124,11 +124,16 @@
         {/if}
       </div>
 
-      <a href="/">
+      <a href="/" class="flex">
         <img
           alt="logotipo"
           src="/images/Principal-Blanco.png"
-          class="w-[150px]"
+          class="w-[150px] h-[33px] hidden sm:flex"
+        />
+        <img
+          alt="logotipo"
+          src="/images/Principal-Blanco-Logo.png"
+          class="h-[33px] flex sm:hidden"
         />
       </a>
     </div>

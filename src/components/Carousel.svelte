@@ -55,15 +55,23 @@
           <div
             class="embla__slide__content absolute flex-col w-full h-full flex justify-center items-center text-white"
           >
-            <img class="mx-auto mb-4 w-40" src={logo} alt="Logo" />
-            <h1 class="text-2xl sm:text-4xl font-extrabold">
+            <img
+              class="mx-auto mb-2 sm:mb-4 w-28 sm:w-40"
+              src={logo}
+              alt="Logo"
+            />
+            <h1 class="text-2xl sm:text-4xl font-extrabold w-60 sm:w-max">
               {title}
             </h1>
-            <p class="sm:text-2xl">
+            <p class="sm:text-2xl w-52 sm:w-max">
               {description}
             </p>
           </div>
-          <img src={img} alt="Background" class="mx-auto" />
+          <img
+            src={img}
+            alt="Background"
+            class="mx-auto min-h-52 object-cover"
+          />
         </div>
       {/each}
     </div>
