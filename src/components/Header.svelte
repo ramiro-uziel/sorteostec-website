@@ -5,6 +5,7 @@
     userLogged,
     userWallet,
     abonarSaldoBoxVisible,
+    isAdmin,
   } from "$lib/stores";
   import Boleto from "../assets/icons/boleto.svelte";
   import BoletoHover from "../assets/icons/boleto-hover.svelte";
@@ -13,15 +14,9 @@
   import DropdownItem from "./DropdownItem.svelte";
   import DropdownWideItem from "./DropdownWideItem.svelte";
   import { goto } from "$app/navigation";
-  import { isAdmin } from "$lib/stores";
 
   let sidebarVisible = false;
   let headerElement;
-
-  let isUserAdmin;
-  isAdmin.subscribe((data) => {
-    isUserAdmin = data;
-  });
 
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
@@ -41,20 +36,25 @@
       icon: "fa-solid fa-shopping-bag",
       link: "/cuenta/compras",
     },
-    {
+  ];
+
+  $: $isAdmin, setAdmin();
+
+  const setAdmin = () => {
+    if ($isAdmin) {
+      console.log("[!] Pushed admin tab to header profile.");
+      userTabs.push({
+        name: "Admin",
+        icon: "fa-solid fa-lock",
+        link: "/cuenta/admin",
+      });
+    }
+    userTabs.push({
       name: "Log out",
       icon: "fa-solid fa-right-from-bracket",
       link: "/cuenta/logout",
-    },
-  ];
-
-  if (isUserAdmin) {
-    userTabs.push({
-      name: "Admin",
-      icon: "fa-solid fa-lock",
-      link: "/cuenta/admin",
     });
-  }
+  };
 
   function updateHeaderHeight() {
     const height = headerElement.clientHeight;
