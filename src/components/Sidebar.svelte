@@ -12,7 +12,7 @@
     { name: "E-wallet", icon: "fa-solid fa-wallet", link: "/cuenta/ewallet" },
     {
       name: "Compras",
-      icon: "fa-solid fa-shopping-bag",
+      icon: "fa-solid fa-cart-shopping",
       link: "/cuenta/compras",
     },
   ];

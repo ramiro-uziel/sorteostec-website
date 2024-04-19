@@ -43,7 +43,7 @@
     },
     {
       name: "Compras",
-      icon: "fa-solid fa-shopping-bag",
+      icon: "fa-solid fa-cart-shopping",
       link: "/cuenta/compras",
       id: "3",
     },
