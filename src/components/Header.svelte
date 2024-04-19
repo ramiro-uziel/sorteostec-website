@@ -29,12 +29,28 @@
   ];
 
   let userTabs = [
-    { name: "Perfil", icon: "fa-solid fa-user", link: "/cuenta/perfil" },
-    { name: "E-wallet", icon: "fa-solid fa-wallet", link: "/cuenta/ewallet" },
+    {
+      name: "Perfil",
+      icon: "fa-solid fa-user",
+      link: "/cuenta/perfil",
+      id: "0",
+    },
+    {
+      name: "E-wallet",
+      icon: "fa-solid fa-wallet",
+      link: "/cuenta/ewallet",
+      id: "1",
+    },
     {
       name: "Compras",
       icon: "fa-solid fa-shopping-bag",
       link: "/cuenta/compras",
+      id: "3",
+    },
+    {
+      name: "Log out",
+      icon: "fa-solid fa-right-from-bracket",
+      link: "/cuenta/logout",
     },
   ];
 
@@ -43,17 +59,12 @@
   const setAdmin = () => {
     if ($isAdmin) {
       console.log("[!] Pushed admin tab to header profile.");
-      userTabs.push({
+      userTabs.splice(3, 0, {
         name: "Admin",
         icon: "fa-solid fa-lock",
         link: "/cuenta/admin",
       });
     }
-    userTabs.push({
-      name: "Log out",
-      icon: "fa-solid fa-right-from-bracket",
-      link: "/cuenta/logout",
-    });
   };
 
   function updateHeaderHeight() {
