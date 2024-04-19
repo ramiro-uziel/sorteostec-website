@@ -2,8 +2,8 @@
   let juegos = [
     {
       color: "#a4da51",
-      image: "/images/fof-granja.webp",
-      title: "Granja",
+      image: "/images/fof-square.webp",
+      title: "Fields of Fortune",
       link: "/juegos/granja",
     },
     {
@@ -23,9 +23,11 @@
     <div class=" flex flex-col items-center w-full p-10">
       <div class="max-w-[1250px] pb-20">
         <div class="flex flex-col items-center text-white">
-          <h1 class="text-4xl font-bold py-10">Juegos</h1>
-          <p class="text-3xl font-bold">Cultiva Éxitos, Cosecha Recompensas.</p>
-          <p class="text-2xl font-semibold">
+          <h1 class="text-4xl font-bold py-10 drop-shadow-lg">Juegos</h1>
+          <p class="text-3xl font-bold drop-shadow-lg">
+            Cultiva Éxitos, Cosecha Recompensas.
+          </p>
+          <p class="text-2xl font-semibold drop-shadow-lg">
             ¡Descubre el boleto dorado y gana premios exclusivos!
           </p>
           <div class="w-full flex justify-center p-10">
