@@ -158,7 +158,7 @@
 
     <div class="flex flex-row items-center xl:flex-1 justify-end">
       {#if !$userLogged}
-        <div class="flex flex-row pr-6">
+        <div class="flex flex-row mdsm:pr-6">
           <a
             href="/login"
             class="z-9 text-white py-2 rounded-md border-x-slate-50 px-2 lg:px-4 duration-200 text-sm hover:text-slate-950 hover:bg-white hover:shadow-md hover:scale-[105%]"

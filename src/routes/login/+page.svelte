@@ -49,8 +49,10 @@
   class="flex justify-center items-center"
   style="min-height: calc(90vh - var(--header-height));"
 >
-  <div class="p-10 w-[600px]">
-    <div class="p-10 mt-3 border border-zinc-300 bg-white shadow-xl rounded-lg">
+  <div class="p-5 md:p-0 w-[500px]">
+    <div
+      class="p-5 py-10 sm:p-10 mt-3 border border-zinc-300 bg-white shadow-xl rounded-lg"
+    >
       <h1 class="p-3 text-3xl md:text-4xl font-semibold text-st-blue">
         Iniciar sesión
       </h1>
