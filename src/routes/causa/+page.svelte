@@ -29,19 +29,12 @@
 
   let emblaApi;
   let options = { loop: true, axis: "y" };
-  let options2 = { loop: true, axis: "x" };
+  let options_2 = { loop: true };
   let plugins = [AutoScroll({ speed: 1, stopOnInteraction: false })];
+  let plugins_2 = [AutoScroll({ speed: 1, stopOnInteraction: false })];
 
   function onInit(event) {
     emblaApi = event.detail;
-  }
-
-  function prev() {
-    emblaApi && emblaApi.scrollPrev();
-  }
-
-  function next() {
-    emblaApi && emblaApi.scrollNext();
   }
 
   let slides = [
@@ -96,7 +89,7 @@
     </div>
     <div class="embla relative md:hidden block pb-5">
       <div
-        use:emblaCarouselSvelte={{ options2, plugins }}
+        use:emblaCarouselSvelte={{ options_2, plugins }}
         on:emblaInit={onInit}
         class="embla__viewport"
       >
