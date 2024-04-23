@@ -1,5 +1,7 @@
 <script>
   export let bgColor = "#454f54";
+  export let footerColor = "white";
+  export let footerBorderColor = "#abb5ba91";
 </script>
 
 <article
@@ -21,7 +23,10 @@
     <slot name="body" />
     <section class="ticket__section"></section>
   </div>
-  <footer class="ticket__footer">
+  <footer
+    class="ticket__footer"
+    style="background-color: {footerColor}; border-color: {footerBorderColor};"
+  >
     <slot name="footer" />
   </footer>
 </article>

@@ -22,6 +22,7 @@
 	"type": "module",
 	"dependencies": {
 		"d3-scale": "^4.0.2",
+		"embla-carousel-auto-scroll": "^8.0.2",
 		"embla-carousel-autoplay": "^8.0.2",
 		"embla-carousel-svelte": "^8.0.2"
 	}
