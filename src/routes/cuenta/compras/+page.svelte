@@ -10,8 +10,8 @@
 
   $: {
     sortedRecargas =
-      $purchaseList && Array.isArray($purchaseList)
-        ? [...$purchaseList].sort(
+      $purchaseList && Array.isArray($purchaseList.compras)
+        ? [...$purchaseList.compras].sort(
             (a, b) => new Date(b.fecha) - new Date(a.fecha)
           )
         : [];
