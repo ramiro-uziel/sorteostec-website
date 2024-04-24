@@ -59,7 +59,7 @@
               >
                 <p class="text-sm font-normal">{formatDate(compra.fecha)}</p>
                 <p class="text-sm font-normal">
-                  ${formatCurrency(compra.monto)}
+                  ${compra.monto}
                 </p>
                 <p class="text-sm font-normal">
                   {toTitleCase(compra.movimiento)}
