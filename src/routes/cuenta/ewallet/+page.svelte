@@ -93,6 +93,17 @@
   function toggleSaldoBox() {
     abonarSaldoBoxVisible.update((value) => !value);
   }
+
+  let sortedRecargas = [];
+
+  $: {
+    sortedRecargas =
+      $userWallet && Array.isArray($userWallet.estado_de_cuenta)
+        ? [...$userWallet.estado_de_cuenta].sort(
+            (a, b) => new Date(b.fecha) - new Date(a.fecha)
+          )
+        : [];
+  }
 </script>
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
@@ -168,7 +179,7 @@
               <p class="text-sm font-normal">No se encontraron registros</p>
             </div>
           {:else}
-            {#each $userWallet.estado_de_cuenta as recarga, index}
+            {#each sortedRecargas as recarga, index}
               <div
                 class="grid grid-cols-4 border-t border-gainsboro p-2 justify-between px-5"
               >
