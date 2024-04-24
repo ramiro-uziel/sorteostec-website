@@ -54,6 +54,19 @@
     },
   ];
 
+  function parseNumber(str) {
+    const num = parseFloat(str);
+    return isNaN(num) ? 0 : num;
+  }
+
+  $: positiveMontosSum =
+    $userWallet.estado_de_cuenta && Array.isArray($userWallet.estado_de_cuenta)
+      ? $userWallet.estado_de_cuenta
+          .map((entry) => parseNumber(entry.monto))
+          .filter((monto) => monto > 0)
+          .reduce((acc, monto) => acc + monto / 100, 0)
+      : 0;
+
   $: $isAdmin, setAdmin();
 
   const setAdmin = () => {
@@ -198,7 +211,7 @@
 
               <div class="flex flex-row gap-2 text-xs px-4 justify-between">
                 <p class="text-gray-400">Saldo abonado</p>
-                <p class="text-gray-400">TODO</p>
+                <p class="text-gray-400">${positiveMontosSum.toFixed(2)}</p>
               </div>
               <div class="flex flex-row gap-2 text-xs px-4 justify-between">
                 <p class="text-gray-400">Premios por cobrar</p>
