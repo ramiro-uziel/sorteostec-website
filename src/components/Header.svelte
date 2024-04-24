@@ -14,7 +14,7 @@
   import DropdownItem from "./DropdownItem.svelte";
   import DropdownWideItem from "./DropdownWideItem.svelte";
   import { goto } from "$app/navigation";
-  import { formatDate } from "$lib/helpers";
+  import { formatDate, formatCurrency } from "$lib/helpers";
 
   let sidebarVisible = false;
   let headerElement;
@@ -240,7 +240,7 @@
                       {formatDate(transaction.fecha)}
                     </p>
                     <p class="text-gray-500 text-right px-4">
-                      ${Number(transaction.monto).toFixed(2)}
+                      {formatCurrency(transaction.monto)}
                     </p>
                   </div>
                 {/each}
