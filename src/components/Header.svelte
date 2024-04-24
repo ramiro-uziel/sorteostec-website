@@ -56,6 +56,26 @@
 
   let recentTransactions = [];
 
+  /*
+  let devTransatcions = [
+    {
+      fecha: "2024-04-20",
+      movimiento: "RECARGA",
+      monto: "9.00",
+    },
+    {
+      fecha: "2024-04-18",
+      movimiento: "RECARGA",
+      monto: "123.55",
+    },
+    {
+      fecha: "2024-04-15",
+      movimiento: "RECARGA",
+      monto: "6.00",
+    },
+  ];
+  */
+
   $: {
     if ($userWallet && Array.isArray($userWallet.estado_de_cuenta)) {
       recentTransactions = [...$userWallet.estado_de_cuenta]
@@ -65,6 +85,15 @@
       recentTransactions = [];
     }
   }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("es-MX", {
+      year: "2-digit",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(date);
+  };
 
   $: $isAdmin, setAdmin();
 
@@ -207,15 +236,23 @@
               <hr
                 class="h-px mb-1 st-blue border-1 border-dotted border-st-blue"
               />
-              {#each recentTransactions as transaction}
-                <div class="grid grid-cols-3 px-4 mt-2 gap-1 justify-end">
-                  <p class="text-slate-400">{transaction.fecha}</p>
-                  <p class="text-slate-400">{transaction.movimiento}</p>
-                  <p class="text-slate-400">
-                    ${Number(transaction.monto).toFixed(2)}
-                  </p>
-                </div>
-              {/each}
+              <div class="">
+                <p class="text-xs text-gray-500 px-4 mb-2 font-bold">
+                  Estado de cuenta reciente
+                </p>
+                {#each recentTransactions as transaction}
+                  <div
+                    class="grid grid-cols-2 text-xs border-t border-gray-300 border-dashed py-2"
+                  >
+                    <p class="text-gray-500 px-4">
+                      {formatDate(transaction.fecha)}
+                    </p>
+                    <p class="text-gray-500 text-right px-4">
+                      ${Number(transaction.monto).toFixed(2)}
+                    </p>
+                  </div>
+                {/each}
+              </div>
               <DropdownWideItem>
                 <div class=" flex flex-row justify-between gap-2 p-2 px-4">
                   <a
