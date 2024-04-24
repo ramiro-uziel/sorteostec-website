@@ -72,7 +72,7 @@
                 class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >
                 <p class="text-sm font-normal">{formatDate(compra.fecha)}</p>
-                <p class="text-sm font-normal">{compra.monto}</p>
+                <p class="text-sm font-normal">${compra.monto}</p>
                 <p class="text-sm font-normal">
                   {toTitleCase(compra.movimiento)}
                 </p>

@@ -119,6 +119,12 @@
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
   }
+
+  function formatCurrency(itr) {
+    const amount = Math.abs(itr);
+    const formattedAmount = `$${amount.toLocaleString()}`;
+    return itr < 0 ? `-${formattedAmount}` : formattedAmount;
+  }
 </script>
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
@@ -198,7 +204,9 @@
                 class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >
                 <p class="text-sm font-normal">{formatDate(recarga.fecha)}</p>
-                <p class="text-sm font-normal">{recarga.monto}</p>
+                <p class="text-sm font-normal">
+                  {formatCurrency(recarga.monto)}
+                </p>
                 <p class="text-sm font-normal">
                   {toTitleCase(recarga.movimiento)}
                 </p>
