@@ -54,18 +54,14 @@
     },
   ];
 
-  function parseNumber(str) {
-    const num = parseFloat(str);
-    return isNaN(num) ? 0 : num;
-  }
+  let recentTransactions = [];
 
-  $: positiveMontosSum =
-    $userWallet.estado_de_cuenta && Array.isArray($userWallet.estado_de_cuenta)
-      ? $userWallet.estado_de_cuenta
-          .map((entry) => parseNumber(entry.monto))
-          .filter((monto) => monto > 0)
-          .reduce((acc, monto) => acc + monto, 0)
-      : 0;
+  // Subscribe to userWallet store and compute recent transactions
+  $: if ($userWallet && $userWallet.estado_de_cuenta) {
+    recentTransactions = $userWallet.estado_de_cuenta
+      .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+      .slice(0, 3);
+  }
 
   $: $isAdmin, setAdmin();
 
@@ -208,15 +204,15 @@
               <hr
                 class="h-px mb-1 st-blue border-1 border-dotted border-st-blue"
               />
-
-              <div class="flex flex-row gap-2 text-xs px-4 justify-between">
-                <p class="text-gray-400">Saldo abonado</p>
-                <p class="text-gray-400">${positiveMontosSum.toFixed(2)}</p>
-              </div>
-              <div class="flex flex-row gap-2 text-xs px-4 justify-between">
-                <p class="text-gray-400">Premios por cobrar</p>
-                <p class="text-gray-400">TODO</p>
-              </div>
+              {#each recentTransactions as transaction}
+                <div class="flex flex-row px-4 mt-2 gap-1 justify-between">
+                  <p class="text-st-gray">{transaction.fecha}</p>
+                  <p class="text-st-gray">{transaction.movimiento}</p>
+                  <p class="text-st-gray">
+                    ${Number(transaction.monto).toFixed(2)}
+                  </p>
+                </div>
+              {/each}
               <DropdownWideItem>
                 <div class=" flex flex-row justify-between gap-2 p-2 px-4">
                   <a
