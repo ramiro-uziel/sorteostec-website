@@ -208,7 +208,7 @@
                 class="h-px mb-1 st-blue border-1 border-dotted border-st-blue"
               />
               {#each recentTransactions as transaction}
-                <div class="flex flex-row px-4 mt-2 gap-1 justify-between">
+                <div class="grid grid-cols-3 px-4 mt-2 gap-1">
                   <p class="text-st-gray">{transaction.fecha}</p>
                   <p class="text-st-gray">{transaction.movimiento}</p>
                   <p class="text-st-gray">
