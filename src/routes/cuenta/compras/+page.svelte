@@ -1,6 +1,7 @@
 <script>
   import { purchaseList } from "$lib/stores";
   import Sidebar from "/src/components/Sidebar.svelte";
+  import { formatDate, toTitleCase, formatCurrency } from "$lib/helpers";
   let sidebarVisible = false;
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
@@ -16,21 +17,6 @@
           )
         : [];
     console.log(sortedRecargas);
-  }
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("es-MX", {
-      year: "2-digit",
-      month: "2-digit",
-      day: "2-digit",
-    }).format(date);
-  };
-
-  function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function (txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
   }
 </script>
 
@@ -72,7 +58,9 @@
                 class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >
                 <p class="text-sm font-normal">{formatDate(compra.fecha)}</p>
-                <p class="text-sm font-normal">${compra.monto}</p>
+                <p class="text-sm font-normal">
+                  ${formatCurrency(compra.monto)}
+                </p>
                 <p class="text-sm font-normal">
                   {toTitleCase(compra.movimiento)}
                 </p>

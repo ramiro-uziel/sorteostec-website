@@ -14,6 +14,7 @@
   import DropdownItem from "./DropdownItem.svelte";
   import DropdownWideItem from "./DropdownWideItem.svelte";
   import { goto } from "$app/navigation";
+  import { formatDate } from "$lib/helpers";
 
   let sidebarVisible = false;
   let headerElement;
@@ -85,15 +86,6 @@
       recentTransactions = [];
     }
   }
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("es-MX", {
-      year: "2-digit",
-      month: "2-digit",
-      day: "2-digit",
-    }).format(date);
-  };
 
   $: $isAdmin, setAdmin();
 

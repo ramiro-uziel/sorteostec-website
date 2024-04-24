@@ -2,6 +2,7 @@
   import Sidebar from "/src/components/Sidebar.svelte";
   import { abonarSaldoBoxVisible, cardList } from "$lib/stores";
   import { userWallet } from "$lib/stores";
+  import { formatDate, toTitleCase, formatCurrency } from "$lib/helpers";
   let viewFormTarjeta = false;
   let disableAbonar = true;
   let tipoTarjeta = [{ tipo: "Débito" }, { tipo: "Crédito" }];
@@ -103,27 +104,6 @@
             (a, b) => new Date(b.fecha) - new Date(a.fecha)
           )
         : [];
-  }
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("es-MX", {
-      year: "2-digit",
-      month: "2-digit",
-      day: "2-digit",
-    }).format(date);
-  };
-
-  function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function (txt) {
-      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-  }
-
-  function formatCurrency(itr) {
-    const amount = Math.abs(itr);
-    const formattedAmount = `$${amount.toLocaleString()}`;
-    return itr < 0 ? `-${formattedAmount}` : formattedAmount;
   }
 </script>
 
