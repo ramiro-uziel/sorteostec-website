@@ -6,6 +6,18 @@
     sidebarVisible = !sidebarVisible;
   }
 
+  let sortedRecargas = [];
+
+  $: {
+    sortedRecargas =
+      $purchaseList && Array.isArray($purchaseList)
+        ? [...$purchaseList].sort(
+            (a, b) => new Date(b.fecha) - new Date(a.fecha)
+          )
+        : [];
+    console.log(sortedRecargas);
+  }
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("es-MX", {
