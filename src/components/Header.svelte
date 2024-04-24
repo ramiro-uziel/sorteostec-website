@@ -56,11 +56,14 @@
 
   let recentTransactions = [];
 
-  // Subscribe to userWallet store and compute recent transactions
-  $: if ($userWallet && $userWallet.estado_de_cuenta) {
-    recentTransactions = $userWallet.estado_de_cuenta
-      .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
-      .slice(0, 3);
+  $: {
+    if ($userWallet && Array.isArray($userWallet.estado_de_cuenta)) {
+      recentTransactions = [...$userWallet.estado_de_cuenta]
+        .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+        .slice(0, 3);
+    } else {
+      recentTransactions = [];
+    }
   }
 
   $: $isAdmin, setAdmin();
