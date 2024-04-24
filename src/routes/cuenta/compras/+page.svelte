@@ -44,7 +44,7 @@
             <p class="text-sm font-normal">Monto</p>
             <p class="text-sm font-normal">Movimiento</p>
           </div>
-          {#if sortedPurchaseList.compras.length < 1}
+          {#if $purchaseList.compras.length < 1}
             <div
               class="flex flex-row border-t border-gainsboro p-2 justify-center"
             >
