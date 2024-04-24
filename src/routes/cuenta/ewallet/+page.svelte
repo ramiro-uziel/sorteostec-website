@@ -165,9 +165,8 @@
         </h2>
         <div class=" border border-gainsboro rounded-lg">
           <div
-            class="grid grid-cols-4 p-2 justify-between px-5 bg-gray-200 rounded-t"
+            class="grid grid-cols-3 p-2 justify-between px-5 bg-gray-200 rounded-t"
           >
-            <p class="text-sm font-normal">ID</p>
             <p class="text-sm font-normal">Fecha</p>
             <p class="text-sm font-normal">Monto</p>
             <p class="text-sm font-normal">Tipo</p>
@@ -181,7 +180,7 @@
           {:else}
             {#each sortedRecargas as recarga, index}
               <div
-                class="grid grid-cols-4 border-t border-gainsboro p-2 justify-between px-5"
+                class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >
                 <p class="text-sm font-normal">{recarga.fecha}</p>
                 <p class="text-sm font-normal">{recarga.monto}</p>
