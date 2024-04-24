@@ -209,9 +209,9 @@
               />
               {#each recentTransactions as transaction}
                 <div class="grid grid-cols-3 px-4 mt-2 gap-1">
-                  <p class="text-st-gray">{transaction.fecha}</p>
-                  <p class="text-st-gray">{transaction.movimiento}</p>
-                  <p class="text-st-gray">
+                  <p class="text-slate-400">{transaction.fecha}</p>
+                  <p class="text-slate-400">{transaction.movimiento}</p>
+                  <p class="text-slate-400">
                     ${Number(transaction.monto).toFixed(2)}
                   </p>
                 </div>
