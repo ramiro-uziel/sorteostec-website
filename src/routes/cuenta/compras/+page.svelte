@@ -5,17 +5,6 @@
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
   }
-
-  let sortedPurchaseList = [];
-
-  $: {
-    sortedPurchaseList =
-      $purchaseList && Array.isArray($purchaseList.compras)
-        ? [...$purchaseList.compras].sort(
-            (a, b) => new Date(b.fecha) - new Date(a.fecha)
-          )
-        : [];
-  }
 </script>
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
@@ -51,7 +40,7 @@
               <p class="text-sm font-normal">No se encontraron registros</p>
             </div>
           {:else}
-            {#each sortedPurchaseList.compras as compra}
+            {#each $purchaseList.compras as compra}
               <div
                 class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >

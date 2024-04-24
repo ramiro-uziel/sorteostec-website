@@ -107,6 +107,8 @@
         console.log("actualiza");
         console.log("[ ! ] Compras data:", purchaseData.compras);
         purchaseList.set(purchaseData);
+        console.log(purchaseList);
+
         // userWallet.set(walletData);
 
         dataLoaded.set(true);
