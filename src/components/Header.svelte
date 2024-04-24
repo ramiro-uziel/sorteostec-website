@@ -64,7 +64,7 @@
       ? $userWallet.estado_de_cuenta
           .map((entry) => parseNumber(entry.monto))
           .filter((monto) => monto > 0)
-          .reduce((acc, monto) => acc + monto, 0) / 100
+          .reduce((acc, monto) => acc + monto, 0)
       : 0;
 
   $: $isAdmin, setAdmin();
