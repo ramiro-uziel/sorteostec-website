@@ -10,8 +10,8 @@
 
   $: {
     sortedPurchaseList =
-      $purchaseList && Array.isArray($purchaseList)
-        ? [...$purchaseList].sort(
+      $purchaseList && Array.isArray($purchaseList.compras)
+        ? [...$purchaseList.compras].sort(
             (a, b) => new Date(b.fecha) - new Date(a.fecha)
           )
         : [];
@@ -51,7 +51,7 @@
               <p class="text-sm font-normal">No se encontraron registros</p>
             </div>
           {:else}
-            {#each sortedPurchaseList.compras as compra, index}
+            {#each sortedPurchaseList.compras as compra}
               <div
                 class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >
