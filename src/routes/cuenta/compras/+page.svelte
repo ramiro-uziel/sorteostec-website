@@ -6,14 +6,6 @@
     sidebarVisible = !sidebarVisible;
   }
 
-  let sortedCompras = [];
-
-  $: sortedCompras = Array.isArray($purchaseList)
-    ? $purchaseList
-        .slice()
-        .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
-    : [];
-
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("es-MX", {
@@ -63,7 +55,7 @@
               <p class="text-sm font-normal">No se encontraron registros</p>
             </div>
           {:else}
-            {#each sortedCompras.compras as compra}
+            {#each $purchaseList.compras as compra}
               <div
                 class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >
