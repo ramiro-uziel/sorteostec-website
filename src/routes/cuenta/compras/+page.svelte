@@ -5,6 +5,27 @@
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
   }
+
+  let sortedCompras = [];
+
+  $: sortedCompras = $purchaseList.slice().sort((a, b) => {
+    return new Date(b.fecha) - new Date(a.fecha);
+  });
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("es-MX", {
+      year: "2-digit",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(date);
+  };
+
+  function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function (txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  }
 </script>
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
@@ -40,13 +61,15 @@
               <p class="text-sm font-normal">No se encontraron registros</p>
             </div>
           {:else}
-            {#each $purchaseList.compras as compra}
+            {#each sortedCompras.compras as compra}
               <div
                 class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >
-                <p class="text-sm font-normal">{compra.fecha}</p>
+                <p class="text-sm font-normal">{formatDate(compra.fecha)}</p>
                 <p class="text-sm font-normal">{compra.monto}</p>
-                <p class="text-sm font-normal">{compra.movimiento}</p>
+                <p class="text-sm font-normal">
+                  {toTitleCase(compra.movimiento)}
+                </p>
               </div>
             {/each}
           {/if}
