@@ -39,13 +39,13 @@
 
   let slides = [
     {
-      img: "/images/Lideres-Manana-SorteosTec-1.webp",
-    },
-    {
       img: "/images/Lideres-Manana-SorteosTec-2.webp",
     },
     {
       img: "/images/Lideres-Manana-SorteosTec-3.webp",
+    },
+    {
+      img: "/images/Lideres-Manana-SorteosTec-1.webp",
     },
   ];
 </script>
