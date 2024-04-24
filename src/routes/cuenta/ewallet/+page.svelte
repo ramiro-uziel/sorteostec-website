@@ -183,7 +183,6 @@
               <div
                 class="grid grid-cols-4 border-t border-gainsboro p-2 justify-between px-5"
               >
-                <p class="text-sm font-normal">{index + 1}</p>
                 <p class="text-sm font-normal">{recarga.fecha}</p>
                 <p class="text-sm font-normal">{recarga.monto}</p>
                 <p class="text-sm font-normal">{recarga.movimiento}</p>
