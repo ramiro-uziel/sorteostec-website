@@ -67,7 +67,7 @@
               <p class="text-sm font-normal">No se encontraron registros</p>
             </div>
           {:else}
-            {#each $purchaseList.compras as compra}
+            {#each sortedRecargas.compras as compra}
               <div
                 class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >
