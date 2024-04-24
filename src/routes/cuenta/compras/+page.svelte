@@ -8,9 +8,11 @@
 
   let sortedCompras = [];
 
-  $: sortedCompras = $purchaseList.slice().sort((a, b) => {
-    return new Date(b.fecha) - new Date(a.fecha);
-  });
+  $: sortedCompras = Array.isArray($purchaseList)
+    ? $purchaseList
+        .slice()
+        .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+    : [];
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
