@@ -104,6 +104,21 @@
           )
         : [];
   }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("es-MX", {
+      year: "2-digit",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(date);
+  };
+
+  function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function (txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  }
 </script>
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
@@ -178,13 +193,15 @@
               <p class="text-sm font-normal">No se encontraron registros</p>
             </div>
           {:else}
-            {#each sortedRecargas as recarga, index}
+            {#each sortedRecargas as recarga}
               <div
                 class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
               >
-                <p class="text-sm font-normal">{recarga.fecha}</p>
+                <p class="text-sm font-normal">{formatDate(recarga.fecha)}</p>
                 <p class="text-sm font-normal">{recarga.monto}</p>
-                <p class="text-sm font-normal">{recarga.movimiento}</p>
+                <p class="text-sm font-normal">
+                  {toTitleCase(recarga.movimiento)}
+                </p>
               </div>
             {/each}
           {/if}
