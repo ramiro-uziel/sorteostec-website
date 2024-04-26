@@ -222,7 +222,7 @@
               <div class="flex flex-row px-4 mt-4 gap-1 justify-between">
                 <p class="text-st-blue font-semibold">Mi saldo actual</p>
                 <p class="text-st-blue font-semibold">
-                  ${$userWallet.saldo / 100}
+                  {formatCurrency($userWallet.saldo / 100)}
                 </p>
               </div>
               <hr
