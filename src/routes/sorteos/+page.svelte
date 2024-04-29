@@ -1,6 +1,7 @@
 <script>
   let sorteos = [
     {
+      name: "Gana Ya",
       color: "#24113b",
       logo: "/images/logo-ganaya.png",
       title: "¡Un sorteo a otro nivel!",
@@ -33,6 +34,7 @@
       ],
     },
     {
+      name: "AdventuraT",
       color: "#aa085b",
       logo: "/images/logo-aventurat.png",
       title: "¡Un boleto para conocer el mundo!",
@@ -66,6 +68,7 @@
       ],
     },
     {
+      name: "Educativo",
       color: "#ef7f06",
       logo: "/images/logo-educativo.png",
       title: "¡Gana dos veces, gana al instante!",
@@ -85,4 +88,23 @@
   ];
 </script>
 
-<div></div>
+<div class="w-full bg-st-blue flex justify-center">
+  <div class="w-[70%]">
+    {#each sorteos as sorteo}
+      <div class="flex flex-row justify-between">
+        <div class="flex justify-start">
+          <img
+            src={sorteo.logo}
+            alt={"Sorteo" + sorteo.name}
+            class="w-[200px] object-contain"
+          />
+        </div>
+        <div class="flex flex-col p-5">
+          <h1 class="text-white text-4xl font-semibold">{sorteo.title}</h1>
+          <h2 class="text-white text-2xl font-base">{sorteo.tagline}</h2>
+          <p class="text-white text-2xl font-base">${sorteo.prize}</p>
+        </div>
+      </div>
+    {/each}
+  </div>
+</div>
