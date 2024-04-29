@@ -109,7 +109,7 @@
             <p class="text-sm font-normal">Nombre</p>
             <p class="text-sm font-normal">Premio</p>
           </div>
-          {#if $sortedBoletos.length < 1}
+          {#if sortedBoletos.length < 1}
             <div
               class="flex flex-row border-t border-gainsboro p-2 justify-center"
             >
