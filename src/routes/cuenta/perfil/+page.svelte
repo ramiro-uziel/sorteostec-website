@@ -1,6 +1,39 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
   import { userProfile } from "$lib/stores";
+  const updatePersonalInformation = writable(false);
+
+  let formData = {
+    nombre: "",
+    apellidoMaterno: "",
+    apellidoPaterno: "",
+    telefono: "",
+    estado: "",
+    ciudad: "",
+    email: "",
+    password: "",
+  };
+
+  function toggleSaldoBox() {
+    updatePersonalInformation.update((value) => !value);
+  }
+
+  async function handleUpdate() {
+    const opciones = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+
+    try {
+      console.log(opciones);
+      toggleSaldoBox();
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
+  }
 </script>
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
@@ -64,6 +97,110 @@
               Editar
             </a>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class={`fixed inset-0 flex items-center justify-center z-50 ${!$updatePersonalInformation ? "hidden" : ""}`}
+    >
+      <div class="fixed inset-0 bg-black opacity-50"></div>
+      <div class="relative bg-white rounded-lg p-8 sm:w-[500px] xs:w-[250px]">
+        <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
+          <button on:click={toggleSaldoBox}>
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div class="p-3">
+          <div class="mb-2">
+            <input
+              type="text"
+              bind:value={formData.nombre}
+              name="nombre"
+              class="p-3 w-full border border-gainsboro rounded-lg"
+              placeholder="Nombre"
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="text"
+              bind:value={formData.apellidoPaterno}
+              name="apellidoPaterno"
+              class="p-3 w-full border border-gainsboro rounded-lg"
+              placeholder="Apellido Paterno"
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="text"
+              bind:value={formData.apellidoMaterno}
+              name="apellidoMaterno"
+              class="p-3 w-full border border-gainsboro rounded-lg"
+              placeholder="Apellido Materno"
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="tel"
+              bind:value={formData.telefono}
+              name="telefono"
+              class="p-3 w-full border border-gainsboro rounded-lg"
+              placeholder="Teléfono"
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="text"
+              bind:value={formData.estado}
+              name="estado"
+              class="p-3 w-full border border-gainsboro rounded-lg"
+              placeholder="Estado"
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="text"
+              bind:value={formData.ciudad}
+              name="ciudad"
+              class="p-3 w-full border border-gainsboro rounded-lg"
+              placeholder="Ciudad"
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="email"
+              bind:value={formData.email}
+              name="email"
+              class="p-3 w-full border border-gainsboro rounded-lg"
+              placeholder="Correo electrónico"
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="password"
+              bind:value={formData.password}
+              name="password"
+              class="p-3 w-full border border-gainsboro rounded-lg"
+              placeholder="Contraseña"
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="password"
+              bind:value={formData.passwordConfirm}
+              name="passwordConfirm"
+              class="p-3 w-full border border-gainsboro rounded-lg"
+              placeholder="Confirmar Contraseña"
+            />
+          </div>
+          <button
+            type="button"
+            on:click={handleUpdate}
+            class="w-full bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
+          >
+            Actualizar Informacion
+          </button>
         </div>
       </div>
     </div>

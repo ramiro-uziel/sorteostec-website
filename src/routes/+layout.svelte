@@ -10,6 +10,7 @@
     purchaseList,
     dataLoaded,
     userLogged,
+    ticketList,
   } from "../lib/stores";
   import { userProfile } from "../lib/stores";
   import { userWallet } from "../lib/stores";
@@ -107,6 +108,12 @@
         console.log("actualiza");
         console.log("[ ! ] Compras data:", purchaseData.compras);
         purchaseList.set(purchaseData);
+
+        const ticketsResponse = await fetch("/api/boletos");
+        const ticketsData = await ticketsResponse.json();
+        console.log("actualiza");
+        console.log("[ ! ] Boletos data:", ticketsData.boletos);
+        ticketList.set(ticketsData);
         // userWallet.set(walletData);
 
         dataLoaded.set(true);
