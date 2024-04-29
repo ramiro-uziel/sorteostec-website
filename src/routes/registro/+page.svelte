@@ -1,11 +1,29 @@
 <script>
   import { goto } from "$app/navigation";
-  import { estados, estados_municipios } from "$lib/estados";
+  import { estados_municipios } from "$lib/estados";
+  import Svelecte from "svelecte";
   let nombre;
   let apellidoPaterno;
   let apellidoMaterno;
   let telefono;
-  let estado = "Estado";
+  let estado = [
+    {
+      nombre: "Aguascalientes",
+      municipios: [
+        "Aguascalientes",
+        "Asientos",
+        "Calvillo",
+        "Cosio",
+        "El Llano",
+        "Jesus Maria",
+        "Pabellon de Arteaga",
+        "Rincon de Romos",
+        "San Francisco de los Romo",
+        "San Jose de Gracia",
+        "Tepezala",
+      ],
+    },
+  ];
   let estadoAnswer;
   let ciudad;
   let ciudadAnswer;
@@ -13,9 +31,8 @@
   let password;
   let passwordConfirm;
 
-  let municipios;
-
-  $: estado;
+  let selectedEstado = null;
+  let selectedMunicipio = null;
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -96,28 +113,30 @@
           <div class="mb-2">
             <select
               class="p-3 w-full border border-gainsboro rounded-lg"
-              bind:value={estado}
-              on:change={() => (estadoAnswer = "")}
+              bind:value={selectedEstado}
+              on:change={() => (selectedMunicipio = null)}
             >
-              {#each estados as estado}
-                <option value={estado}>
-                  {estado.nombre}
-                </option>
+              <option value={null} disabled>Estado</option>
+              {#each estados_municipios as estado}
+                <option value={estado}> {estado.nombre} </option>
               {/each}
             </select>
-          </div>
-          <div class="mb-2">
-            <select
-              class="p-3 w-full border border-gainsboro rounded-lg"
-              bind:value={ciudad}
-              on:change={() => (ciudadAnswer = "")}
-            >
-              {#each estados_municipios as municipios}
-                <option value={municipios}>
-                  {municipios}
-                </option>
-              {/each}
-            </select>
+
+            {#if selectedEstado}
+              <div class="mb-2">
+                <select
+                  class="p-3 w-full border border-gainsboro rounded-lg"
+                  bind:value={selectedMunicipio}
+                >
+                  <option value={null} disabled>Ciudad</option>
+                  {#each selectedEstado.municipios as municipio}c
+                    <option value={municipio}>
+                      {municipio}
+                    </option>
+                  {/each}
+                </select>
+              </div>
+            {/if}
           </div>
           <div class="mb-2">
             <input
