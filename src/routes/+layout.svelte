@@ -112,7 +112,7 @@
         const ticketsResponse = await fetch("/api/boletos");
         const ticketsData = await ticketsResponse.json();
         console.log("actualiza");
-        console.log("[ ! ] Boletos data:", ticketsData.boletos);
+        console.log("[ ! ] Boletos data:", ticketsData);
         ticketList.set(ticketsData);
         // userWallet.set(walletData);
 

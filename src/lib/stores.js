@@ -26,7 +26,7 @@ const build = {
   buildID: "",
 };
 const personalCards = { tarjetas: [] };
-const personalTickets = { boletos: [] };
+const personalTickets = [];
 const personalPurchases = { compras: [] };
 export const userProfile = writable(initialProfile);
 export const userWallet = writable(initialWallet);

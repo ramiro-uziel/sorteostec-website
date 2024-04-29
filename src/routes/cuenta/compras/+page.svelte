@@ -1,7 +1,7 @@
 <script>
-  import { purchaseList } from "$lib/stores";
+  import { purchaseList, ticketList } from "$lib/stores";
   import Sidebar from "/src/components/Sidebar.svelte";
-  import { formatDate, toTitleCase, formatCurrency } from "$lib/helpers";
+  import { formatDate, toTitleCase } from "$lib/helpers";
   let sidebarVisible = false;
   function toggleSidebar() {
     sidebarVisible = !sidebarVisible;
@@ -17,6 +17,18 @@
           )
         : [];
     console.log(sortedRecargas);
+  }
+
+  let sortedBoletos = [];
+
+  $: {
+    sortedBoletos =
+      $ticketList && Array.isArray($ticketList)
+        ? [...$ticketList].sort(
+            (a, b) => new Date(b.fecha_exp) - new Date(a.fecha_exp)
+          )
+        : [];
+    console.log(sortedBoletos);
   }
 </script>
 
@@ -93,16 +105,33 @@
         </h2>
         <div class=" border border-gainsboro rounded-lg">
           <div class="flex flex-row p-2 justify-between px-5">
-            <p class="text-sm font-normal">Boletos</p>
-            <p class="text-sm font-normal">Fecha</p>
-            <p class="text-sm font-normal">Sorteo</p>
-            <p class="text-sm font-normal">Estatus</p>
+            <p class="text-sm font-normal">Fecha Expiracion</p>
+            <p class="text-sm font-normal">Nombre</p>
+            <p class="text-sm font-normal">Premio</p>
           </div>
-          <div
-            class="flex flex-row border-t border-gainsboro p-2 justify-center"
-          >
-            <p class="text-sm font-normal">No se encontraron registros</p>
-          </div>
+          {#if $sortedBoletos.length < 1}
+            <div
+              class="flex flex-row border-t border-gainsboro p-2 justify-center"
+            >
+              <p class="text-sm font-normal">No se encontraron registros</p>
+            </div>
+          {:else}
+            {#each sortedBoletos as boleto}
+              <div
+                class="grid grid-cols-3 border-t border-gainsboro p-2 justify-between px-5"
+              >
+                <p class="text-sm font-normal">
+                  {formatDate(boleto.fecha_exp)}
+                </p>
+                <p class="text-sm font-normal">
+                  {toTitleCase(boleto.nombre)}
+                </p>
+                <p class="text-sm font-normal">
+                  ${boleto.premio}
+                </p>
+              </div>
+            {/each}
+          {/if}
         </div>
       </div>
     </div>
