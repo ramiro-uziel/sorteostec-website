@@ -1,7 +1,8 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
   import { userProfile } from "$lib/stores";
-  const updatePersonalInformation = writable(false);
+  let viewEdit = false;
+  // const updatePersonalInformation = writable(false);
 
   let formData = {
     nombre: "",
@@ -15,7 +16,8 @@
   };
 
   function toggleSaldoBox() {
-    updatePersonalInformation.update((value) => !value);
+    viewEdit = !viewEdit;
+    // updatePersonalInformation.update((value) => !value);
   }
 
   async function handleUpdate() {
@@ -102,7 +104,7 @@
     </div>
 
     <div
-      class={`fixed inset-0 flex items-center justify-center z-50 ${!$updatePersonalInformation ? "hidden" : ""}`}
+      class={`fixed inset-0 flex items-center justify-center z-50 ${!viewEdit ? "hidden" : ""}`}
     >
       <div class="fixed inset-0 bg-black opacity-50"></div>
       <div class="relative bg-white rounded-lg p-8 sm:w-[500px] xs:w-[250px]">
