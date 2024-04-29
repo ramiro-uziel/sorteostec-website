@@ -47,7 +47,16 @@
         </div>
       </div>
       <div class="p-6 w-full">
-        <PlaceholderChart></PlaceholderChart>
+        <!-- Looker studio -->
+        <iframe
+          title="Looker Studio"
+          src="https://lookerstudio.google.com/embed/reporting/c53d5250-b042-4ce2-a267-052b075010ac/page/HyeyD"
+          class="w-full h-full border-none"
+          style="aspect-ratio: 16 / 9;"
+          frameborder="0"
+          allowfullscreen
+          sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        ></iframe>
       </div>
     </div>
     <div class="border-t-2 border-gray-300 w-full my-4"></div>
