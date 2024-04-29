@@ -68,12 +68,12 @@
             <p class="text-sm font-mono">{$userProfile.phone}</p>
             <p class="text-sm font-normal">{$userProfile.city}</p>
           </div>
-          <a
-            href="#"
+          <button
+            on:click={toggleSaldoBox}
             class="rounded-lg p-3 px-6 border text-sm text-zinc-800 font-normal border-zinc-800 hover:bg-zinc-800 hover:text-white duration-100 self-start"
           >
             Editar
-          </a>
+          </button>
         </div>
       </div>
     </div>
