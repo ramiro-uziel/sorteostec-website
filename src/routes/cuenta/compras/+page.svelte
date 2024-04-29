@@ -104,7 +104,9 @@
           Mis boletos
         </h2>
         <div class=" border border-gainsboro rounded-lg">
-          <div class="flex flex-row p-2 justify-between px-5">
+          <div
+            class="grid grid-cols-3 p-2 justify-between px-5 bg-gray-200 rounded-t"
+          >
             <p class="text-sm font-normal">Fecha Expiracion</p>
             <p class="text-sm font-normal">Nombre</p>
             <p class="text-sm font-normal">Premio</p>
