@@ -25,9 +25,26 @@
     if (value != "" && !viewFormTarjeta) {
       disableAbonar = false;
     }
-    value = value.replace(/\s/g, "");
+    value = value.replace(/\D/g, "");
     return value.replace(/(.{4})/g, "$1 ").trim();
   }
+
+  function formatFechaVencimiento(value) {
+    if (value != "" && !viewFormTarjeta) {
+      disableAbonar = false;
+    }
+    value = value.replace(/\D/g, ""); // Eliminar todos los caracteres que no sean dígitos
+    return value.replace(/(.{2})/, "$1/"); // Añadir un espacio después de los primeros 3 dígitos
+  }
+
+  function formatCVV(value) {
+    if (value != "" && !viewFormTarjeta) {
+      disableAbonar = false;
+    }
+    value = value.replace(/\D/g, ""); // Eliminar todos los caracteres que no sean dígitos
+    return value; // Añadir un espacio después de los primeros 3 dígitos
+  }
+
   function validateInput(event) {
     const value = event.target.value;
     const regex = /^\d*\.?\d{0,2}$/;
@@ -93,6 +110,7 @@
 
   function toggleSaldoBox() {
     abonarSaldoBoxVisible.update((value) => !value);
+    viewFormTarjeta = false;
   }
 
   let sortedRecargas = [];
@@ -271,6 +289,7 @@
                     event.target.value
                   ))}
                 class="p-2 w-full border border-gainsboro rounded-lg"
+                maxlength="19"
               />
               <div class="flex gap-1">
                 <div class="w-full">
@@ -281,15 +300,21 @@
                     placeholder="MM/YY"
                     name="fechaVencimiento"
                     bind:value={formData.fechaVencimiento}
+                    on:input={(event) =>
+                      (formData.fechaVencimiento = formatFechaVencimiento(
+                        event.target.value
+                      ))}
                     class="p-2 w-full border border-gainsboro rounded-lg"
+                    maxlength="5"
                   />
                 </div>
 
                 <div class="w-full">
                   <p class="text-sm font-normal pb-1 pt-2">CVV</p>
                   <input
-                    type="number"
                     name="cvv"
+                    on:input={(event) =>
+                      (formData.cvv = formatCVV(event.target.value))}
                     bind:value={formData.cvv}
                     class="p-2 w-full border border-gainsboro rounded-lg"
                     maxlength="3"
