@@ -12,7 +12,7 @@
     userLogged,
     ticketList,
   } from "../lib/stores";
-  import { userProfile } from "../lib/stores";
+  import { userProfile, userInformation } from "../lib/stores";
   import { userWallet } from "../lib/stores";
   import { buildInfo } from "../lib/stores";
   import { isAdmin } from "../lib/stores";
@@ -91,6 +91,11 @@
         const profileData = await profileResponse.json();
         console.log("[ ! ] Profile data:", profileData);
         userProfile.set(profileData);
+
+        const userResponse = await fetch("/api/perfil_extenso");
+        const userData = await userResponse.json();
+        console.log("[ ! ] User data:", userData);
+        userInformation.set(userData);
 
         const walletResponse = await fetch("/api/ewallet");
         const walletData = await walletResponse.json();

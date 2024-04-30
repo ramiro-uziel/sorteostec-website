@@ -34,6 +34,7 @@ export const userLogged = writable(false);
 export const dataLoaded = writable(false);
 export const buildInfo = writable(build);
 export const cardList = writable(personalCards);
+export const userInformation = writable({});
 export const ticketList = writable(personalTickets);
 export const purchaseList = writable(personalPurchases);
 export const abonarSaldoBoxVisible = writable(false);

@@ -1,18 +1,20 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
+  import Select from "svelte-select";
   import { userProfile } from "$lib/stores";
-  let viewEdit = false;
+  import { userInformation } from "../../../lib/stores";
+  import { estados_municipios } from "$lib/estados";
   // const updatePersonalInformation = writable(false);
 
+  $: municipios = formData.estado?.municipios || [];
+  let viewEdit = false;
   let formData = {
-    nombre: $userProfile.name,
-    apellidoMaterno: $userProfile.apellidoMaterno,
-    apellidoPaterno: $userProfile.apellidoPaterno,
-    telefono: "",
-    estado: "",
-    ciudad: "",
-    email: "",
-    password: "",
+    nombre: $userInformation.nombre,
+    apellido_m: $userInformation.apellido_m,
+    apellido_p: $userInformation.apellido_p,
+    telefono: $userInformation.telefono,
+    estado: $userInformation.estado,
+    ciudad: $userInformation.ciudad,
   };
 
   function toggleSaldoBox() {
@@ -22,7 +24,7 @@
 
   async function handleUpdate() {
     const opciones = {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -31,6 +33,7 @@
 
     try {
       console.log(opciones);
+      await fetch("/api/registro", opciones);
       toggleSaldoBox();
     } catch (error) {
       console.error("Error en la solicitud:", error);
@@ -129,8 +132,8 @@
           <div class="mb-2">
             <input
               type="text"
-              bind:value={formData.apellidoPaterno}
-              name="apellidoPaterno"
+              bind:value={formData.apellido_p}
+              name="apellido_p"
               class="p-3 w-full border border-gainsboro rounded-lg"
               placeholder="Apellido Paterno"
             />
@@ -138,8 +141,8 @@
           <div class="mb-2">
             <input
               type="text"
-              bind:value={formData.apellidoMaterno}
-              name="apellidoMaterno"
+              bind:value={formData.apellido_m}
+              name="apellido_m"
               class="p-3 w-full border border-gainsboro rounded-lg"
               placeholder="Apellido Materno"
             />
@@ -163,41 +166,55 @@
             />
           </div>
           <div class="mb-2">
-            <input
-              type="text"
+            <Select
+              --height="51px"
+              --border-radius="0.5rem"
+              inputAttributes={{ autocomplete: "off" }}
+              items={estados_municipios}
+              label="nombre"
+              itemId="nombre"
+              placeholder="Estado"
+              class="p-5"
+              on:change={() => (formData.ciudad = null)}
+              bind:value={formData.estado}
+            >
+              <svelte:fragment slot="input-hidden" let:value
+                ><input type="text" class="hidden" />
+                <div
+                  slot="chevron-icon"
+                  class="flex self-center pr-4 pl-2 mb-1"
+                >
+                  <i class="fa-solid fa-caret-down text-[#78848f]"></i>
+                </div>
+              </svelte:fragment></Select
+            >
+          </div>
+
+          <div class="mb-2">
+            <Select
+              --height="51px"
+              --border-radius="0.5rem"
+              inputAttributes={{ autocomplete: "off" }}
+              items={municipios}
+              placeholder="Municipio"
+              class="p-5"
               bind:value={formData.ciudad}
-              name="ciudad"
-              class="p-3 w-full border border-gainsboro rounded-lg"
-              placeholder="Ciudad"
-            />
+            >
+              <div slot="empty" class="p-5 flex justify-center text-gray-400">
+                Elige un estado
+              </div>
+              <svelte:fragment slot="input-hidden" let:value
+                ><input type="text" class="hidden" />
+                <div
+                  slot="chevron-icon"
+                  class="flex self-center pr-4 pl-2 mb-1"
+                >
+                  <i class="fa-solid fa-caret-down text-[#78848f]"></i>
+                </div>
+              </svelte:fragment></Select
+            >
           </div>
-          <div class="mb-2">
-            <input
-              type="email"
-              bind:value={formData.email}
-              name="email"
-              class="p-3 w-full border border-gainsboro rounded-lg"
-              placeholder="Correo electrónico"
-            />
-          </div>
-          <div class="mb-2">
-            <input
-              type="password"
-              bind:value={formData.password}
-              name="password"
-              class="p-3 w-full border border-gainsboro rounded-lg"
-              placeholder="Contraseña"
-            />
-          </div>
-          <div class="mb-2">
-            <input
-              type="password"
-              bind:value={formData.passwordConfirm}
-              name="passwordConfirm"
-              class="p-3 w-full border border-gainsboro rounded-lg"
-              placeholder="Confirmar Contraseña"
-            />
-          </div>
+
           <button
             type="button"
             on:click={handleUpdate}
