@@ -89,17 +89,15 @@
 </script>
 
 <div class="w-full bg-st-blue flex justify-center">
-  <div class="w-[70%]">
+  <div class="w-[100%]">
     {#each sorteos as sorteo}
-      <div class="flex flex-row justify-between">
-        <div class="flex justify-start">
+      <div class="flex flex-row">
+        <div class="flex flex-col p-5 w-[800px]">
           <img
             src={sorteo.logo}
             alt={"Sorteo" + sorteo.name}
-            class="w-[200px] object-contain"
+            class="w-[200px] h-[70px] object-contain"
           />
-        </div>
-        <div class="flex flex-col p-5">
           <h1 class="text-white text-4xl font-semibold">{sorteo.title}</h1>
           <h2 class="text-white text-2xl font-base">{sorteo.tagline}</h2>
           <p class="text-white text-2xl font-base">${sorteo.prize}</p>

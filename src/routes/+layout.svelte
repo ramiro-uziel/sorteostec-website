@@ -160,8 +160,14 @@
       </div>
     </a>
   </div>
-  <div bind:this={headerElement}>
-    <Header {y} />
+  <div
+    bind:this={headerElement}
+    class="w-full"
+    style="min-height: calc(var(--header-height)); "
+  >
+    <div class="fixed w-full z-50">
+      <Header {y} />
+    </div>
   </div>
   <div class="content" style="--headerHeight: {headerHeight}px;">
     <slot />
