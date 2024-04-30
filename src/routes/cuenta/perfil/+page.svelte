@@ -5,9 +5,9 @@
   // const updatePersonalInformation = writable(false);
 
   let formData = {
-    nombre: "",
-    apellidoMaterno: "",
-    apellidoPaterno: "",
+    nombre: $userProfile.nombre,
+    apellidoMaterno: $userProfile.apellidoMaterno,
+    apellidoPaterno: $userProfile.apellidoPaterno,
     telefono: "",
     estado: "",
     ciudad: "",
