@@ -2,10 +2,12 @@
   import { writable } from "svelte/store";
   import { isAdmin } from "$lib/stores";
   import { goto } from "$app/navigation";
+  import { fly } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
 
   let errorMessages = writable({});
 
-  let loginFailed = false;
+  let loginFailed = true;
   let apiFailed = false;
 
   let email;
@@ -22,6 +24,14 @@
       delete currentErrors[field];
       return currentErrors;
     });
+  }
+
+  function disableLoginFailed() {
+    loginFailed = false;
+  }
+
+  function disableApiFailed() {
+    apiFailed = false;
   }
 
   async function handleSubmit(event) {
@@ -127,19 +137,49 @@
 
           {#if loginFailed}
             <div
-              class="flex flex-row gap-2 text-sm bg-red-500 p-2 mt-2 rounded text-white items-center justify-center"
+              transition:fly={{
+                duration: 100,
+                easing: quintOut,
+                y: -10,
+              }}
+              class="flex flex-row mt-2 justify-between gap-2 px-5 text-sm bg-red-600 p-2 rounded text-white items-center"
             >
-              <i class="fa-solid fa-exclamation-circle"></i>
-              El correo o la contraseña son invalidos.
+              <div class="flex flex-row gap-2 items-center">
+                <i class="fa-solid fa-exclamation-circle"></i>
+                <p>El correo o la contraseña son invalidos</p>
+              </div>
+
+              <button
+                type="button"
+                on:click={disableLoginFailed}
+                class="bg-white rounded-full w-5 h-5 flex justify-center items-center"
+              >
+                <i class="fa-solid fa-close text-red-600"></i>
+              </button>
             </div>
           {/if}
 
           {#if apiFailed}
             <div
-              class="flex flex-row gap-2 text-sm bg-orange-600 p-2 mt-2 rounded text-white items-center justify-center"
+              transition:fly={{
+                duration: 100,
+                easing: quintOut,
+                y: -10,
+              }}
+              class="flex flex-row mt-2 justify-between gap-2 px-5 text-sm bg-orange-600 p-2 rounded text-white items-center"
             >
-              <i class="fa-solid fa-warning"></i>
-              Hubo un error con la conexión al servidor.
+              <div class="flex flex-row gap-2 items-center">
+                <i class="fa-solid fa-warning"></i>
+                <p>Hubo un error con la conexión al servidor</p>
+              </div>
+
+              <button
+                type="button"
+                on:click={disableApiFailed}
+                class="bg-white rounded-full w-5 h-5 flex justify-center items-center"
+              >
+                <i class="fa-solid fa-close text-red-600"></i>
+              </button>
             </div>
           {/if}
 
