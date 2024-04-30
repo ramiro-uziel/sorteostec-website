@@ -118,7 +118,7 @@
           <div class="mb-2">
             <input
               type="text"
-              bind:value={formData.nombre}
+              bind:value={formData.name}
               name="nombre"
               class="p-3 w-full border border-gainsboro rounded-lg"
               placeholder="Nombre"
