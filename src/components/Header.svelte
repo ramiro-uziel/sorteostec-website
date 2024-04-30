@@ -226,23 +226,29 @@
               <hr
                 class="h-px mb-1 st-blue border-1 border-dotted border-st-blue"
               />
-              <div class="">
-                <p class="text-xs text-gray-500 px-4 mb-2 font-bold">
-                  Estado de cuenta reciente
-                </p>
-                {#each recentTransactions as transaction}
-                  <div
-                    class="grid grid-cols-2 text-xs border-t border-gray-300 border-dashed py-2"
-                  >
-                    <p class="text-gray-500 px-4">
-                      {formatDate(transaction.fecha)}
-                    </p>
-                    <p class="text-gray-500 text-right px-4">
-                      {formatCurrency(transaction.monto)}
-                    </p>
-                  </div>
-                {/each}
-              </div>
+              {#if recentTransactions.length === 0}
+                <div class="text-gray-400 text-center p-4 w-full">
+                  No hay transacciones recientes.
+                </div>
+              {:else}
+                <div class="">
+                  <p class="text-xs text-gray-500 px-4 mb-2 font-bold">
+                    Estado de cuenta reciente
+                  </p>
+                  {#each recentTransactions as transaction}
+                    <div
+                      class="grid grid-cols-2 text-xs border-t border-gray-300 border-dashed py-2"
+                    >
+                      <p class="text-gray-500 px-4">
+                        {formatDate(transaction.fecha)}
+                      </p>
+                      <p class="text-gray-500 text-right px-4">
+                        {formatCurrency(transaction.monto)}
+                      </p>
+                    </div>
+                  {/each}
+                </div>
+              {/if}
               <DropdownWideItem>
                 <div class=" flex flex-row justify-between gap-2 p-2 px-4">
                   <a
