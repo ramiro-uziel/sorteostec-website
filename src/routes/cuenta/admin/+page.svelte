@@ -51,9 +51,7 @@
         });
 
         if (response.ok) {
-          goto("/").then(() => {
-            location.reload();
-          });
+          setAdminSuccess = true;
         } else {
           setAdminFailed = true;
           console.error("Failed to make user admin:", response.status);
