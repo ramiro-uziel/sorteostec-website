@@ -173,6 +173,12 @@
             >
               <svelte:fragment slot="input-hidden" let:value
                 ><input type="text" class="hidden" />
+                <div
+                  slot="chevron-icon"
+                  class="flex self-center pr-4 pl-2 mb-1"
+                >
+                  <i class="fa-solid fa-caret-down text-[#78848f]"></i>
+                </div>
               </svelte:fragment></Select
             >
           </div>
@@ -198,6 +204,12 @@
               </div>
               <svelte:fragment slot="input-hidden" let:value
                 ><input type="text" class="hidden" />
+                <div
+                  slot="chevron-icon"
+                  class="flex self-center pr-4 pl-2 mb-1"
+                >
+                  <i class="fa-solid fa-caret-down text-[#78848f]"></i>
+                </div>
               </svelte:fragment></Select
             >
           </div>
