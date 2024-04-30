@@ -5,7 +5,7 @@
   // const updatePersonalInformation = writable(false);
 
   let formData = {
-    nombre: $userProfile.nombre,
+    nombre: $userProfile.name,
     apellidoMaterno: $userProfile.apellidoMaterno,
     apellidoPaterno: $userProfile.apellidoPaterno,
     telefono: "",
@@ -120,7 +120,7 @@
           <div class="mb-2">
             <input
               type="text"
-              bind:value={formData.name}
+              bind:value={formData.nombre}
               name="nombre"
               class="p-3 w-full border border-gainsboro rounded-lg"
               placeholder="Nombre"
