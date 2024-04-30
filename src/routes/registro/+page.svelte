@@ -171,6 +171,10 @@
               on:change={() => (ciudad = null)}
               bind:value={estado}
             >
+              <div slot="empty" class="p-5 flex justify-center text-gray-400">
+                No hay opciones
+              </div>
+
               <svelte:fragment slot="input-hidden" let:value
                 ><input type="text" class="hidden" />
                 <div

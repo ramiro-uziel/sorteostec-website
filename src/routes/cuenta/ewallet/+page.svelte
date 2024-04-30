@@ -162,12 +162,6 @@
           <p class="text-sm font-normal mb-3"></p>
 
           <div class="flex flex-row gap-3">
-            <a
-              href="#"
-              class="rounded-lg p-3 px-6 border text-sm text-white bg-st-blue font-normal border-zinc-800 hover:text-st-blue-light duration-100"
-            >
-              Mis premios
-            </a>
             <button
               on:click={toggleSaldoBox}
               class="rounded-lg p-3 px-6 border text-sm text-zinc-800 font-normal border-zinc-800 hover:bg-zinc-800 hover:text-white duration-100"
