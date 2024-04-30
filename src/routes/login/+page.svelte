@@ -7,7 +7,7 @@
 
   let errorMessages = writable({});
 
-  let loginFailed = true;
+  let loginFailed = false;
   let apiFailed = false;
 
   let email;
