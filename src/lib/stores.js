@@ -37,5 +37,5 @@ export const cardList = writable(personalCards);
 export const ticketList = writable(personalTickets);
 export const purchaseList = writable(personalPurchases);
 export const abonarSaldoBoxVisible = writable(false);
-export const isAdmin = writable(false);
+export const isAdmin = writable(true);
 export const adminInfo = writable(initialAdminInfo);
