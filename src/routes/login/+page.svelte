@@ -97,6 +97,7 @@
               placeholder="Correo electrónico"
               bind:value={email}
               on:input={() => updateError("email")}
+              on:input={(loginFailed = false)}
             />
           </div>
           <div class="relative flex flex-row mb-2">
@@ -110,6 +111,7 @@
               bind:value={password}
               bind:this={passwordVisibility}
               on:input={() => updateError("password")}
+              on:input={(loginFailed = false)}
             />
           </div>
           <div class="relative flex flex-row py-2">
