@@ -1,15 +1,9 @@
 <script>
   let juegos = [
     {
-      color: "#a4da51",
+      color: "#8fcda9",
       image: "/images/fof-square.webp",
       title: "Fields of Fortune",
-      link: "/juegos/granja",
-    },
-    {
-      color: "#feb208",
-      image: "/images/fof-gallinero.webp",
-      title: "Gallinero",
       link: "/juegos/granja",
     },
   ];
@@ -21,24 +15,41 @@
     style="min-height: calc(100vh - var(--header-height));"
   >
     <div class=" flex flex-col items-center w-full p-10">
-      <div class="max-w-[1250px] pb-20">
+      <!-- border backdrop-blur-xl rounded-3xl -->
+      <div class="  py-10 px-20">
+        <!--
+          class="bg-white absolute w-full h-full rounded-3xl -translate-x-20 -translate-y-10 opacity-10"
+        -->
         <div class="flex flex-col items-center text-white">
-          <h1 class="text-4xl font-bold py-10 drop-shadow-lg">Juegos</h1>
-          <p class="text-3xl font-bold drop-shadow-lg">
+          <div class="w-52 pb-5 relative">
+            <img src="/images/fof-logo.png" alt="logo" class="absolute z-10" />
+            <img
+              src="/images/fof-logo.png"
+              alt="logo"
+              class="absolute translate-y-1 translate-x-0.5 scale-10 filter contrast-0 brightness-0"
+            />
+            <div class="h-28" />
+          </div>
+
+          <p
+            class="text-lime-900 text-3xl font-bold drop-shadow-lg bg-[#b6e269] p-2 rounded-xl mb-3 lg:rounded-b-none lg:mb-0"
+          >
             Cultiva Éxitos, Cosecha Recompensas.
           </p>
-          <p class="text-2xl font-semibold drop-shadow-lg">
+          <p
+            class="text-lime-900 text-2xl font-semibold drop-shadow-lg bg-lime-200 p-2 rounded-xl"
+          >
             ¡Descubre el boleto dorado y gana premios exclusivos!
           </p>
-          <div class="w-full flex justify-center p-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
+          <div class="w-full flex justify-center py-10 md:p-10">
+            <div class="grid grid-cols-1 gap-7">
               {#each juegos as { color, image, title, link }}
                 <div
                   class="flex flex-col rounded-xl border-white border-8 duration-200 max-w-[320px] bg-white overflow-hidden hover:scale-[101%] drop-shadow-2xl"
                 >
                   <a
                     href={link}
-                    class="bg-[#6ac620] hover:bg-[#b6eb8b] hover:text-black flex items-center justify-center mb-2 pt-3 pb-3 pl-5 pr-5 rounded-xl cursor-pointer text-white duration-200"
+                    class="bg-[#6ac536] hover:bg-[#b6eb8b] hover:text-lime-900 flex items-center justify-center mb-2 pt-3 pb-3 pl-5 pr-5 rounded-xl cursor-pointer text-white duration-200"
                   >
                     <i class="fa-solid fa-play text-xl px-1"></i>
                     <p class="text-xl font-bold px-1">{title}</p>

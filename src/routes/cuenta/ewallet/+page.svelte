@@ -127,10 +127,12 @@
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
   <div class="flex lg:flex-row items-start">
-    <div class="mt-10">
-      <Sidebar />
+    <div class=" mt-10 w-[50px] xl:w-[192px]">
+      <div class="fixed">
+        <Sidebar />
+      </div>
     </div>
-    <div class="w-px bg-gray-300 h-full"></div>
+    <div class="w-px bg-gray-300 h-screen"></div>
   </div>
   <div class="w-full">
     <div class="p-6 mt-3">

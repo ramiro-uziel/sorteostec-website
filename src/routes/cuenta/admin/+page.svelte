@@ -18,66 +18,73 @@
 
 <div class="flex lg:flex-row max-w-7xl mx-auto">
   <div class="flex lg:flex-row items-start">
-    <div class="mt-10">
-      <Sidebar />
+    <div class=" mt-10 w-[50px] xl:w-[192px]">
+      <div class="fixed">
+        <Sidebar />
+      </div>
     </div>
     <div class="w-px bg-gray-300 h-full"></div>
   </div>
   <div class="w-full">
-    <div class="p-6 mt-3">
-      <h1 class="p-3 text-3xl md:text-4xl font-semibold text-st-blue">Admin</h1>
-      <div class="flex flex-col">
-        <div class="p-3 w-full md:w-80">
-          <h2 class="text-xl md:text-2xl font-semibold text-st-blue">
-            Reportes
-          </h2>
+    <div class="w-full">
+      <div class="p-6 mt-3">
+        <h1 class="p-3 text-3xl md:text-4xl font-semibold text-st-blue">
+          Admin
+        </h1>
+        <div class="flex flex-col">
+          <div class="p-3 w-full md:w-80">
+            <h2 class="text-xl md:text-2xl font-semibold text-st-blue">
+              Reportes
+            </h2>
+          </div>
+          <div class="flex flex-col md:flex-row gap-4 p-3">
+            {#each reportes as { title, description, value }}
+              <div
+                class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4"
+              >
+                <h2 class="text-xl font-semibold items-center gap-2">
+                  {title}
+                  <p class="text-sm">{description}</p>
+                </h2>
+                <h2 class="text-4xl font-semibold text-st-blue">{value}</h2>
+              </div>
+            {/each}
+          </div>
         </div>
-        <div class="flex flex-col md:flex-row gap-4 p-3">
-          {#each reportes as { title, description, value }}
-            <div
-              class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4"
-            >
-              <h2 class="text-xl font-semibold items-center gap-2">
-                {title}
-                <p class="text-sm">{description}</p>
-              </h2>
-              <h2 class="text-4xl font-semibold text-st-blue">{value}</h2>
-            </div>
-          {/each}
+        <div class="p-6 w-full">
+          <!-- Looker studio -->
+          <h2 class="text-lg font-medium pb-5 text-st-blue">
+            Dashboard de Looker Studio
+          </h2>
+          <iframe
+            title="Looker Studio"
+            src="https://lookerstudio.google.com/embed/reporting/c53d5250-b042-4ce2-a267-052b075010ac/page/HyeyD"
+            class="w-full h-96 bg-st-blue-light rounded-xl"
+            allowfullscreen
+            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+          ></iframe>
         </div>
       </div>
-      <div class="p-6 w-full">
-        <!-- Looker studio -->
-        <iframe
-          title="Looker Studio"
-          src="https://lookerstudio.google.com/embed/reporting/c53d5250-b042-4ce2-a267-052b075010ac/page/HyeyD"
-          class="w-full h-full border-none"
-          style="aspect-ratio: 16 / 9;"
-          frameborder="0"
-          allowfullscreen
-          sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-        ></iframe>
-      </div>
-    </div>
-    <div class="border-t-2 border-gray-300 w-full my-4"></div>
-    <div class="p-6">
-      <div class="flex flex-col md:flex-row">
-        <div class="p-3 w-full md:w-80">
-          <h2 class="text-xl md:text-2xl font-semibold text-st-blue">
-            Descarga reporte
-          </h2>
-          <p>En formato CSV</p>
-        </div>
-        <div
-          class="bg-transparent border border-gray-300 text-st-blue p-5 rounded-lg flex flex-col md:flex-row gap-4 md:gap-40 items-start w-full md:w-[520px]"
-        >
-          <div class="flex flex-col gap-3 w-full">
-            <a
-              href="#"
-              class="rounded-lg p-3 px-3 border text-sm text-st-blue font-normal border-zinc-400 flex flex-row justify-between hover:bg-st-blue hover:text-white duration-100"
-            >
-              Descarga <i class="fa-solid fa-download"></i>
-            </a>
+      <div class="border-t-2 border-gray-300 w-full my-4"></div>
+      <div class="p-6 mt-3">
+        <div class="flex flex-col">
+          <div class="p-3 w-full md:w-80">
+            <h2 class="text-xl md:text-2xl font-semibold text-st-blue">
+              Reportes
+            </h2>
+          </div>
+          <div class="flex flex-col md:flex-row gap-4 p-3">
+            {#each reportes as { title, description, value }}
+              <div
+                class="bg-st-blue-light text-st-blue p-5 rounded-lg flex flex-col lg:flex-row justify-between gap-4"
+              >
+                <h2 class="text-xl font-semibold items-center gap-2">
+                  {title}
+                  <p class="text-sm">{description}</p>
+                </h2>
+                <h2 class="text-4xl font-semibold text-st-blue">{value}</h2>
+              </div>
+            {/each}
           </div>
         </div>
       </div>
