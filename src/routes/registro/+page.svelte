@@ -1,45 +1,35 @@
 <script>
   import { goto } from "$app/navigation";
   import { estados_municipios } from "$lib/estados";
-  import Svelecte from "svelecte";
+  import Select from "svelte-select";
+
   let nombre;
   let apellidoPaterno;
   let apellidoMaterno;
   let telefono;
-  let estado = [
-    {
-      nombre: "Aguascalientes",
-      municipios: [
-        "Aguascalientes",
-        "Asientos",
-        "Calvillo",
-        "Cosio",
-        "El Llano",
-        "Jesus Maria",
-        "Pabellon de Arteaga",
-        "Rincon de Romos",
-        "San Francisco de los Romo",
-        "San Jose de Gracia",
-        "Tepezala",
-      ],
-    },
-  ];
-  let estadoAnswer;
-  let ciudad;
-  let ciudadAnswer;
+  let estado = null;
+  let ciudad = null;
   let email;
   let password;
   let passwordConfirm;
 
-  let selectedEstado = null;
-  let selectedMunicipio = null;
+  $: municipios = estado?.municipios || [];
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new URLSearchParams();
+    formData.append("nombre", nombre);
+    formData.append("apellidoPaterno", apellidoPaterno);
+    formData.append("apellidoMaterno", apellidoMaterno);
+    formData.append("telefono", telefono);
+    formData.append("estado", estado.nombre);
+    formData.append("ciudad", ciudad.value);
     formData.append("email", email);
     formData.append("password", password);
+    formData.append("passwordConfirm", passwordConfirm);
+    console.log("FormData is:");
+    console.log(formData);
 
     try {
       const response = await fetch("/api/registro", {
@@ -78,7 +68,7 @@
             <input
               type="text"
               name="nombre"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 w-full border placeholder:text-[#78848f] border-[#d8dbdf] hover:border-[#b2b8bf] rounded-lg"
               placeholder="Nombre"
               bind:value={nombre}
             />
@@ -87,7 +77,7 @@
             <input
               type="text"
               name="apellidoPaterno"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 w-full border placeholder:text-[#78848f] border-[#d8dbdf] hover:border-[#b2b8bf] rounded-lg"
               placeholder="Apellido Paterno"
               bind:value={apellidoPaterno}
             />
@@ -96,7 +86,7 @@
             <input
               type="text"
               name="apellidoMaterno"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 w-full border placeholder:text-[#78848f] border-[#d8dbdf] hover:border-[#b2b8bf] rounded-lg"
               placeholder="Apellido Materno"
               bind:value={apellidoMaterno}
             />
@@ -105,53 +95,63 @@
             <input
               type="tel"
               name="telefono"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 w-full border placeholder:text-[#78848f] border-[#d8dbdf] hover:border-[#b2b8bf] rounded-lg"
               placeholder="Teléfono"
               bind:value={telefono}
             />
           </div>
           <div class="mb-2">
-            <select
-              class="p-3 w-full border border-gainsboro rounded-lg"
-              bind:value={selectedEstado}
-              on:change={() => (selectedMunicipio = null)}
+            <Select
+              --height="51px"
+              --border-radius="0.5rem"
+              inputAttributes={{ autocomplete: "off" }}
+              items={estados_municipios}
+              label="nombre"
+              itemId="nombre"
+              placeholder="Estado"
+              class="p-5"
+              bind:value={estado}
+              on:change={() => (ciudad = null)}
             >
-              <option value={null} disabled>Estado</option>
-              {#each estados_municipios as estado}
-                <option value={estado}> {estado.nombre} </option>
-              {/each}
-            </select>
+              <svelte:fragment slot="input-hidden" let:value
+                ><input type="text" class="hidden" />
+              </svelte:fragment></Select
+            >
+          </div>
 
-            {#if selectedEstado}
-              <div class="mb-2">
-                <select
-                  class="p-3 w-full border border-gainsboro rounded-lg"
-                  bind:value={selectedMunicipio}
-                >
-                  <option value={null} disabled>Ciudad</option>
-                  {#each selectedEstado.municipios as municipio}c
-                    <option value={municipio}>
-                      {municipio}
-                    </option>
-                  {/each}
-                </select>
+          <div class="mb-2">
+            <Select
+              --height="51px"
+              --border-radius="0.5rem"
+              inputAttributes={{ autocomplete: "off" }}
+              items={municipios}
+              placeholder="Municipio"
+              class="p-5"
+              bind:value={ciudad}
+            >
+              <div slot="empty" class="p-5 flex justify-center text-gray-400">
+                Elige un estado
               </div>
-            {/if}
+              <svelte:fragment slot="input-hidden" let:value
+                ><input type="text" class="hidden" />
+              </svelte:fragment></Select
+            >
           </div>
           <div class="mb-2">
             <input
-              type="email"
+              type="text"
               name="email"
-              class="p-3 w-full border border-gainsboro rounded-lg"
-              placeholder="Correo electrónico"
+              class="p-3 w-full border placeholder:text-[#78848f] border-[#d8dbdf] hover:border-[#b2b8bf] rounded-lg"
+              placeholder="Correo"
               bind:value={email}
             />
           </div>
+
           <div class="mb-2">
             <input
               type="password"
               name="password"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 w-full border placeholder:text-[#78848f] border-[#d8dbdf] hover:border-[#b2b8bf] rounded-lg"
               placeholder="Contraseña"
               bind:value={password}
             />
@@ -160,14 +160,14 @@
             <input
               type="password"
               name="passwordConfirm"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 w-full border placeholder:text-[#78848f] border-[#d8dbdf] hover:border-[#b2b8bf] rounded-lg"
               placeholder="Confirmar Contraseña"
               bind:value={passwordConfirm}
             />
           </div>
           <button
             type="submit"
-            class="w-full bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
+            class="w-full mt-6 bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
           >
             Confirmar
           </button>
