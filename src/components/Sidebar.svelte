@@ -15,11 +15,13 @@
   const setAdmin = () => {
     if ($isAdmin) {
       console.log("[!] Pushed admin to Sidebar");
+      /*
       tabs.push({
         name: "Admin",
         icon: "fa-solid fa-lock",
         link: "/cuenta/admin",
       });
+      */
     }
   };
 
@@ -39,6 +41,18 @@
       <p class="hidden xl:block text-sm">{tab.name}</p>
     </a>
   {/each}
+  {#if $isAdmin}
+    <a
+      href="/cuenta/admin"
+      class="flex flex-row items-center gap-4 rounded-tl-md rounded-bl-md border border-transparent text-st-blue p-4 hover:shadow-md hover:border-st-blue duration-200 hover-indicator {$page
+        .url.pathname === '/cuenta/admin'
+        ? 'active border-r-st-blue'
+        : ''}"
+    >
+      <i class="fa-solid fa-lock"></i>
+      <p class="hidden xl:block text-sm">Admin</p>
+    </a>
+  {/if}
 </div>
 
 <style>
