@@ -23,6 +23,8 @@
   }
 
   async function handleUpdate() {
+    formData.ciudad = formData.ciudad.label;
+    formData.estado = formData.estado.nombre;
     const opciones = {
       method: "PUT",
       headers: {
