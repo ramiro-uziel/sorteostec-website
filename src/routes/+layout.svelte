@@ -19,43 +19,28 @@
   import { adminInfo } from "../lib/stores";
 
   let headerHeight = 0;
-  let y = 0;
+  let y;
   let headerElement;
 
   function updateHeaderHeight() {
     headerHeight = headerElement.clientHeight;
   }
 
-  async function logUserProfile() {
-    const unsubscribe = userProfile.subscribe((items) => {
-      console.log("[ ! ] Store items:", items);
-      unsubscribe();
-    });
-  }
-
-  async function logUserLogged() {
-    const unsubscribe = userLogged.subscribe((items) => {
-      console.log("[ ! ] Store items:", items);
-      unsubscribe();
-    });
-  }
-
   async function updateBuildInfo() {
     try {
       const response = await fetch("/build-id.json");
       const data = await response.json();
-      const date = new Date(data.buildId);
-      const formattedDate = date.toLocaleString("es-MX", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
+      buildInfo.set({
+        buildID: new Date(data.buildId).toLocaleString("es-MX", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true,
+        }),
       });
-
-      buildInfo.set({ buildID: formattedDate });
     } catch (error) {
       console.error("[ ! ] Error fetching build info:", error);
     }
@@ -63,63 +48,58 @@
 
   async function fetchData() {
     console.log("[ ! ] Starting data fetch...");
-
     try {
-      const loggedResponse = await fetch("/api/logged");
-      const loggedText = await loggedResponse.text();
-      const loggedData = loggedText.toLowerCase() === "true";
-      console.log("[ ! ] Logged data:", loggedData);
+      const [
+        loggedResp,
+        adminResp,
+        profileResp,
+        userResp,
+        walletResp,
+        cardsResp,
+        purchasesResp,
+        ticketsResp,
+      ] = await Promise.all([
+        fetch("/api/logged"),
+        fetch("/api/is_admin"),
+        fetch("/api/perfil"),
+        fetch("/api/perfil_extenso"),
+        fetch("/api/ewallet"),
+        fetch("/api/tarjetas"),
+        fetch("/api/compras"),
+        fetch("/api/boletos"),
+      ]);
+
+      const loggedData = (await loggedResp.text()).toLowerCase() === "true";
       userLogged.set(loggedData);
+      console.log("[ ! ] Logged data:", loggedData);
 
       if (loggedData) {
-        console.log("[ ! ] User is logged in");
-
-        const isAdminResponse = await fetch("/api/is_admin");
-        const isAdminText = await isAdminResponse.text();
-        const isAdminData = isAdminText.toLowerCase() === "true";
-        console.log("[ ! ] User admin status:", isAdminData);
+        const isAdminData = (await adminResp.text()).toLowerCase() === "true";
         isAdmin.set(isAdminData);
+        console.log("[ ! ] User admin status:", isAdminData);
 
         if (isAdminData) {
-          const reportesResponse = await fetch("/api/admin/reportes");
-          const reportesData = await reportesResponse.json();
-          console.log("[ ! ] Admin data:", reportesData);
-          adminInfo.set(reportesData);
+          const adminData = await adminResp.json();
+          adminInfo.set(adminData);
         }
 
-        const profileResponse = await fetch("/api/perfil");
-        const profileData = await profileResponse.json();
-        console.log("[ ! ] Profile data:", profileData);
+        const profileData = await profileResp.json();
         userProfile.set(profileData);
 
-        const userResponse = await fetch("/api/perfil_extenso");
-        const userData = await userResponse.json();
-        console.log("[ ! ] User data:", userData);
+        const userData = await userResp.json();
         userInformation.set(userData);
 
-        const walletResponse = await fetch("/api/ewallet");
-        const walletData = await walletResponse.json();
-        console.log("[ ! ] Wallet data:", walletData);
+        const walletData = await walletResp.json();
         userWallet.set(walletData);
 
-        const cardsResponse = await fetch("/api/tarjetas");
-        const cardsData = await cardsResponse.json();
-        console.log("actualiza");
-        console.log("[ ! ] Cards data:", cardsData.tarjetas);
+        const cardsData = await cardsResp.json();
         cardList.set(cardsData);
 
-        const purchaseResponse = await fetch("/api/compras");
-        const purchaseData = await purchaseResponse.json();
-        console.log("actualiza");
-        console.log("[ ! ] Compras data:", purchaseData.compras);
+        const purchaseData = await purchasesResp.json();
         purchaseList.set(purchaseData);
 
-        const ticketsResponse = await fetch("/api/boletos");
-        const ticketsData = await ticketsResponse.json();
-        console.log("actualiza");
-        console.log("[ ! ] Boletos data:", ticketsData);
+        const ticketsData = await ticketsResp.json();
         ticketList.set(ticketsData);
-        // userWallet.set(walletData);
 
         dataLoaded.set(true);
       } else {

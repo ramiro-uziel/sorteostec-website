@@ -2,11 +2,6 @@
   import { page } from "$app/stores";
   import { isAdmin } from "$lib/stores";
 
-  let isUserAdmin;
-  isAdmin.subscribe((data) => {
-    isUserAdmin = data;
-  });
-
   let tabs = [
     { name: "Mi Perfil", icon: "fa-solid fa-user", link: "/cuenta/perfil" },
     { name: "E-wallet", icon: "fa-solid fa-wallet", link: "/cuenta/ewallet" },
@@ -17,13 +12,18 @@
     },
   ];
 
-  if (isUserAdmin) {
-    tabs.push({
-      name: "Admin",
-      icon: "fa-solid fa-lock",
-      link: "/cuenta/admin",
-    });
-  }
+  const setAdmin = () => {
+    if ($isAdmin) {
+      console.log("[!] Pushed admin to Sidebar");
+      tabs.push({
+        name: "Admin",
+        icon: "fa-solid fa-lock",
+        link: "/cuenta/admin",
+      });
+    }
+  };
+
+  $: $isAdmin, setAdmin();
 </script>
 
 <div class="text-sm flex flex-col gap-2 w-auto xl:w-48">
