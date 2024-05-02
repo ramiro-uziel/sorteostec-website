@@ -17,7 +17,7 @@
     ciudad: $userInformation.ciudad,
   };
 
-  function toggleSaldoBox() {
+  function toggleViewEditBox() {
     viewEdit = !viewEdit;
     // updatePersonalInformation.update((value) => !value);
   }
@@ -41,7 +41,7 @@
       console.log("[ ! ] Profile data:", profileData);
       userProfile.set(profileData);
 
-      toggleSaldoBox();
+      toggleViewEditBox();
     } catch (error) {
       console.error("Error en la solicitud:", error);
     }
@@ -83,7 +83,7 @@
             <p class="text-sm font-normal">{$userProfile.city}</p>
           </div>
           <button
-            on:click={toggleSaldoBox}
+            on:click={toggleViewEditBox}
             class="rounded-lg p-3 px-6 border text-sm text-zinc-800 font-normal border-zinc-800 hover:bg-zinc-800 hover:text-white duration-100 self-start"
           >
             Editar
@@ -92,28 +92,6 @@
       </div>
     </div>
     <div class="border-t-2 border-gray-300 w-full my-4"></div>
-    <div class="p-6">
-      <div class="flex flex-col md:flex-row">
-        <div class="p-3 w-full md:w-80">
-          <h2 class="text-xl md:text-2xl font-semibold text-st-blue">
-            Datos adicionales
-          </h2>
-        </div>
-        <div
-          class="bg-transparent border border-gray-300 text-st-blue p-5 rounded-lg flex flex-col md:flex-row gap-4 md:gap-40 items-start w-full md:w-[520px]"
-        >
-          <div class="flex flex-col gap-3 w-full">
-            <p class="text-sm font-normal">¿Eres parte de la comunidad TEC?</p>
-            <a
-              href="#"
-              class="rounded-lg p-3 px-3 border text-sm text-st-blue font-normal border-zinc-400"
-            >
-              Editar
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div
       class={`fixed inset-0 flex items-center justify-center z-50 ${!viewEdit ? "hidden" : ""}`}
@@ -121,7 +99,7 @@
       <div class="fixed inset-0 bg-black opacity-50"></div>
       <div class="relative bg-white rounded-lg p-8 sm:w-[500px] xs:w-[250px]">
         <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
-          <button on:click={toggleSaldoBox}>
+          <button on:click={toggleViewEditBox}>
             <i class="fa fa-angle-left" aria-hidden="true"></i>
           </button>
         </div>
