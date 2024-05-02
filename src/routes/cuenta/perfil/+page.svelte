@@ -34,6 +34,11 @@
     try {
       console.log(opciones);
       await fetch("/api/registro", opciones);
+      const profileResponse = await fetch("/api/perfil");
+      const profileData = await profileResponse.json();
+      console.log("[ ! ] Profile data:", profileData);
+      userProfile.set(profileData);
+
       toggleSaldoBox();
     } catch (error) {
       console.error("Error en la solicitud:", error);
@@ -156,15 +161,7 @@
               placeholder="Teléfono"
             />
           </div>
-          <div class="mb-2">
-            <input
-              type="text"
-              bind:value={formData.estado}
-              name="estado"
-              class="p-3 w-full border border-gainsboro rounded-lg"
-              placeholder="Estado"
-            />
-          </div>
+
           <div class="mb-2">
             <Select
               --height="51px"
