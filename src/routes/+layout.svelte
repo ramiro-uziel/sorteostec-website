@@ -19,7 +19,7 @@
   import { adminInfo } from "../lib/stores";
 
   let headerHeight = 0;
-  let y;
+  let y = 0;
   let headerElement;
 
   function updateHeaderHeight() {
