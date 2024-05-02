@@ -49,16 +49,7 @@
   async function fetchData() {
     console.log("[ ! ] Starting data fetch...");
     try {
-      const [
-        loggedResp,
-        adminResp,
-        profileResp,
-        userResp,
-        walletResp,
-        cardsResp,
-        purchasesResp,
-        ticketsResp,
-      ] = await Promise.all([
+      const responses = await Promise.all([
         fetch("/api/logged"),
         fetch("/api/is_admin"),
         fetch("/api/perfil"),
@@ -69,39 +60,41 @@
         fetch("/api/boletos"),
       ]);
 
-      const loggedData = (await loggedResp.text()).toLowerCase() === "true";
+      const loggedData = (await responses[0].text()).toLowerCase() === "true";
       userLogged.set(loggedData);
       console.log("[ ! ] Logged data:", loggedData);
 
       if (loggedData) {
-        const isAdminData = (await adminResp.text()).toLowerCase() === "true";
+        const isAdminData =
+          (await responses[1].text()).toLowerCase() === "true";
         isAdmin.set(isAdminData);
         console.log("[ ! ] User admin status:", isAdminData);
 
-        if (isAdminData) {
-          const adminData = await adminResp.json();
-          adminInfo.set(adminData);
-        }
-
-        const profileData = await profileResp.json();
+        const profileData = await responses[2].json();
         userProfile.set(profileData);
 
-        const userData = await userResp.json();
+        const userData = await responses[3].json();
         userInformation.set(userData);
 
-        const walletData = await walletResp.json();
+        const walletData = await responses[4].json();
         userWallet.set(walletData);
 
-        const cardsData = await cardsResp.json();
+        const cardsData = await responses[5].json();
         cardList.set(cardsData);
 
-        const purchaseData = await purchasesResp.json();
+        const purchaseData = await responses[6].json();
         purchaseList.set(purchaseData);
 
-        const ticketsData = await ticketsResp.json();
+        const ticketsData = await responses[7].json();
         ticketList.set(ticketsData);
 
         dataLoaded.set(true);
+
+        if (isAdminData) {
+          const adminInfoResponse = await fetch("/api/admin/reportes");
+          const adminInfoData = await adminInfoResponse.json();
+          adminInfo.set(adminInfoData);
+        }
       } else {
         console.log("[ ! ] User is not logged in");
       }
