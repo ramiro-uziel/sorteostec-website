@@ -15,13 +15,13 @@
     class="gameBackground flex justify-center items-center"
     style="min-height: calc(100vh - var(--header-height));"
   >
-    <div class=" flex flex-col items-center w-full p-10">
+    <div class="flex flex-col items-center w-full p-10">
       <!-- border backdrop-blur-xl rounded-3xl -->
       <div class="  py-10 px-20">
         <!--
           class="bg-white absolute w-full h-full rounded-3xl -translate-x-20 -translate-y-10 opacity-10"
         -->
-        <div class="flex flex-col items-center text-white">
+        <div class="flex flex-col items-center text-white z-0">
           <div class="w-52 pb-5 relative">
             <img src="/images/fof-logo.png" alt="logo" class="absolute z-10" />
             <img
@@ -49,7 +49,7 @@
               Registrate o inicia seción para jugar
             </p>
           {/if}
-          <div class="w-full flex justify-center py-10 md:p-10">
+          <div class="w-full flex justify-center py-5">
             <div class="grid grid-cols-1 gap-7">
               {#each juegos as { image, title, link }}
                 <div
