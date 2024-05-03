@@ -125,15 +125,13 @@
   bind:this={headerElement}
   class="sticky top-0 z-10 px-6 flex py-5 bg-st-blue"
 >
-  <div
-    class="flex flex-row w-full items-center justify-between max-w-[1500px] mx-auto"
-  >
+  <div class="flex flex-row w-full items-center max-w-[1500px] mx-auto">
     <div class="flex flex-row gap-4 justify-start">
-      <button on:click={toggleSidebar} class="relative mdsm:hidden">
+      <button on:click={toggleSidebar} class="relative md:hidden">
         <i class="fa-solid fa-bars text-white text-2xl"></i>
       </button>
       <div
-        class={`fixed px-4 inset-y-0 left-0 transform ${sidebarVisible ? "translate-x-0" : "-translate-x-full"} w-72 bg-st-blue    text-white z-10 transition-transform  duration-200 ease-in-out mdsm:hidden`}
+        class={`fixed px-4 inset-y-0 left-0 transform ${sidebarVisible ? "translate-x-0" : "-translate-x-full"} w-72 bg-st-blue    text-white z-10 transition-transform  duration-200 ease-in-out md:hidden`}
       >
         {#if sidebarVisible}
           <div class="flex flex-row gap-4 p-4">
@@ -154,17 +152,16 @@
           </div>
         {/if}
       </div>
-
       <a href="/" class="flex">
         <img
           alt="logotipo"
           src="/images/Principal-Blanco.png"
-          class="w-[150px] h-[33px] hidden sm:flex"
+          class="w-[150px] h-[33px] hidden md:flex"
         />
         <img
           alt="logotipo"
           src="/images/Principal-Blanco-Logo.png"
-          class="h-[33px] flex sm:hidden"
+          class="h-[33px] flex md:hidden"
         />
       </a>
     </div>
@@ -172,7 +169,7 @@
       class="flex flex-column gap-2 xl:gap-42 justify-center items-center mx-auto"
     >
       <div
-        class="hidden gap-0 pl-5 justify-center items-center mx-auto mdsm:flex"
+        class="hidden gap-0 pl-5 justify-center items-center mx-auto md:flex"
       >
         {#each tabs as tab}
           <a
@@ -187,7 +184,7 @@
       </div>
     </div>
 
-    <div class="flex flex-row items-center xl:flex-1 justify-end">
+    <div class="flex flex-row items-center flex-1 justify-end">
       {#if !$userLogged}
         <div class="flex flex-row mdsm:pr-6">
           <a
