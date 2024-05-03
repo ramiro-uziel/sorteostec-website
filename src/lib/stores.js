@@ -24,6 +24,15 @@ const initialAdminInfo = {
   registros: 0,
 };
 
+let initialUserInformation = {
+  nombre: "",
+  apellido_m: "",
+  apellido_p: "",
+  telefono: "",
+  estado: null,
+  ciudad: null,
+};
+
 const build = {
   buildID: "",
 };
@@ -40,7 +49,7 @@ export const userProfile = writable(initialProfile);
 // e-wallet
 export const userWallet = writable(initialWallet);
 export const cardList = writable(personalCards);
-export const userInformation = writable({});
+export const userInformation = writable(initialUserInformation);
 export const ticketList = writable(personalTickets);
 export const purchaseList = writable(personalPurchases);
 export const abonarSaldoBoxVisible = writable(false);

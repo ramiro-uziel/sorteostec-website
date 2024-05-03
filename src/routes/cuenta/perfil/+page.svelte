@@ -14,11 +14,13 @@
     apellido_m: "",
     apellido_p: "",
     telefono: "",
-    estado: "",
-    ciudad: "",
+    estado: null,
+    ciudad: null,
   };
 
-  $: {
+  $: $userInformation, updateFormFromFetch();
+
+  function updateFormFromFetch() {
     formData = {
       nombre: $userInformation.nombre,
       apellido_m: $userInformation.apellido_m,
@@ -28,7 +30,6 @@
       ciudad: $userInformation.ciudad,
     };
   }
-
   $: municipios = formData.estado?.municipios || [];
 
   function toggleViewEditBox() {
