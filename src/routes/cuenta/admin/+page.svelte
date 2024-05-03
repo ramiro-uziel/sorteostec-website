@@ -17,7 +17,11 @@
   let reportes = [
     { title: "Compras", description: "mes", value: apiReportes.ecompras },
     { title: "Usuarios", description: "totales", value: apiReportes.usuarios },
-    { title: "Registros", description: "totales", value: apiReportes.ecompras },
+    {
+      title: "Registros",
+      description: "totales",
+      value: apiReportes.registros,
+    },
   ];
 
   let adminsData = null;
