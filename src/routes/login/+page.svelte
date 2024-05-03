@@ -125,7 +125,9 @@
             />
           </div>
           <div class="relative flex flex-row py-2">
-            <label class="text-sm pl-2 text-gray-400 cursor-pointer">
+            <label
+              class="text-sm pl-2 text-gray-400 cursor-pointer select-none"
+            >
               Mostrar contraseña
               <input
                 type="checkbox"

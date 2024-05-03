@@ -12,6 +12,7 @@
       premios: [
         {
           nombre: "Primer Premio",
+          follows_index: true,
           valor_descripcion: "Kit de productos Apple",
           valor: "230,000",
           descripcion:
@@ -20,6 +21,7 @@
         },
         {
           nombre: "Segundo Premio",
+          follows_index: true,
           valor_descripcion: "iPad Pro",
           valor: "30,000",
           descripcion:
@@ -28,6 +30,7 @@
         },
         {
           nombre: "Premios 3º al 5º",
+          follows_index: false,
           valor_descripcion: "Apple Watch Series 9",
           valor: "20,000",
           descripcion:
@@ -49,6 +52,7 @@
       premios: [
         {
           nombre: "Primer premio",
+          follows_index: true,
           valor_descripcion: "Viaje alrededor del mundo",
           valor: "1,200,000",
           descripcion:
@@ -57,6 +61,7 @@
         },
         {
           nombre: "Segundo premio",
+          follows_index: true,
           valor_descripcion: "Cheque de caja bancario",
           valor: "300,000",
           descripcion:
@@ -65,6 +70,7 @@
         },
         {
           nombre: "Tercer premio",
+          follows_index: true,
           valor_descripcion: "Cheque de caja bancario",
           valor: "180,000",
           descripcion:
@@ -85,6 +91,7 @@
       premios: [
         {
           nombre: "Primer premio",
+          follows_index: true,
           valor_descripcion: "Cheque de caja bancario",
           valor: "15,000,000",
           descripcion: "Cheque con valor total de: $100,000 c/u",
@@ -92,6 +99,7 @@
         },
         {
           nombre: "2° al 7º Premio",
+          follows_index: false,
           valor_descripcion: "Cheque de caja bancario",
           valor: "1,000,000 c/u",
           descripcion:
@@ -100,6 +108,7 @@
         },
         {
           nombre: "8° al 17° Premio",
+          follows_index: false,
           valor_descripcion: "Cheque de caja bancario",
           valor: "100,000 c/u",
           descripcion: "Cheque con valor total de: $100,000 c/u",
@@ -111,12 +120,12 @@
 </script>
 
 <div class="w-full flex justify-center bg-white">
-  <div class=" w-[90%] lg:w-[60%]">
+  <div class=" w-[90%] lg:max-w-[1000px]">
     <div class="p-5 mt-10">
       <h1 class="text-st-blue font-bold text-5xl pb-2">Sorteos</h1>
       <p class="text-slate-900 font-semibold text-2xl pb-2">
         ¡Juega <span class="text-lime-600 font-extrabold"
-          >Fields of Fortune.</span
+          >Fields of Fortune</span
         > y gana tu boleto al éxito!
       </p>
     </div>
@@ -150,17 +159,26 @@
             {#each sorteo.premios as premio, index}
               <div class="flex flex-col items-start p-2 gap-5">
                 <div class="flex flex-col p-2">
-                  <h1 class="text-2xl sm:text-3xl font-semibold">
-                    {premio.nombre}
-                  </h1>
+                  <div class="flex flex-row items-center pb-5 gap-2">
+                    {#if premio.follows_index}
+                      <span
+                        class="rounded-full p-0.5 w-7 justify-center items-center flex text-white"
+                        style="background-color: {sorteo.color}"
+                        >{index + 1}°</span
+                      >
+                    {/if}
+                    <h1 class="text-2xl font-semibold">
+                      {premio.nombre}
+                    </h1>
+                  </div>
                   <h2 class="text-lg sm:text-xl font-base">
                     {premio.valor_descripcion}
                   </h2>
-                  <p class=" text-lg sm:text-2xl font-bold">
+                  <p class=" text-2xl sm:text-4xl font-bold">
                     ${premio.valor}
                   </p>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-5">
+                <div class="flex flex-col md:flex-row gap-5">
                   <div class="p-2">
                     <img
                       class="rounded-xl aspect-auto max-w-72"
@@ -168,7 +186,7 @@
                       alt="Imagen del Premio"
                     />
                   </div>
-                  <p class="p-2 text-xl">
+                  <p class="p-2 text-justify text-md sm:text-xl">
                     {premio.descripcion}
                   </p>
                 </div>
