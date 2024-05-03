@@ -38,7 +38,7 @@
             Cultiva Éxitos, Cosecha Recompensas.
           </p>
           <p
-            class="text-lime-900 text-2xl font-semibold drop-shadow-lg bg-lime-200 p-2 rounded-xl"
+            class="text-lime-900 text-2xl font-semibold drop-shadow-lg bg-lime-200 p-2.5 rounded-xl"
           >
             ¡Descubre el boleto dorado y gana premios exclusivos!
           </p>
