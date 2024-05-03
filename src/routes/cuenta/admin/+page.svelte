@@ -9,7 +9,7 @@
 
   $: $isAdmin, getUsers();
 
-  let reportes = [
+  $: reportes = [
     { title: "Compras", description: "mes", value: $adminInfo.ecompras },
     { title: "Usuarios", description: "totales", value: $adminInfo.usuarios },
     {
