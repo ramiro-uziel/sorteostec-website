@@ -125,7 +125,7 @@
             <iframe
               title="Looker Studio"
               src="https://lookerstudio.google.com/embed/reporting/c53d5250-b042-4ce2-a267-052b075010ac/page/HyeyD"
-              class="w-full h-96 bg-st-blue-light rounded-xl"
+              class="w-full h-[800px] bg-st-blue-light rounded-xl"
               allowfullscreen
               sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
             ></iframe>
