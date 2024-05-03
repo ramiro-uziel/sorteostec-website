@@ -7,20 +7,15 @@
 
   import Sidebar from "/src/components/Sidebar.svelte";
 
-  let apiReportes;
-  adminInfo.subscribe((data) => {
-    apiReportes = data;
-  });
-
   $: $isAdmin, getUsers();
 
   let reportes = [
-    { title: "Compras", description: "mes", value: apiReportes.ecompras },
-    { title: "Usuarios", description: "totales", value: apiReportes.usuarios },
+    { title: "Compras", description: "mes", value: $adminInfo.ecompras },
+    { title: "Usuarios", description: "totales", value: $adminInfo.usuarios },
     {
       title: "Registros",
       description: "totales",
-      value: apiReportes.registros,
+      value: $adminInfo.registros,
     },
   ];
 
