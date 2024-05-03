@@ -22,7 +22,7 @@
   }
 
   let tabs = [
-    { name: "Sorteos", link: "#" },
+    { name: "Sorteos", link: "/sorteos" },
     { name: "Nuestra Causa", link: "/causa" },
     { name: "Juegos", link: "/juegos" },
   ];

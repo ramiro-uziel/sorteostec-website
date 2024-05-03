@@ -14,14 +14,7 @@
 
   const setAdmin = () => {
     if ($isAdmin) {
-      console.log("[!] Pushed admin to Sidebar");
-      /*
-      tabs.push({
-        name: "Admin",
-        icon: "fa-solid fa-lock",
-        link: "/cuenta/admin",
-      });
-      */
+      console.log("[!] Enabled admin tab in Sidebar");
     }
   };
 
