@@ -3,6 +3,7 @@
   import Carousel from "./Carousel.svelte";
 
   let boletos = [
+    /*
     {
       color: "#7c44b7",
       logo: "/images/logo-misueno.png",
@@ -10,17 +11,11 @@
       tagline: "Gana al mes, por 15 años:",
       prize: "188,888",
       cost: "700",
-      link: "/",
+      link: "/sorteos",
     },
-    {
-      color: "#ef7f06",
-      logo: "/images/logo-educativo.png",
-      title: "¡Gana dos veces, gana al instante!",
-      tagline: "Primer premio con valor total de:",
-      prize: "15,000,000",
-      cost: "350",
-      link: "/",
-    },
+    */
+
+    /*
     {
       color: "#0097dd",
       logo: "/images/logo-tradicional.png",
@@ -28,16 +23,17 @@
       tagline: "Primer premio con valor total de:",
       prize: "71,900,000",
       cost: "1,250",
-      link: "/",
+      link: "/sorteos",
     },
+    */
     {
-      color: "#24113b",
+      color: "#0097dd",
       logo: "/images/logo-ganaya.png",
       title: "¡Un sorteo a otro nivel!",
       tagline: "Primer premio con valor total de:",
       prize: "230,000",
       cost: "100",
-      link: "/",
+      link: "/sorteos",
     },
     {
       color: "#aa085b",
@@ -46,8 +42,18 @@
       tagline: "Primer premio con valor total de: ",
       prize: "1,200,000",
       cost: "200",
-      link: "/",
+      link: "/sorteos",
     },
+    {
+      color: "#ef7f06",
+      logo: "/images/logo-educativo.png",
+      title: "¡Gana dos veces, gana al instante!",
+      tagline: "Primer premio con valor total de:",
+      prize: "15,000,000",
+      cost: "350",
+      link: "/sorteos",
+    },
+    /*
     {
       color: "#04afa1",
       logo: "/images/logo-dinerodeporvida.png",
@@ -57,6 +63,7 @@
       cost: "470",
       link: "/",
     },
+    */
   ];
 </script>
 
@@ -76,7 +83,7 @@
       </div>
       <div class="flex justify-center p-10 w-full">
         <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:lg:grid-cols-4 gap-7"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:lg:grid-cols-3 gap-7"
         >
           {#each boletos as { color, logo, title, tagline, prize, cost, link }}
             <Boleto bgColor={color}>

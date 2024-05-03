@@ -2,7 +2,7 @@
   let sorteos = [
     {
       name: "Gana Ya",
-      color: "#24113b",
+      color: "#0097dd",
       logo: "/images/logo-ganaya.png",
       title: "¡Un sorteo a otro nivel!",
       tagline: "Primer premio con valor total de:",
