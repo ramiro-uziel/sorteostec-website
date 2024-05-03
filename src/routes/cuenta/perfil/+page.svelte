@@ -5,10 +5,10 @@
   import { userProfile, userInformation } from "$lib/stores";
   import { estados_municipios } from "$lib/estados";
 
+  let viewEdit = false;
+
   let errorMessages = writable({});
 
-  $: municipios = formData.estado?.municipios || [];
-  let viewEdit = false;
   let formData = {
     nombre: $userInformation.nombre,
     apellido_m: $userInformation.apellido_m,
@@ -17,6 +17,8 @@
     estado: $userInformation.estado,
     ciudad: $userInformation.ciudad,
   };
+
+  $: municipios = formData.estado?.municipios || [];
 
   function toggleViewEditBox() {
     viewEdit = !viewEdit;

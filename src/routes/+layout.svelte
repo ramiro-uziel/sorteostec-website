@@ -50,13 +50,21 @@
     console.log("[ ! ] Starting data fetch...");
     try {
       const responses = await Promise.all([
+        //0
         fetch("/api/logged"),
+        //1
         fetch("/api/is_admin"),
+        //2
         fetch("/api/perfil"),
+        //3
         fetch("/api/perfil_extenso"),
+        //4
         fetch("/api/ewallet"),
+        //5
         fetch("/api/tarjetas"),
+        //6
         fetch("/api/compras"),
+        //7
         fetch("/api/boletos"),
       ]);
 
@@ -75,6 +83,7 @@
 
         const userData = await responses[3].json();
         userInformation.set(userData);
+        console.log("[ ! ] User information:", userData);
 
         const walletData = await responses[4].json();
         userWallet.set(walletData);
