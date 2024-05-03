@@ -46,7 +46,7 @@
             <p
               class="text-st-blue text-2xl font-bold drop-shadow-lg bg-st-blue-light p-2 mt-3 rounded-xl"
             >
-              Registrate o inicia seción para jugar
+              Registrate o inicia sesión para jugar
             </p>
           {/if}
           <div class="w-full flex justify-center py-5">
