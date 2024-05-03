@@ -33,16 +33,16 @@
     if (value != "" && !viewFormTarjeta) {
       disableAbonar = false;
     }
-    value = value.replace(/\D/g, ""); // Eliminar todos los caracteres que no sean dígitos
-    return value.replace(/(.{2})/, "$1/"); // Añadir un espacio después de los primeros 3 dígitos
+    value = value.replace(/\D/g, "");
+    return value.replace(/(.{2})/, "$1/");
   }
 
   function formatCVV(value) {
     if (value != "" && !viewFormTarjeta) {
       disableAbonar = false;
     }
-    value = value.replace(/\D/g, ""); // Eliminar todos los caracteres que no sean dígitos
-    return value; // Añadir un espacio después de los primeros 3 dígitos
+    value = value.replace(/\D/g, "");
+    return value;
   }
 
   function validateInput(event) {
@@ -216,9 +216,15 @@
   >
     <div class="fixed inset-0 bg-black opacity-50"></div>
     <div class="relative bg-white rounded-lg p-8 sm:w-[500px] xs:w-[250px]">
-      <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
-        <button on:click={toggleSaldoBox}>
+      <div
+        class="flex flex-col gap-4 p-1 py-3 text-st-blue justify-start align-middle items-start w-28"
+      >
+        <button
+          on:click={toggleSaldoBox}
+          class="flex flex-row items-center gap-3"
+        >
           <i class="fa fa-angle-left" aria-hidden="true"></i>
+          <h1 class="w-full">Regresar</h1>
         </button>
       </div>
 
@@ -227,30 +233,31 @@
           <h2 class="text-xl md:text-2xl font-semibold text-st-blue mb-2 pt-2">
             Abonar a E-wallet
           </h2>
-
-          <div
-            class="flex flex-row justify-between text-st-blue p-1 border-b border-st-blue"
-          >
-            <div class="flex">
-              <i class="fa fa-wallet pt-1 mr-2" aria-hidden="true"></i>
-              <p>Mi saldo actual</p>
+          <div class="pb-5">
+            <div
+              class="flex flex-row justify-between text-st-blue p-1 border-b border-st-blue border-opacity-20"
+            >
+              <div class="flex">
+                <i class="fa fa-wallet pt-1 mr-2" aria-hidden="true"></i>
+                <p>Mi saldo actual</p>
+              </div>
+              <p>${$userWallet.saldo / 100}</p>
             </div>
-            <p>${$userWallet.saldo / 100}</p>
-          </div>
 
-          <p class="text-sm font-normal pb-1 pt-4">
-            Ingresa el monto por abonar
-          </p>
-          <input
-            type="text"
-            name="monto"
-            on:input={validateInput}
-            bind:value={formData.monto}
-            class="p-2 w-full border border-gainsboro rounded-lg"
-            placeholder="0.00"
-          />
+            <p class="text-sm font-normal pb-1 pt-4">
+              Ingresa el monto por abonar
+            </p>
+            <input
+              type="text"
+              name="monto"
+              on:input={validateInput}
+              bind:value={formData.monto}
+              class="p-2 w-full border border-gainsboro rounded-lg"
+              placeholder="0.00"
+            />
+          </div>
           <div
-            class="flex flex-row justify-between text-st-blue p-1 mt-2 mb-1 border-b border-st-blue"
+            class="flex flex-row justify-between text-st-blue p-1 mt-2 mb-1 border-b border-st-blue border-opacity-20"
           >
             <div class="flex">
               <i class="fa fa-credit-card pt-1 mr-2" aria-hidden="true"></i>
@@ -343,7 +350,7 @@
             </select>
           {/if}
         </div>
-        <div class="py-4 text-sm flex flex-col gap-2">
+        <div class="py-4 text-sm flex flex-col gap-2 pt-5">
           <button
             on:click={handleRecarga}
             disabled={disableAbonar}

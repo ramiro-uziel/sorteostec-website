@@ -58,7 +58,6 @@
       return;
     }
 
-    // Prepare form data for submission
     const formData = new URLSearchParams();
     formData.append("nombre", nombre);
     formData.append("apellidoPaterno", apellidoPaterno);

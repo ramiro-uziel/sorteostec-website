@@ -17,7 +17,7 @@
 
     /*
     {
-      color: "#0097dd",
+      color: "#24113b",
       logo: "/images/logo-tradicional.png",
       title: "¡La casa de tus sueños!",
       tagline: "Primer premio con valor total de:",

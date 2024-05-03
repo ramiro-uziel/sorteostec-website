@@ -1,10 +1,11 @@
 <script>
   import Sidebar from "/src/components/Sidebar.svelte";
   import Select from "svelte-select";
-  import { userProfile } from "$lib/stores";
-  import { userInformation } from "../../../lib/stores";
+  import { writable } from "svelte/store";
+  import { userProfile, userInformation } from "$lib/stores";
   import { estados_municipios } from "$lib/estados";
-  // const updatePersonalInformation = writable(false);
+
+  let errorMessages = writable({});
 
   $: municipios = formData.estado?.municipios || [];
   let viewEdit = false;
@@ -19,12 +20,37 @@
 
   function toggleViewEditBox() {
     viewEdit = !viewEdit;
-    // updatePersonalInformation.update((value) => !value);
+  }
+
+  function updateError(field) {
+    errorMessages.update((currentErrors) => {
+      delete currentErrors[field];
+      return currentErrors;
+    });
   }
 
   async function handleUpdate() {
+    let errors = {};
+    if (!formData.nombre) errors.nombre = "El nombre es obligatorio.";
+    if (!formData.apellido_p)
+      errors.apellido_p = "El apellido paterno es obligatorio.";
+    if (!formData.apellido_m)
+      errors.apellido_m = "El apellido materno es obligatorio.";
+    if (!formData.telefono) errors.telefono = "El teléfono es obligatorio.";
+    if (!formData.estado || !formData.estado.nombre)
+      errors.estado = "El estado es obligatorio.";
+    if (!formData.ciudad || !formData.ciudad.label)
+      errors.ciudad = "La ciudad es obligatoria.";
+
+    errorMessages.set(errors);
+
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
     formData.ciudad = formData.ciudad.label;
     formData.estado = formData.estado.nombre;
+
     const opciones = {
       method: "PUT",
       headers: {
@@ -35,10 +61,11 @@
 
     try {
       console.log(opciones);
-      await fetch("/api/registro", opciones);
+      const response = await fetch("/api/registro", opciones);
+      if (!response.ok) throw new Error("Failed to update profile.");
+
       const profileResponse = await fetch("/api/perfil");
       const profileData = await profileResponse.json();
-      console.log("[ ! ] Profile data:", profileData);
       userProfile.set(profileData);
 
       toggleViewEditBox();
@@ -98,10 +125,15 @@
     >
       <div class="fixed inset-0 bg-black opacity-50"></div>
       <div class="relative bg-white rounded-lg p-8 sm:w-[500px] xs:w-[250px]">
-        <div class="flex flex-row gap-4 p-1 pt-3 pb-3 text-st-blue">
-          <button on:click={toggleViewEditBox}>
+        <div class="flex flex-col gap-4 p-1 text-st-blue">
+          <button
+            on:click={toggleViewEditBox}
+            class="flex flex-row items-center gap-3"
+          >
             <i class="fa fa-angle-left" aria-hidden="true"></i>
+            <h1>Regresar</h1>
           </button>
+          <h1 class="text-xl font-semibold pl-3 pt-3">Editar perfil</h1>
         </div>
 
         <div class="p-3">
@@ -110,8 +142,11 @@
               type="text"
               bind:value={formData.nombre}
               name="nombre"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 px-4 w-full border placeholder:text-[#78848f] rounded-lg {$errorMessages.nombre
+                ? 'border-red-500 hover:border-red-800'
+                : 'border-[#d8dbdf] hover:border-[#b2b8bf]'} rounded-lg"
               placeholder="Nombre"
+              on:input={() => updateError("nombre")}
             />
           </div>
           <div class="mb-2">
@@ -119,8 +154,11 @@
               type="text"
               bind:value={formData.apellido_p}
               name="apellido_p"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 px-4 w-full border placeholder:text-[#78848f] rounded-lg {$errorMessages.apellido_p
+                ? 'border-red-500 hover:border-red-800'
+                : 'border-[#d8dbdf] hover:border-[#b2b8bf]'} rounded-lg"
               placeholder="Apellido Paterno"
+              on:input={() => updateError("apellido_p")}
             />
           </div>
           <div class="mb-2">
@@ -128,8 +166,11 @@
               type="text"
               bind:value={formData.apellido_m}
               name="apellido_m"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 px-4 w-full border placeholder:text-[#78848f] rounded-lg {$errorMessages.apellido_m
+                ? 'border-red-500 hover:border-red-800'
+                : 'border-[#d8dbdf] hover:border-[#b2b8bf]'} rounded-lg"
               placeholder="Apellido Materno"
+              on:input={() => updateError("apellido_m")}
             />
           </div>
           <div class="mb-2">
@@ -137,8 +178,11 @@
               type="tel"
               bind:value={formData.telefono}
               name="telefono"
-              class="p-3 w-full border border-gainsboro rounded-lg"
+              class="p-3 px-4 w-full border placeholder:text-[#78848f] rounded-lg {$errorMessages.telefono
+                ? 'border-red-500 hover:border-red-800'
+                : 'border-[#d8dbdf] hover:border-[#b2b8bf]'} rounded-lg"
               placeholder="Teléfono"
+              on:input={() => updateError("telefono")}
             />
           </div>
 
@@ -146,12 +190,17 @@
             <Select
               --height="51px"
               --border-radius="0.5rem"
+              --border={$errorMessages.estado ? "1px solid rgb(239 68 68)" : ""}
+              --border-hover={$errorMessages.estado
+                ? "1px solid rgb(153 27 27)"
+                : ""}
               inputAttributes={{ autocomplete: "off" }}
               items={estados_municipios}
               label="nombre"
               itemId="nombre"
               placeholder="Estado"
               class="p-5"
+              on:input={() => updateError("estado")}
               on:change={() => (formData.ciudad = null)}
               bind:value={formData.estado}
             >
@@ -171,10 +220,15 @@
             <Select
               --height="51px"
               --border-radius="0.5rem"
+              --border={$errorMessages.ciudad ? "1px solid rgb(239 68 68)" : ""}
+              --border-hover={$errorMessages.ciudad
+                ? "1px solid rgb(153 27 27)"
+                : ""}
               inputAttributes={{ autocomplete: "off" }}
               items={municipios}
               placeholder="Municipio"
               class="p-5"
+              on:input={() => updateError("ciudad")}
               bind:value={formData.ciudad}
             >
               <div slot="empty" class="p-5 flex justify-center text-gray-400">
@@ -195,7 +249,7 @@
           <button
             type="button"
             on:click={handleUpdate}
-            class="w-full bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
+            class="w-full mt-6 bg-st-blue rounded p-4 text-white hover:bg-st-blue-light hover:text-st-blue duration-100"
           >
             Actualizar Informacion
           </button>
