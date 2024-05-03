@@ -10,13 +10,24 @@
   let errorMessages = writable({});
 
   let formData = {
-    nombre: $userInformation.nombre,
-    apellido_m: $userInformation.apellido_m,
-    apellido_p: $userInformation.apellido_p,
-    telefono: $userInformation.telefono,
-    estado: $userInformation.estado,
-    ciudad: $userInformation.ciudad,
+    nombre: "",
+    apellido_m: "",
+    apellido_p: "",
+    telefono: "",
+    estado: "",
+    ciudad: "",
   };
+
+  $: {
+    formData = {
+      nombre: $userInformation.nombre,
+      apellido_m: $userInformation.apellido_m,
+      apellido_p: $userInformation.apellido_p,
+      telefono: $userInformation.telefono,
+      estado: $userInformation.estado,
+      ciudad: $userInformation.ciudad,
+    };
+  }
 
   $: municipios = formData.estado?.municipios || [];
 
