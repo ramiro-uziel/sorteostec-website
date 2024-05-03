@@ -191,7 +191,7 @@
             href="/login"
             class="z-9 text-white py-2 rounded-md border-x-slate-50 px-2 lg:px-4 duration-200 text-sm hover:text-slate-950 hover:bg-white hover:shadow-md hover:scale-[105%]"
           >
-            <p class="text-sm font-semibold">Iniciar sesion</p>
+            <p class="text-sm font-semibold">Iniciar sesión</p>
           </a>
           <a
             href="/registro"

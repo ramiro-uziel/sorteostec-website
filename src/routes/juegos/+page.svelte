@@ -75,7 +75,7 @@
                         href="/login"
                         class="bg-st-blue hover:bg-st-blue-light hover:text-st-blue flex items-center justify-center mb-2 pt-3 pb-3 w-full rounded-xl cursor-pointer text-white duration-200"
                       >
-                        <p class="text-md font-bold px-1">Iniciar sesion</p>
+                        <p class="text-md font-bold px-1">Iniciar sesión</p>
                       </a>
                     </div>
                   {/if}
