@@ -209,7 +209,7 @@
               class="text-sm font-semibold flex flex-row items-center gap-1"
             >
               <i class="fa-solid fa-wallet pr-2"></i>
-              <p class="mdsm:hidden xs-mdsm:flex mdxl:flex">
+              <p class="flex">
                 {formatCurrency($userWallet.saldo / 100)}
               </p>
             </div>
